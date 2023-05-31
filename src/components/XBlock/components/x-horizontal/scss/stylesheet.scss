@@ -1,0 +1,15 @@
+@import "../../../../../scss/stylesheet.scss";
+
+.webx {
+    .x-horizontal {
+        @include horizontal-list();
+        .x-horizontal-children {
+            width: fit-content;
+            margin-right: 8px;
+            
+            &:last-child {
+                margin-right: 0!important;
+            }
+        }
+    }
+}

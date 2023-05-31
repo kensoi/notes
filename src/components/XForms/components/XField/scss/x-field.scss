@@ -1,0 +1,88 @@
+@import "../../../../../scss/stylesheet.scss";
+@import "../../../../../scss/box-shadows.scss";
+
+.webx {
+    .x-field {
+        $note-block-shadow: $box-shadow, $box-border;
+        font-family: 'TT Commons';
+        font-size: 20px;
+
+        background: var(--x-field-background);
+        color: var(--x-field-text);
+
+        box-sizing: border-box;
+        padding: calc((var(--x-button-height) - 25px) / 2) $point;
+        border-radius: $point;
+
+        display: flex;
+
+        transition: 0.05s;
+        overflow: hidden;
+        cursor: text;
+        &.max-list {
+            flex: 1 1 auto;
+        }
+        .x-field-wrap {
+            display: flex;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .x-field-icon {
+            width: 25px;
+            height: 100%;
+            margin-right: $point;
+            .x-field-icon-wrap {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                min-height: 25px;
+            }
+        }
+        .x-field-clear {
+            width: 25px;
+            height: 100%;
+            margin-left: $point;
+            opacity: 0.5;
+            cursor: pointer;
+            .x-field-clear-wrap {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                min-height: 25px;
+            }
+        }
+        .x-field-value-wrap {
+            padding-top: 2px;
+            padding-left: 4px;
+        }
+        .x-field-input {
+            flex: 1 1 auto;
+            outline: none;
+            padding-top: 2px;
+            overflow: hidden;
+            box-sizing: border-box;
+            &:first-child {
+                padding-left: 8px;
+            }
+            &:last-child {
+                padding-right: 8px;
+            }
+            &[contenteditable=true]:empty:before{
+                content: attr(data-placeholder);
+                pointer-events: none;
+                display: block; /* For Firefox */
+                opacity: 0.5;
+                text-transform: lowercase;
+            }
+        }
+        &.no-wrap .x-field-input {
+            white-space: nowrap;
+        }
+    }
+    
+    .x-list .x-field {
+        margin-bottom: 0;
+    }
+}

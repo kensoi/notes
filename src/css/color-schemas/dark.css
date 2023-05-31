@@ -1,0 +1,28 @@
+.webx.color-schema-dark {
+    --background: var(--cod-black);
+
+    --card-background: var(--mine-shaft);
+    --card-hover-background: var(--charade);
+
+    --color: var(--white);
+
+    --search-background: var(--tundora);
+    --search-color: var(--raven);
+
+    --x-button-background-hover: var(--emperor);
+    --x-button-background: var(--tundora);
+    --x-button-icon: var(--white);
+    --x-button-text: var(--white);
+
+    --x-field-background-hover: var(--emperor);
+    --x-field-background: var(--tundora);
+    --x-field-icon: var(--white);
+    --x-field-text: var(--white);
+
+    --x-field-selected: var(--emperor);
+
+    --x-menu-accent-color: var(--tuna);
+    --x-menu-background: var(--less-less-less-dark);
+    --x-menu-icon: var(--white);
+    --x-menu-text: var(--white);
+}

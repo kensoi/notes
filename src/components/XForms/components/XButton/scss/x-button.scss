@@ -1,0 +1,83 @@
+@import "../../../../../scss/stylesheet.scss";
+@import "../../../../../scss/box-shadows.scss";
+
+.webx {
+    .x-dropdown {
+        .x-button {
+            width: 100%;
+            margin: 0!important;
+        }
+    }
+    .x-dropdown {
+        .x-button-title {
+            text-align: left!important;
+        }
+    }
+    
+    .x-button {
+        display: inline-flex;
+        background: var(--x-button-background);
+        border-radius: calc(var(--border-radius) / 2);
+        user-select: none;
+        cursor: pointer;
+        height: var(--x-button-height);
+        box-shadow: $box-shadow;
+        padding: 0 $point;
+        box-sizing: border-box;
+        transition: 0.1s;
+
+        &:hover {
+            background: var(--x-button-background-hover);
+        }
+
+        .x-button-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: calc(var(--x-button-height) - 2 * $point);
+            height: var(--x-button-height);
+            color: var(--x-button-icon);
+        }
+        .x-button-title {
+            text-align: center;
+            flex: 1 1 auto;
+            width: max-content;
+            padding-top: calc(var(--padding) / 2 + 2px);
+            padding-bottom: calc(var(--padding) / 2);
+            font-family: 'TT Commons';
+            font-size: $point * 2.5;
+            color: var(--x-button-text);
+            margin: 0 $point;
+
+            &:last-child {
+                margin-right: 0!important;
+            }
+            &:first-child {
+                margin-left: 0!important;
+            }
+        }
+        
+        .x-button-dropdown-icon {
+            color: var(--x-button-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: calc(var(--x-button-height) - 2 * $point);
+            height: var(--x-button-height);
+            transform: rotate(var(--dropdown-content-angle, 0deg));
+            transition: var(--dropdown-icon-transition, 0s);
+
+            --display: none;
+            &.visible {
+                --display: default;
+            }
+            svg {
+                display: var(--display, none);
+            }
+        }
+    }
+    
+    .x-list .x-button {
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,68 @@
+@import "../../../../../scss/stylesheet.scss";
+
+.x-list {
+    margin-bottom: $point;
+    &:not(.mobile-horizontal) {
+        @media screen and (max-width: 720px) {
+            @include vertical-list();
+            .x-button .x-button-title {
+                text-align: center;
+            }
+            .x-list-children {
+                margin-bottom: 8px;
+                &:last-child {
+                    margin-bottom: 0!important;
+                }
+            }
+        }
+
+        @media screen and (min-width: 721px) {
+            @include horizontal-list();
+            .x-list-children {
+                margin-right: 8px;
+                &:last-child {
+                    margin-right: 0!important;
+                }
+            }
+        }
+    }
+    &.mobile-horizontal {
+        @include horizontal-list();
+        .x-list-children {
+            margin-right: 8px;
+            &:last-child {
+                margin-right: 0!important;
+            }
+        }
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.webx {
+    &.screen-device-mobile {
+        .x-list {
+            @include vertical-list();
+            .x-button .x-button-title {
+                text-align: center;
+            }
+        }
+    }
+    &.screen-device-tablet {
+        .x-list {
+            @include horizontal-list();
+        }
+        
+    }
+    &.screen-device-desktop {
+        .x-list {
+            @include horizontal-list();
+        }
+    }
+    .x-list {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

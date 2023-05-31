@@ -1,0 +1,65 @@
+@import "../../../scss/stylesheet.scss";
+@import "../../../scss/box-shadows.scss";
+
+.x-icon {
+    border-radius: $point;
+    background: var(--x-field-background);
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--x-field-background-hover);
+    }
+    .x-icon-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .x-icon-title {
+        padding: $point*2 0;
+        font-family: 'TT Commons';
+        font-size: large;
+    }
+
+    @media screen and (max-width: 720px) {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: $point * 10;
+        .x-icon-icon {
+            width: $point * 20;
+        }
+        .x-icon-title {
+            font-size: large!important;
+            width: 100%;
+            padding: $point 0 0 0;
+        }
+        
+        svg {
+            width: 35%;
+            height: auto;
+        }
+    }
+
+    @media screen and (min-width: 721px) {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        width: $point * 30;
+        height: $point * 36;
+
+        .x-icon-icon {
+            flex: 1 1 auto;
+        }
+        
+        svg {
+            width: 45%;
+            height: auto;
+        }
+    }
+}
+.x-icon-column {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,84 @@
+@import "../../../../../scss/stylesheet.scss";
+@import "../../../../../scss/box-shadows.scss";
+
+.webx {
+    .x-slider {
+        $note-block-shadow: $box-shadow, $box-border;
+
+        @include box-shadow($note-block-shadow);
+        display: flex;
+        height: var(--x-button-height);
+        $thumb-size: calc(var(--x-button-height) - 2 * $point);
+        background: var(--x-field-background);
+        border-radius: $point;
+        user-select: none;
+        cursor: pointer;
+
+        .x-slider-input {
+            flex: 1 1 auto;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 0 $point;
+            @include centering();
+
+            input {
+                box-sizing: border-box;
+                -webkit-appearance: none;  /* Переопределение стилей CSS по умолчанию */
+                appearance: none;
+                width: 100%; /* Полная ширина */
+                height: $point * 0.8;
+                border-radius: $point;
+                background: var(--x-field-text);
+                outline: none; /* Удалить контур */
+                opacity: 0.7; /* Установите прозрачность (для эффектов наведения мыши при наведении курсора) */
+                -webkit-transition: .2s; /* 0.2 секундный переход при наведении курсора */
+                transition: opacity .2s;
+                &:hover {
+                    opacity: 1; /* Полностью отображается при наведении курсора мыши */
+                }
+                &::-webkit-slider-thumb {
+                    -webkit-appearance: none; /* Переопределить внешний вид по умолчанию */
+                    appearance: none;
+                    width: $point * 2;
+                    height: $point * 2;
+                    border-radius: $point * 3;
+                    background: var(--x-field-icon);
+                    cursor: pointer; /* Курсор при наведении */
+                }
+                &::-moz-range-thumb {
+                    width: $point * 3;
+                    height: $point * 3;
+                    border-radius: $point * 3;
+                    background: var(--x-field-icon);
+                    cursor: pointer; /* Курсор при наведении */
+                }
+            }
+        }
+        .x-slider-output {
+            @include centering();
+            padding: $point;
+            width: var(--x-button-height);
+            height: $thumb-size;
+            color: var(--x-field-text);
+            font-family: 'TT Commons';
+            font-weight: 500;
+            font-size: $point * 3;
+            padding-left: 0;
+            padding-top: calc(var(--padding) / 2 + 2px);
+            padding-bottom: calc(var(--padding) / 2);
+        }
+        .x-slider-currency {
+            width: var(--x-button-height);
+            height: $thumb-size;
+            color: var(--x-field-text);
+            font-family: 'TT Commons';
+            font-weight: 500;
+            font-size: 18px;
+            padding: var(--padding) var(--padding) var(--padding) 0;
+        }
+    }
+    
+    .x-list .x-slider {
+        margin-bottom: 0;
+    }
+}

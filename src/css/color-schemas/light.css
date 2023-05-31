@@ -1,0 +1,26 @@
+.webx.color-schema-light {
+    --background: var(--athens-gray);
+
+    --card-background: var(--white);
+    --card-hover-background: var(--zircon);
+
+    --color: var(--black);
+
+    --search-background: var(--athens-gray);
+    --search-color: var(--gray);
+
+    --x-button-background-hover: var(--san-marino2);
+    --x-button-background: var(--san-marino);
+    --x-button-icon: var(--mystic);
+    --x-button-text: var(--mystic);
+
+    --x-field-background-hover: var(--titan-white);
+    --x-field-background: var(--mystic);
+    --x-field-icon: var(--san-marino);
+    --x-field-text: var(--san-marino);
+
+    --x-menu-accent-color: var(--zircon);
+    --x-menu-background: var(--white);
+    --x-menu-icon: var(--san-marino);
+    --x-menu-text: var(--color);
+}

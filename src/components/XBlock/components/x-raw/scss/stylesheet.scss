@@ -1,0 +1,59 @@
+@import "../../../../../scss/stylesheet.scss";
+
+.webx {
+    &.screen-device-mobile{
+        .x-raw-children {
+            margin-bottom: 8px;
+            &:last-child {
+                margin-bottom: 0!important;
+            }
+        }
+    }
+    &.screen-device-tablet{
+        .x-raw {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .x-raw-children {
+                margin-right: 8px;
+                &:last-child {
+                    margin-right: 0!important;
+                }
+            }
+        }
+    }
+
+    &.screen-device-desktop {
+        .x-raw {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .x-raw-children {
+                margin-right: 8px;
+                &:last-child {
+                    margin-right: 0!important;
+                }
+            }
+        }
+    }
+    .x-raw {
+        .x-raw-children {
+            .x-button {
+                margin-right: 0;
+            }
+            .x-tumbler {
+                width: 100%;
+                .x-tumbler-wrapper {
+                    width: 100%;
+                    .x-tumbler-item {
+                        flex: 1 1 auto;
+                    }
+                }
+            }
+            flex: 1 1 auto;
+            .x-field {
+                flex: 1 1 auto;
+            }
+        }
+    }
+}

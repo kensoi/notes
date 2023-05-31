@@ -1,0 +1,23 @@
+@import "../../../../../scss/stylesheet.scss";
+
+.webx {
+    .screen-device-mobile {
+        .x-vertical {
+            .x-button {
+                width: 100%;
+            }
+            .x-button .x-button-title {
+                text-align: center;
+            }
+        }
+    }
+    .x-vertical {
+        @include vertical-list();
+        .x-vertical-children {
+            margin-bottom: 8px;
+            &:last-child {
+                margin-bottom: 0!important;
+            }
+        }
+    }
+}

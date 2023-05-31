@@ -1,0 +1,72 @@
+$point: 8px;
+
+@mixin centering() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin blur-backdrop() {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+@mixin blur-backdrop-disabled() {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+}
+
+
+@mixin vertical-list() {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+        margin-bottom: $point;
+    }
+
+    :last-child {
+        margin-bottom: 0;
+    }
+}
+
+@mixin horizontal-list() {
+    display: flex;
+    flex-direction: row;
+
+    > * {
+        margin-right: $point;
+    }
+    
+    :last-child {
+        margin-right: 0;
+    }
+}
+
+.webx {
+    translate: 0.1s ease-in-out;
+    background: var(--background);
+    
+    .form-card {
+        h1 {
+            padding: 0;
+        }
+        p {
+            padding: 0;
+        }
+    }
+
+    h1 {
+        font-family: 'TT Commons';
+        font-weight: 600;
+        box-sizing: border-box;
+        font-size: $point * 6;
+        padding: 0 $point * 2;
+    }
+    
+    p {
+        box-sizing: border-box;
+        font-family: 'Roboto';
+        font-size: $point * 2;
+        padding: 0 $point * 2;
+    }
+}

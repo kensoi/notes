@@ -1,0 +1,105 @@
+@import "../../../scss/stylesheet.scss";
+@import "../../../scss/box-shadows.scss";
+
+$header-logo-size: 3px;
+
+.webx {
+    &.color-schema-dark {
+        .header {
+            background: #000000;
+            color: #FFFFFF;
+        }
+    }
+
+    &.color-schema-light {
+        .header {
+            background: #FFFFFF;
+            color: #000000;
+        }
+    }
+
+    &.color-schema-pink {
+        .header {
+            background: #FFFFFF;
+            color: #000000;
+        }
+    }
+
+    &.color-schema-auto {
+        .header {
+            @media screen and (prefers-color-scheme: dark) {
+                background: #000000;
+                color: #FFFFFF;
+            }
+
+            @media screen and (prefers-color-scheme: light) {
+                background: #FFFFFF;
+                color: #000000;
+            }
+        }
+    }   
+
+    &.screen-device-desktop {
+        .header-logo {
+            flex: 1 1 auto;
+            margin: 0 8px;
+        }
+    }
+    
+    .header {
+        @include centering();
+        @include box-shadow($box-border);
+        --x-button-background: rgba(0,0,0,0)!important;
+        --x-button-background-hover: var(--x-field-background);
+
+        position: sticky;
+        top: 0;
+        height: $point * 7;
+        z-index: 98;
+        width: 100%;
+        max-width: 1024px;
+        margin: 0 auto;
+        border-radius: $point*2;
+
+        .header-content {
+            @include centering();
+
+            // max-width: $point * 120;
+
+            justify-content: space-between;
+            width: 100%;
+            height: $point * 7;
+            
+            padding: 0 $point * 1;
+            box-sizing: border-box;
+
+            .header-logo {
+                font-family: 'TT Commons';
+                font-weight: 500;
+                font-size: $point * 3;
+                user-select: none;
+                padding: 0 $point * 0;
+            }
+            .header-dev {
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                background-image: url("./favicon.png");
+            }
+
+            .header-buttons {
+                @include centering();
+                > * {
+                    margin-left: $point * 0.5;
+                    margin-right: $point * 0.5;
+                }
+                :first-child {
+                    margin-left: 0;
+                }
+                :last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

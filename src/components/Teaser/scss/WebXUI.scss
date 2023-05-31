@@ -1,0 +1,19 @@
+@import "../../../scss/stylesheet.scss";
+
+
+.web-x-teaser {
+    height: 50vh;
+    background: rgb(0, 0, 0);
+    color: white;
+    border-radius: $point;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'TT Commons';
+
+    .web-x-headline {
+        font-weight: 600;
+        font-size: 5em;
+        text-align: center;
+    }
+}
