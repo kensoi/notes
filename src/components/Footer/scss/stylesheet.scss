@@ -41,6 +41,8 @@
         @include centering();
         @include box-shadow($box-border);
 
+        position: sticky;
+        bottom: 0;
         z-index: 98;
         width: 100%;
         max-width: 1024px;

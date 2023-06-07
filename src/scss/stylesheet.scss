@@ -1,3 +1,5 @@
+@import "./notes.scss";
+
 $point: 8px;
 
 @mixin centering() {
@@ -19,26 +21,33 @@ $point: 8px;
 @mixin vertical-list() {
     display: flex;
     flex-direction: column;
+    position: relative;
 
-    > * {
-        margin-bottom: $point;
+    &:not(.x-sorter-disable-paddings) {
+        > * {
+            margin-bottom: $point;
+        }
+    
+        :last-child {
+            margin-bottom: 0;
+        }
     }
-
-    :last-child {
-        margin-bottom: 0;
-    }
+    
 }
 
 @mixin horizontal-list() {
     display: flex;
     flex-direction: row;
+    position: relative;
 
-    > * {
-        margin-right: $point;
-    }
-    
-    :last-child {
-        margin-right: 0;
+    &:not(.x-sorter-disable-paddings) {
+        > * {
+            margin-right: $point;
+        }
+        
+        :last-child {
+            margin-right: 0;
+        }
     }
 }
 

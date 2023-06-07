@@ -17,6 +17,10 @@
         }
         
         .form-label {
+            min-height: 40px;
+            line-height: 20px;
+            padding: 10px 8px;
+            box-sizing: border-box;
             &.disable-at-mobile {
                 display: none;
             }
@@ -29,6 +33,9 @@
         }
         
         .form-label {
+            min-height: 40px;
+            line-height: 20px;
+            padding: 10px 8px;
             display: flex;
             box-sizing: border-box;
             align-items: center;
@@ -41,6 +48,9 @@
             grid-template-columns: 1fr 2fr;
         }
         .form-label {
+            min-height: 40px;
+            line-height: 20px;
+            padding: 10px 8px;
             display: flex;
             box-sizing: border-box;
             align-items: center;

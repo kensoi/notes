@@ -40,6 +40,7 @@ class XField extends React.Component {
       </div>
     }
   }
+
   input = (e) => {
     this.setState({
       valueCheckMark: e.target.innerHTML
@@ -70,13 +71,39 @@ class XField extends React.Component {
     this.textField.focus();
   };
 
-  onFocusIn = () => {
-    this.setState({focus: true})
+
+  enterEvent = () => {
+    let focusOut = () => {
+      this.textField.blur() 
+    }
+
+    return function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault()
+        focusOut()
+      }
+    }
   }
 
   onFocusOut = () => {
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur()
+    }
+    
     this.props.setField(this.textField.innerHTML);
     this.setState({focus: false})
+
+    window.removeEventListener("keypress", this.enterEvent())
+  }
+
+  onFocusIn = () => {
+    if (typeof this.props.onFocus === 'function') {
+      this.props.onFocus()
+    }
+
+    this.setState({focus: true})
+
+    window.addEventListener("keypress", this.enterEvent())
   }
 
   componentDidMount() {
@@ -102,6 +129,7 @@ class XField extends React.Component {
     if (this.props.noWrap) {
       this.classList.push("no-wrap")
     }
+    this.classList.push(this.props.className)
     return (
       <div className={this.classList.join(" ")} onClick={this.focusField}>
         {this.icon()}

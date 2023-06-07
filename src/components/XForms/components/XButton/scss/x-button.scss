@@ -16,15 +16,17 @@
     
     .x-button {
         display: inline-flex;
-        background: var(--x-button-background);
         border-radius: calc(var(--border-radius) / 2);
         user-select: none;
         cursor: pointer;
         height: var(--x-button-height);
-        box-shadow: $box-shadow;
         padding: 0 $point;
         box-sizing: border-box;
         transition: 0.1s;
+        &.usual {
+            background: var(--x-button-background);
+            box-shadow: $box-shadow;
+        }
 
         &:hover {
             background: var(--x-button-background-hover);

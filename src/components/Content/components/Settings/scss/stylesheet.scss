@@ -1,0 +1,47 @@
+.webx {
+    .settings-text {
+        padding: 0 8px;
+    }
+    &.screen-device-mobile {
+        .settings-text {
+            padding: 8px;
+        }
+    }
+    &.screen-device-tablet {
+        .settings-page {
+            padding-left: 32px;
+            padding-right: 32px;
+        }
+        .settings-block {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+    }
+    &.screen-device-desktop {
+        .settings-page {
+            padding-left: 64px;
+            padding-right: 64px;
+        }
+        .settings-block {
+            padding-top: 32px;
+            padding-bottom: 32px;
+        }
+    }
+    .settings-menu {
+        .x-button-title {
+            text-align: left;
+            padding-left: 8px;
+        }
+    }
+
+    
+    .settings-headline {
+        min-height: 40px;
+        line-height: 28px;
+        padding: 10px 0 8px 0;
+        font-family: 'TT Commons';
+        font-weight: 600;
+        font-size: 28px;
+        box-sizing: border-box;
+    }
+}

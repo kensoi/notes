@@ -1,7 +1,7 @@
 {
-  "name": "web-x-ui",
-  "version": "0.5.0",
-  "homepage": "https://kensoi.github.io/web-cross-ui",
+  "name": "notes",
+  "version": "0.0.1",
+  "homepage": "https://kensoi.github.io/notes",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",

@@ -1,47 +1,37 @@
 import React from "react";
 import "./scss/form-card.scss";
-import CloseIcon from "@mui/icons-material/Close";
-import Layout from "./components/Layout";
+import { Layout, getCardType } from "./components/Layout";
+import { CloseButton } from "./components/CloseButton";
 
-export default class FormCard extends React.Component {
-  closeButton = () => {
-    return (
-      <div className="form-card-close-wrapper">
-        <div
-          className="form-card-close-button"
-          onClick={() => {
-            this.props.toolkit.returnCardResponse(null);
-          }}
-        >
-          <CloseIcon />
+export default function FormCard (props) {
+  const offsetStyle = {
+    top: props.toolkit.cardTopOffset + "px",
+    display: props.toolkit.cardMounted ? "block" : "none"
+  }
+
+  const WrapperClassArray = ["form-card-wrapper"]
+  const CardClassArray = ["form-card"]
+
+  if (props.toolkit.cardLoaded) {
+    WrapperClassArray.push("visible")
+  }
+
+  CardClassArray.push(
+    getCardType(props.toolkit)
+  )
+
+  if (props.toolkit.cardMounted) {
+    return <div className={WrapperClassArray.join(" ")} style={offsetStyle}>
+      <div className={CardClassArray.join(" ")}>
+        <CloseButton toolkit={props.toolkit}/>
+        <div className="form-card-layout">
+          <Layout toolkit={props.toolkit} />
         </div>
       </div>
-    );
-  };
+    </div>
+  }
 
-  render() {
-    const ClassList = ["form-card-wrapper"];
-    const CardClassList = ["form-card"];
-    const offsetStyle = {
-      top: this.props.toolkit.cardTopOffset + "px",
-    };
-    ClassList.push(this.props.toolkit.cardLoaded ? "visible" : "invisible");
-    if (this.props.toolkit.cardBG) {
-      CardClassList.push("with-bg")
-    }
-    if (this.props.toolkit.cardMounted) {
-      return (
-        <div className={ClassList.join(" ")} style={offsetStyle}>
-          <div className={CardClassList.join(" ")}>
-            {this.closeButton()}
-            <div className="form-card-layout">
-              <Layout toolkit={this.props.toolkit} />
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      return <></>;
-    }
+  else {
+    return <div style={offsetStyle}></div>
   }
 }

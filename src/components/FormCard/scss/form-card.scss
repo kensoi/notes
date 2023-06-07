@@ -14,24 +14,88 @@
         .form-card {
             width: 100%;
             color: var(--color);
-            min-height: 60vh;
             box-sizing: border-box;
-            padding: 0 $point $point * 3;
             margin-top: 10vh;
             margin-bottom: 10vh;
             transition: 0.1s ease-in-out;
-            &.with-bg {
+            &.article {
                 background-color: var(--card-background);
                 $box-shadow: $box-border, $box-shadow;
                 border-radius: $point * 2;
+                padding: 0 $point $point * 3;
+                min-height: 60vh;
                 @include box-shadow($box-shadow);
                 margin-top: 20vh;
                 margin-bottom: 20vh;
+                .form-card-close-wrapper {
+                    position: sticky;
+                    display: flex;
+                    justify-content: right;
+                    top: 0;
+                    bottom: 0;
+                    padding: $point * 4 $point * 3 0 $point * 3;
+                    .form-card-close-button {
+                        cursor: pointer;
+                        $note-block-shadow: $box-shadow, $box-border;
+                        @include box-shadow($note-block-shadow);
+                        width: $point * 4;
+                        height: $point * 4;
+                        border-radius: $point * 4;
+                        background-color: rgb(49, 49, 49);
+                        color: var(--card-background);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        user-select: none;
+                        svg {
+                            fill: white;
+                        }
+                    }
+                }
+                .form-card-layout {
+                    @media screen and (max-width: 425px) {
+                        padding: 0 $point * 3 $point * 3;
+                    }
+                    @media screen and (min-width: 425px) and (max-width: 720px) {
+                        padding: 0 $point * 3 $point * 3;
+                    }
+                    @media screen and (min-width: 720px) {
+                        padding: 0 $point * 11 $point * 3;
+                    }
+                }
+            }
+            &.notify {
+                margin-top: 30vh;
+                min-height: 40vh;
+                margin-bottom: 20vh;
+                border-radius: $point * 2;
+                padding: $point;
+                background-color: var(--card-background);
+                $box-shadow: $box-border, $box-shadow;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                .form-card-close-wrapper {
+                    display: none;
+                }
+
+                .form-card-layout {
+                    @media screen and (max-width: 425px) {
+                        padding: 0 $point * 3 $point * 3;
+                    }
+                    @media screen and (min-width: 425px) and (max-width: 720px) {
+                        padding: 0 $point * 3 $point * 3;
+                    }
+                    @media screen and (min-width: 720px) {
+                        padding: 0 $point * 11 $point * 3;
+                    }
+                }
             }
         }
 
         transition: 0.1s ease-in-out;
-        &.invisible {
+        &:not(.visible) {
             opacity: 0;
             .form-card {
                 transform: translate(0, 5vh);
@@ -41,42 +105,6 @@
             opacity: 1;
             .form-card {
                 transform: translate(0, var(--bottom-offset));
-            }
-        }
-        .form-card-close-wrapper {
-            position: sticky;
-            display: flex;
-            justify-content: right;
-            top: 0;
-            bottom: 0;
-            padding: $point * 4 $point * 3 0 $point * 3;
-            .form-card-close-button {
-                cursor: pointer;
-                $note-block-shadow: $box-shadow, $box-border;
-                @include box-shadow($note-block-shadow);
-                width: $point * 4;
-                height: $point * 4;
-                border-radius: $point * 4;
-                background-color: rgb(49, 49, 49);
-                color: var(--card-background);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                user-select: none;
-                svg {
-                    fill: white;
-                }
-            }
-        }
-        .form-card-layout {
-            @media screen and (max-width: 425px) {
-                padding: 0 $point * 3 $point * 3;
-            }
-            @media screen and (min-width: 425px) and (max-width: 720px) {
-                padding: 0 $point * 3 $point * 3;
-            }
-            @media screen and (min-width: 720px) {
-                padding: 0 $point * 11 $point * 3;
             }
         }
     }

@@ -1,0 +1,98 @@
+.webx {
+    .form-block {
+        transition: 0.1s;
+        &.visible {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+        &:not(.visible) {
+            opacity: 0;
+            transform: translateX(-24px);
+        }
+    }
+    .index {
+        max-width: 1024px;
+        min-height: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    .editor-state {
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color);
+    }
+    .no-notes {
+        color: var(--color);
+        height: 128px;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    .note-block {
+        transition: 0.05s;
+    }
+    .note-title {
+        box-shadow: none!important;
+        background: none;
+        padding: 24px 8px!important;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    .note-paragraph {
+        box-shadow: none!important;
+        background: none;
+        padding: 16px 8px!important;
+        align-items:flex-start;
+    }
+    .note-task .x-field {
+        box-shadow: none!important;
+        background: none;
+        align-items:flex-start;
+    }
+    .note-citata {
+        border-left: 2px solid var(--color);
+        margin: 8px 0 16px 19px;
+        padding-left: 6px;
+        .x-field {
+            box-shadow: none!important;
+            background: none;
+            font-family: 'Times New Roman', Times, serif!important;
+        }
+        .note-citata-text {
+            padding: 4px 8px!important;
+            align-items:flex-start;
+            font-style: italic;
+        }
+        .note-citata-author {
+            padding: 4px 8px!important;
+            font-style: italic;
+            text-align: right;
+        }
+    }
+
+    .note-item {
+        user-select: none;
+
+        .note-item-name {
+            line-height: 24px;
+            font-family: 'TT Commons';
+            font-weight: 600;
+            font-size: 24px;
+            padding: 8px 8px 0px 8px;
+            box-sizing: border-box;
+        }
+
+        .note-item-descr {
+            height: 28px;
+            line-height: 20px;
+            font-size: 20px;
+            font-family: 'TT Commons';
+            padding: 0px 8px 8px 8px;
+            box-sizing: border-box;
+        }
+    }
+}

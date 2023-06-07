@@ -2,6 +2,7 @@ import "./scss/stylesheet.scss";
 import {FooterButton} from "./footerButton";
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { XList, XVertical } from "../XBlock";
 
 function Footer(props) {
   if (props.toolkit.enableFooter) {
@@ -9,15 +10,27 @@ function Footer(props) {
       <div className="footer">
         <div className="footer-content">
           <p>
-            WebCrossUI beta 2020-2023 <br />
+            Заметки, версия 0.0.1 <br />
             Copyright kensoi 2023 <FavoriteBorderIcon fontSize="small" sx={{color: "red", transform: "translateY(4px)"}}/>
           </p>
-          <FooterButton onClick={() => {window.open("https://github.com/kensoi")}}>
-            Разработчик
-          </FooterButton>
-          <FooterButton onClick={() => {window.open("https://github.com/kensoi/cart-calc")}}>
-            Репозиторий
-          </FooterButton>
+          <XList sx={[{minWidth:"128px"}, {minWidth:"128px"}]}>
+            <XVertical>
+              <FooterButton onClick={() => {window.open("https://github.com/kensoi")}}>
+                Github
+              </FooterButton>
+              <FooterButton onClick={() => {window.open("https://vk.com/kensoi")}}>
+                ВКонтакте
+              </FooterButton>
+            </XVertical>
+            <XVertical>
+              <FooterButton onClick={() => {window.open("https://kensoi.github.io/cart-calc")}}>
+                Калькулятор покупок
+              </FooterButton>
+              <FooterButton onClick={() => {window.open("https://kensoi.github.io/notes")}}>
+                Заметки
+              </FooterButton>
+            </XVertical>
+          </XList>
         </div>
       </div>
     );

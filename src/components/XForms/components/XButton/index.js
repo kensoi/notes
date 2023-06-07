@@ -47,9 +47,11 @@ class XButton extends React.Component {
     else {
       this.hideEmptyPaddings = this.props.hideEmptyPaddings || false;
     }
+    const ClassList = ["x-button"]
+    ClassList.push(this.props.accent || "usual")
 
     return (
-      <div className="x-button" onClick={this.props.onClick} style={this.props.style}>
+      <div className={ClassList.join(" ")} onClick={this.props.onClick} style={this.props.style}>
         {this.icon()}
         {this.title()}
         {this.dropdown()}

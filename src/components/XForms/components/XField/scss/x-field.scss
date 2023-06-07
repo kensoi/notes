@@ -3,7 +3,9 @@
 
 .webx {
     .x-field {
-        $note-block-shadow: $box-shadow, $box-border;
+        $note-block-shadow: $box-shadow, $box-border!important;
+        @include box-shadow($note-block-shadow);
+
         font-family: 'TT Commons';
         font-size: 20px;
 
@@ -11,14 +13,19 @@
         color: var(--x-field-text);
 
         box-sizing: border-box;
-        padding: calc((var(--x-button-height) - 25px) / 2) $point;
-        border-radius: $point;
+        padding: calc((var(--x-button-height) - 9px) / 2) $point*2;
+        border-radius: $point*2;
 
         display: flex;
 
         transition: 0.05s;
         overflow: hidden;
         cursor: text;
+
+        &:hover {
+            background: var(--x-field-background-hover);
+        }
+
         &.max-list {
             flex: 1 1 auto;
         }
@@ -82,7 +89,8 @@
         }
     }
     
-    .x-list .x-field {
-        margin-bottom: 0;
+    .x-block .x-field {
+        border-radius: $point;
+        padding: calc((var(--x-button-height) - 25px) / 2) $point;
     }
 }

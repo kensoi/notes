@@ -1,14 +1,25 @@
 import "./scss/stylesheet.scss";
-import ProfileButton from "./components/ProfileButton";
+import SettingsIcon from '@mui/icons-material/Settings';
+import { XButton } from "../XForms";
 
 function HeaderLogo(props) {
-  return <div className="header-logo">WebCrossUI</div>;
+  return <div className="header-logo">Заметки</div>;
 }
 
 function DevButton(props) {
   return <a href="https://github.com/kensoi">
     <div className="header-dev"></div>
-  </a>
+  </a>;
+}
+
+function Settings(props) {
+  return <XButton
+  icon={<SettingsIcon />}
+  accent="transparent"
+  hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+  onClick={() => {
+    window.location.href=process.env.PUBLIC_URL + "/settings"
+  }} />
 }
 
 function Header(props) {
@@ -18,7 +29,7 @@ function Header(props) {
         <div className="header-content">
           <DevButton />
           <HeaderLogo />
-          <ProfileButton toolkit = {props.toolkit}/>
+          <Settings toolkit={props.toolkit} />
         </div>
       </div>
     );
