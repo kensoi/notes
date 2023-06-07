@@ -3,13 +3,11 @@
 .webx {
     .x-horizontal {
         @include horizontal-list();
-        &:not(.x-sorter-disable-paddings) .x-horizontal-children {
+        .x-horizontal-children {
             width: fit-content;
-            margin-right: 8px;
-            
-            &:last-child {
-                margin-right: 0!important;
-            }
+        }
+        &.x-sorter-disable-paddings .x-horizontal-children {
+            margin-right: 0!important;
         }
     }
 }

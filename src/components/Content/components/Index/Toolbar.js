@@ -1,17 +1,17 @@
 import XBlock, { XHorizontal, XVertical } from "../../../XBlock";
 import { XButton, XDropdown} from "../../../XForms";
 
-import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import TextFormatIcon from '@mui/icons-material/TextFormat';
 import ShortTextIcon from '@mui/icons-material/ShortText';
 import NotesIcon from '@mui/icons-material/Notes';
 import DoneIcon from '@mui/icons-material/Done';
 import RttIcon from '@mui/icons-material/Rtt';
+// import BrushIcon from '@mui/icons-material/Brush';
 
 export function Toolbar(props) {
-    let TextMenu = () => {
-        return <XVertical>
+    const TextMenu = () => {
+        return <XVertical disablePaddings={true}>
             <XButton
                 icon={<ShortTextIcon />}
                 title="Заголовок"
@@ -49,29 +49,35 @@ export function Toolbar(props) {
             hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
             onClick={props.toolkit.notes.deselect} />
     }
-    let TextButton = () => <XDropdown
+    const TextButton = () => <XDropdown
                 dropdown={<TextMenu/>}
                 contentPosition={"bottom-left"}
                 listDirection="row">
-            <XButton
+            <XButton accent="transparent"
                     icon={<TextFormatIcon />}
-                    title="Текст"
                     hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
                     />
         </XDropdown>
 
+    // const DecorativeButton = () => <XButton accent="transparent"
+    //     icon={<BrushIcon />}
+    //     hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+    //     />
+
     if (props.toolkit.windowSize.width < 768) {
         return <XBlock>
-            <XHorizontal>
+            <XHorizontal disablePaddings={true}>
                 <BackToList />
                 <TextButton />
+                {/* <DecorativeButton /> */}
             </XHorizontal>
         </XBlock>;
     }
 
     return <XBlock>
-        <XHorizontal>
+        <XHorizontal disablePaddings={true}>
             <TextButton />
+            {/* <DecorativeButton /> */}
         </XHorizontal>
     </XBlock>;
 }

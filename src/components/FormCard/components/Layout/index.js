@@ -1,14 +1,9 @@
 import { nanoid } from "nanoid";
 
 import GreetingsMessage from "./components/GreetingsMessage";
-import HelloWorld from "./components/HelloWorld";
-import SettingsMessage from "./components/SettingsMessage";
-import RegisterForm from "./components/RegisterForm";
-import LoginForm from "./components/LoginForm";
-import SliderTest from "./components/SliderTest";
-import TumbletTest from "./components/TumbletTest";
 import NotFoundMessage from "./components/NotFoundMessage";
 import ConfirmMessage from "./components/ConfirmMessage";
+import ConfirmMessageAll from "./components/ConfirmMessageAll";
 
 
 const layoutArray = [
@@ -18,41 +13,17 @@ const layoutArray = [
     layout: GreetingsMessage,
   },
   {
-    name: "hello-world",
-    id: nanoid(),
-    layout: HelloWorld,
-  },
-  {
-    name: "settings",
-    id: nanoid(),
-    layout: SettingsMessage,
-  },
-  {
-    name: "register",
-    id: nanoid(),
-    layout: RegisterForm,
-  },
-  {
-    name: "tumbler",
-    id: nanoid(),
-    layout: TumbletTest,
-  },
-  {
-    name: "login",
-    id: nanoid(),
-    layout: LoginForm,
-  },
-  {
-    name: "slider",
-    id: nanoid(),
-    layout: SliderTest,
-  },
-  {
     name: "confirm-deletion",
     id: nanoid(),
-    type: "notification",
+    // type: "notification",
     layout: ConfirmMessage
-  }
+  },
+  {
+    name: "confirm-deletion-all",
+    id: nanoid(),
+    // type: "notification",
+    layout: ConfirmMessageAll
+  },
 ]
 
 

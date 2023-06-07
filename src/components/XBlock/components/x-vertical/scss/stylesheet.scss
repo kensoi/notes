@@ -13,11 +13,8 @@
     }
     .x-vertical {
         @include vertical-list();
-        .x-vertical-children {
-            margin-bottom: 8px;
-            &:last-child {
-                margin-bottom: 0!important;
-            }
+        &.x-sorter-disable-paddings .x-vertical-children {
+            margin-bottom: 0!important;
         }
     }
 }

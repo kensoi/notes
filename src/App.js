@@ -13,6 +13,16 @@ import { XVertical } from "./components/XBlock";
 
 import {getScreenDeviceType} from "./shared/";
 
+function getList () {
+  try {
+    return JSON.parse(localStorage.getItem("note-list")) || []
+  }
+  catch (error) {
+    console.log(error) 
+    return []
+  }
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,13 +36,12 @@ class App extends React.Component {
       settingsMounted: true,
       settingsLoaded: true,
       
-      notesList: JSON.parse(localStorage.getItem("note-list")) || [],
+      notesList: getList(),
       searchQuery: "",
 
       target_note_index: null,
       noteMounted: true,
       noteLoaded: true,
-      targetItem: null, 
 
       notifyBeforeRemoving: JSON.parse(localStorage.getItem("notifyBeforeRemoving")) || false,
 
@@ -60,10 +69,6 @@ class App extends React.Component {
       cardTopOffset: this.state.cardTopOffset,
       cardLoaded: this.state.cardLoaded,
       cardProps: this.state.cardProps,
-      
-      notesList: this.state.notesList,
-      targetNote: this.state.targetNote,
-      targetItem: this.state.targetItem,
       
       windowSize: {
         width: this.state.windowWidth,
@@ -122,14 +127,14 @@ class App extends React.Component {
         loaded: this.state.noteLoaded,
 
         list: this.state.notesList,
-        target_index: this.state. target_note_index,
+        target_index: this.state.target_note_index,
 
         items: {
           add: (type) => {
             const target_note = this.toolkit.notes.list[
               this.toolkit.notes.target_index
             ]
-            var newNote = {... target_note}
+            var newNote = {...target_note}
             var item = {}
 
             switch (type) {
@@ -181,7 +186,7 @@ class App extends React.Component {
               this.toolkit.notes.remove(this.toolkit.notes.target_index)
             }
             else {
-              var newNote = {... target_note}
+              var newNote = {...target_note}
             
               newNote.items.splice(item_index, 1)
 
@@ -193,7 +198,7 @@ class App extends React.Component {
             const target_note = this.toolkit.notes.list[
               this.toolkit.notes.target_index
             ]
-            var newNote = {... target_note}
+            var newNote = {...target_note}
             
             newNote.items[item_index] = newItem
 
@@ -325,7 +330,7 @@ class App extends React.Component {
         update: (note_index, newNote) => {
           newNote.editData = Math.floor(Date.now() / 1000);
 
-          const note_list = [... this.state.notesList]
+          const note_list = [...this.state.notesList]
           note_list[note_index] = newNote
 
           this.setState({
@@ -333,13 +338,13 @@ class App extends React.Component {
           })
           localStorage.setItem(
             "note-list",
-            JSON.stringify(this.state.note_list)
+            JSON.stringify(note_list)
           );
         },
 
         remove: (note_index) => {
           var offset = 0
-          const note_list = [... this.state.notesList]
+          const note_list = [...this.state.notesList]
 
           if (note_index < note_list.length) {
             if (this.toolkit.notes.target_index === note_index) {
@@ -376,6 +381,17 @@ class App extends React.Component {
 
             this.toolkit.notes.mount(offset + 200)
           }
+        },
+        
+        removeAll: () => {
+          this.setState({
+            target_note_index: null,
+            notesList: []
+          })
+          localStorage.setItem(
+            "note-list",
+            "[]"
+          );
         }
       },
 

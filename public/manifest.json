@@ -1,6 +1,6 @@
 {
-  "short_name": "dshdev",
-  "name": "doshite development",
+  "short_name": "notes",
+  "name": "Заметки",
   "icons": [
     {
       "src": "./img/favicon.svg",

@@ -1,9 +1,9 @@
 import XBlock, { XHorizontal, XVertical } from "../../../XBlock";
 import { XField, XButton } from "../../../XForms";
+
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function SearchBox (props) {
     const searchSX = [
@@ -12,8 +12,8 @@ function SearchBox (props) {
         }
     ]
 
-    return <XBlock>
-        <XHorizontal sx={searchSX}>
+    return <XBlock className="search-box">
+        <XHorizontal sx={searchSX} disablePaddings={true}>
             <XField
                 icon={<SearchIcon />}
                 field={props.toolkit.notes.search.query} cleanable={true}
@@ -21,7 +21,7 @@ function SearchBox (props) {
             >
                 Заголовок
             </XField>
-            <XButton
+            <XButton accent="transparent"
                 icon={<AddIcon />}
                 hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
                 onClick={props.toolkit.notes.create} />
@@ -77,8 +77,9 @@ function Note (props) {
     }
 
     return <XBlock>
-        <XHorizontal sx={mobileSX}>
-            <XVertical className="note-item">
+        <XHorizontal sx={mobileSX} disablePaddings={true}>
+            <XVertical className="note-item"
+                onClick={select}>
                 <div className="note-item-name">
                     <NoteName/>
                 </div>
@@ -86,11 +87,10 @@ function Note (props) {
                     {editDate.toLocaleDateString()} {editDate.getHours()}:{editDate.getMinutes()}
                 </div>
             </XVertical>
-            <XButton
+            {/* <XButton accent="transparent"
                 icon={<VisibilityIcon />}
-                hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-                onClick={select} />
-            <XButton
+                hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}/> */}
+            <XButton accent="transparent"
                 icon={<CloseIcon />}
                 hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
                 onClick={confirmDeletion} />
@@ -110,17 +110,6 @@ function NoteList (props) {
             note => note.items[0].text.includes(props.toolkit.searchQuery)
         )
     }
-
-    // response_list.sort(function (a, b) {
-    //     if (a.editData > b.editData) {
-    //       return -1;
-    //     }
-    //     if (a.editData < b.editData) {
-    //       return 1;
-    //     }
-        
-    //     return 0;
-    //   });
     
     return <XVertical>
         {

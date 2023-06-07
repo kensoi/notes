@@ -2,8 +2,9 @@ import React from "react";
 
 import { Headline } from "./Headline";
 import XBlock, { XHorizontal, XVertical, FormLabel } from "../../../../XBlock";
-import { XTumbler } from "../../../../XForms";
+import { XTumbler, XButton } from "../../../../XForms";
 import ColorSchemaChanger from "../../../../ColorSchemaChanger";
+import ClearIcon from '@mui/icons-material/Clear';
 
 export function SettingsPage(props) {
   let contexts = [
@@ -18,7 +19,7 @@ export function SettingsPage(props) {
   ]
 
   return <XBlock>
-    <XVertical className="settings-page settings-block">
+    <XVertical className="settings-page settings-block" sx={[{},{},{}, {width: "100%"}]}>
       <Headline toolkit={props.toolkit}>
         Основные
       </Headline>
@@ -34,6 +35,7 @@ export function SettingsPage(props) {
           setContext={props.toolkit.setNotifyBeforeRemoving}
         />
       </XHorizontal>
+      <XButton style={{width: "100%"}} icon={<ClearIcon/>} title="Стереть все заметки" onClick={() => props.toolkit.showCard("confirm-deletion-all")}/>
     </XVertical>
   </XBlock>;
 }

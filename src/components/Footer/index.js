@@ -10,7 +10,7 @@ function Footer(props) {
       <div className="footer">
         <div className="footer-content">
           <p>
-            Заметки, версия 0.0.1 <br />
+            Заметки, версия 0.0.2 <br />
             Copyright kensoi 2023 <FavoriteBorderIcon fontSize="small" sx={{color: "red", transform: "translateY(4px)"}}/>
           </p>
           <XList sx={[{minWidth:"128px"}, {minWidth:"128px"}]}>

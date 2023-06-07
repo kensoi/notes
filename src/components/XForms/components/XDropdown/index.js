@@ -99,7 +99,9 @@ class XDropdown extends React.Component {
     const dropdownClassList = ["x-dropdown"];
 
     return (
-      <div className={dropdownClassList.join(" ")} onMouseLeave={this.close}>
+      <div className={dropdownClassList.join(" ")} 
+          onMouseLeave={this.close}
+          >
         {this.Children()}
         {this.Content()}
       </div>

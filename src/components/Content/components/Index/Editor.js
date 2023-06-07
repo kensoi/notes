@@ -57,7 +57,7 @@ function NoteTask (toolkit, item, index) {
     }
     let CheckButton = () => {
         
-        return <XButton
+        return <XButton accent="transparent"
             icon={<ButtonIcon />}
             hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
             onClick={setStatus} />
@@ -130,7 +130,7 @@ const ItemKit = (props) => {
 }
 
 function ItemWrapper (props) {
-    return <XHorizontal sx={[{flex: "1 1 auto"}]}>
+    return <XHorizontal sx={[{flex: "1 1 auto"}]} className="note-item-block">
         {props.children}
         <ItemKit index={props.index} toolkit={props.toolkit} item={props.item}/>
     </XHorizontal>

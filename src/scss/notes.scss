@@ -16,6 +16,19 @@
         height: auto;
         margin: 0 auto;
     }
+    .search-box {
+        overflow-x: none;
+        .x-field {
+            background: none;
+            box-shadow: none!important;
+            .x-field-icon {
+                opacity: 0.5;
+            }
+            .x-field-input {
+                overflow-x: none;
+            }
+        }
+    }
     
     .editor-state {
         height: 50vh;
@@ -35,10 +48,17 @@
     .note-block {
         transition: 0.05s;
     }
+    .note-item-block {
+        .x-field {
+            &:not(:hover) .x-field-icon {
+                opacity: 0!important;
+            }
+        }
+    }
     .note-title {
         box-shadow: none!important;
         background: none;
-        padding: 24px 8px!important;
+        padding: 24px 8px 12px 8px!important;
         font-size: 24px;
         font-weight: 600;
     }
@@ -48,10 +68,15 @@
         padding: 16px 8px!important;
         align-items:flex-start;
     }
-    .note-task .x-field {
-        box-shadow: none!important;
-        background: none;
-        align-items:flex-start;
+    .note-task {
+        .x-button {
+            outline: 2px solid var(--color);
+        }
+        .x-field {
+            box-shadow: none!important;
+            background: none;
+            align-items:flex-start;
+        }
     }
     .note-citata {
         border-left: 2px solid var(--color);
@@ -76,6 +101,11 @@
 
     .note-item {
         user-select: none;
+        cursor: pointer;
+        border-radius: 8px;
+        &:hover {
+            background: var(--card-hover-background);
+        }
 
         .note-item-name {
             line-height: 24px;
