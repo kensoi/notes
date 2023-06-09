@@ -19,7 +19,7 @@ export function AboutPage(props) {
           <b>Версия:</b>
         </div>
         <div className="options-grid-item">
-          1.2.0
+          0.2.0
         </div>
       </div>
       <div className="settings-text">
