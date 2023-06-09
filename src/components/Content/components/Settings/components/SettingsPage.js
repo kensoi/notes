@@ -5,6 +5,8 @@ import XBlock from "../../../../XBlock";
 import { XTumbler, XButton } from "../../../../XForms";
 import ColorSchemaChanger from "../../../../ColorSchemaChanger";
 import ClearIcon from '@mui/icons-material/Clear';
+import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import * as serviceWorkerRegistration from './../../../../../serviceWorkerRegistration';
 
 export function SettingsPage(props) {
   let contexts = [
@@ -40,6 +42,12 @@ export function SettingsPage(props) {
           />
         </div>
       </div>
-      <XButton style={{width: "100%"}} icon={<ClearIcon/>} title="Стереть все заметки" onClick={() => props.toolkit.card.show("confirm-deletion-all")}/>
+      <XButton style={{width: "100%", marginBottom: "4px"}} icon={<ClearIcon/>} title="Стереть все заметки" onClick={() => props.toolkit.card.show("confirm-deletion-all")}/>
+      <XButton style={{width: "100%"}} icon={<BrowserUpdatedIcon/>} title="Проверить на наличие обновлений" onClick={
+        () => {
+          serviceWorkerRegistration.unregister()
+          window.location.href = process.env.PUBLIC_URL
+        }
+      }/>
   </XBlock>
 }
