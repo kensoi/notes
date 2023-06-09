@@ -1,7 +1,7 @@
 .webx {
     .x-tumbler {
         display: inline-block;
-        width: fit-content;
+        width: 100%;
         user-select: none;
         border-radius: 12px;
         font-size: 20px;
@@ -9,14 +9,14 @@
         
         .x-tumbler-wrapper {
             display: flex;
-            width: fit-content;
+            width: 100%;
             justify-content: center;
 
         }
         .x-tumbler-item {
             background: var(--x-field-background);
-            color: var(--x-field-text);
-            width: fit-content;
+            color: var(--x-tumbler-text);
+            flex: 1 1 auto;
             min-height: 38px;
             line-height: 38px;
             box-sizing: border-box;
@@ -37,7 +37,7 @@
             &:not(.x-tumbler-selected) {
                 cursor: pointer;
                 transform: translateY(0px);
-                box-shadow: 0 2px 0 var(--x-field-text);
+                box-shadow: 0 2px 0 var(--x-field-icon);
 
                 &:hover {
                     background: var(--x-field-background-hover);

@@ -14,7 +14,6 @@ import TuneIcon from "@mui/icons-material/Tune";
 class ColorSchemaChanger extends React.Component {
   constructor(props) {
     super(props);
-    this.actualSchema = this.props.toolkit.colorSchema.state;
     this.icons = {
       light: <LightModeIcon />,
       dark: <NightlightIcon />,
@@ -33,6 +32,7 @@ class ColorSchemaChanger extends React.Component {
         title: "Светлая",
         action: () => {
           this.props.toolkit.colorSchema.set("light");
+          this.forceUpdate()
         },
       },
       {
@@ -40,6 +40,7 @@ class ColorSchemaChanger extends React.Component {
         title: "Тёмная",
         action: () => {
           this.props.toolkit.colorSchema.set("dark");
+          this.forceUpdate()
         },
       },
       {
@@ -47,11 +48,10 @@ class ColorSchemaChanger extends React.Component {
         title: "Системная",
         action: () => {
           this.props.toolkit.colorSchema.set("auto");
+          this.forceUpdate()
         },
       }
     ];
-    this.actualSchemaIcon = this.icons[this.actualSchema];
-    this.actualSchemaTitle = this.titles[this.actualSchema];
   }
 
   getSchemaButton = (item) => {
@@ -80,13 +80,17 @@ class ColorSchemaChanger extends React.Component {
   };
 
   render() {
+    const actualSchema = this.props.toolkit.colorSchema.state;
+    const actualSchemaIcon = this.icons[actualSchema];
+    const actualSchemaTitle = this.titles[actualSchema];
+
     return (
       <XDropdown
         dropdown={this.dropdownContent(this.dropdown)}
         contentPosition={this.props.contentPosition || "bottom-right"}
         listDirection="row"
       >
-        <XButton icon={this.actualSchemaIcon} title={this.actualSchemaTitle} isDropdown={true} />
+        <XButton icon={actualSchemaIcon} title={actualSchemaTitle} isDropdown={true} />
       </XDropdown>
     );
   }

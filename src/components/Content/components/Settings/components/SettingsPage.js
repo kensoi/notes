@@ -43,7 +43,7 @@ export function SettingsPage(props) {
         </div>
       </div>
       <XButton style={{width: "100%", marginBottom: "4px"}} icon={<ClearIcon/>} title="Стереть все заметки" onClick={() => props.toolkit.card.show("confirm-deletion-all")}/>
-      <XButton style={{width: "100%"}} icon={<BrowserUpdatedIcon/>} title="Проверить на наличие обновлений" onClick={
+      <XButton style={{width: "100%"}} icon={<BrowserUpdatedIcon/>} title="Проверить обновления" onClick={
         () => {
           serviceWorkerRegistration.unregister()
           window.location.href = process.env.PUBLIC_URL
