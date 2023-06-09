@@ -1,6 +1,4 @@
-@import "./notes.scss";
-
-$point: 8px;
+$point: 4px;
 
 @mixin centering() {
     display: flex;
@@ -25,7 +23,7 @@ $point: 8px;
 
     &:not(.x-sorter-disable-paddings) {
         > * {
-            margin-bottom: $point;
+            margin-bottom: $point * 2;
         }
     
         :last-child {
@@ -42,7 +40,7 @@ $point: 8px;
 
     &:not(.x-sorter-disable-paddings) {
         > * {
-            margin-right: $point;
+            margin-right: $point * 2;
         }
         
         :last-child {
@@ -52,8 +50,10 @@ $point: 8px;
 }
 
 .webx {
-    translate: 0.1s ease-in-out;
     background: var(--background);
+    min-height: 100%;
+    box-sizing: border-box;
+    font-family: 'TT Commons', Arial;
     
     .form-card {
         h1 {
@@ -65,17 +65,15 @@ $point: 8px;
     }
 
     h1 {
-        font-family: 'TT Commons';
         font-weight: 600;
         box-sizing: border-box;
-        font-size: $point * 6;
+        font-size: $point * 12;
         padding: 0 $point * 2;
     }
     
     p {
         box-sizing: border-box;
-        font-family: 'Roboto';
-        font-size: $point * 2;
+        font-size: 20px;
         padding: 0 $point * 2;
     }
 }

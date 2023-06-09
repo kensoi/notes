@@ -11,14 +11,14 @@ export default class ConfirmMessageAll extends React.Component {
           <XButton onClick={
             () => {
               this.props.toolkit.notes.removeAll()
-              this.props.toolkit.returnCardResponse(null)
+              this.props.toolkit.card.return(null)
             }
           }>
             Да
           </XButton>
           <XButton onClick={
             () => {
-              this.props.toolkit.returnCardResponse(null)
+              this.props.toolkit.card.return(null)
             }
           }>
             Нет

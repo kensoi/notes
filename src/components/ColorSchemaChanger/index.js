@@ -14,7 +14,7 @@ import TuneIcon from "@mui/icons-material/Tune";
 class ColorSchemaChanger extends React.Component {
   constructor(props) {
     super(props);
-    this.actualSchema = this.props.toolkit.colorSchema;
+    this.actualSchema = this.props.toolkit.colorSchema.state;
     this.icons = {
       light: <LightModeIcon />,
       dark: <NightlightIcon />,
@@ -32,21 +32,21 @@ class ColorSchemaChanger extends React.Component {
         icon: this.icons["light"],
         title: "Светлая",
         action: () => {
-          this.props.toolkit.setColorSchema("light");
+          this.props.toolkit.colorSchema.set("light");
         },
       },
       {
         icon: this.icons["dark"],
         title: "Тёмная",
         action: () => {
-          this.props.toolkit.setColorSchema("dark");
+          this.props.toolkit.colorSchema.set("dark");
         },
       },
       {
         icon: this.icons["auto"],
         title: "Системная",
         action: () => {
-          this.props.toolkit.setColorSchema("auto");
+          this.props.toolkit.colorSchema.set("auto");
         },
       }
     ];

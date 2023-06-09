@@ -1,3 +1,5 @@
+@import "./stylesheet.scss";
+
 .webx {
     .form-block {
         transition: 0.1s;
@@ -12,90 +14,188 @@
     }
     .index {
         max-width: 1024px;
-        min-height: 100%;
-        height: auto;
+        width: 100%;
+        min-height: 100vh;
+        padding: $point * 2;
+        box-sizing: border-box;
         margin: 0 auto;
+        &.desktop {
+            display: flex;
+            .settings-menu {
+                width: 320px;
+                margin-right: $point * 2;
+            }
+            .sorted-list {
+                width: 320px;
+                margin-right: $point * 2;
+            }
+            .form-block {
+                width: calc(100% - 320px - $point*2);
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
     .search-box {
-        overflow-x: none;
+        margin-bottom: $point * 2;
+        --x-button-background: none;
+        --x-button-background-hover: none;
+        display: flex;
+
         .x-field {
-            background: none;
+            --x-field-background: none;
+            --x-field-background-hover: none;
             box-shadow: none!important;
-            .x-field-icon {
-                opacity: 0.5;
-            }
-            .x-field-input {
-                overflow-x: none;
-            }
+            width: calc(100% - var(--x-button-height))!important;
+        }
+    }
+    .toolbar {
+        margin-bottom: $point * 2;
+        --x-button-background-hover: var(--san-marino2)!important;
+        --x-button-icon: var(--san-marino2)!important;
+        .x-dropdown .x-dropdown-children{
+            --x-button-background-hover: var(--san-marino2)!important;
+            --x-button-icon: var(--san-marino2)!important;
         }
     }
     
     .editor-state {
-        height: 50vh;
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--color);
+        height: 100%;
+        p {
+            font-size: 32px;
+        }
+    }
+    .empty-note {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: center;
+        justify-content: center;
+        color: var(--color);
+        p {
+            font-size: 24px;
+        }
     }
     .no-notes {
         color: var(--color);
         height: 128px;
         display: flex;
         align-items: center;
-        justify-content: center
+        justify-content: center;
+        p {
+            font-size: 32px;
+        }
+        opacity: 0.5;
+    }
+    .editor-x-block {
+        padding-bottom: 36px!important;
+    }
+
+    .dynamic-div {
+        -webkit-transition: max-height 0.1s; 
+        -moz-transition: max-height 0.1s; 
+        -ms-transition: max-height 0.1s; 
+        -o-transition: max-height 0.1s; 
+        transition: max-height 0.1s;  
+        height: auto;
     }
 
     .note-block {
         transition: 0.05s;
     }
     .note-item-block {
-        .x-field {
-            &:not(:hover) .x-field-icon {
+        display: flex;
+        justify-content: space-between;
+        // --x-field-icon: var(--color);
+        --x-field-text: var(--color);
+        &:not(:hover){
+            .x-field-icon {
+                opacity: 0!important;
+            }
+            .x-button-icon {
                 opacity: 0!important;
             }
         }
     }
     .note-title {
-        box-shadow: none!important;
-        background: none;
         padding: 24px 8px 12px 8px!important;
-        font-size: 24px;
+        width: calc(100% - var(--x-button-height));
+        font-size: 32px!important;
         font-weight: 600;
+        --x-field-background: none!important;
+        --x-field-background-hover: none!important;
     }
     .note-paragraph {
-        box-shadow: none!important;
-        background: none;
-        padding: 16px 8px!important;
-        align-items:flex-start;
+        --x-field-background: none!important;
+        --x-field-background-hover: none!important;
+        width: calc(100% - var(--x-button-height));
+        padding: 0 8px!important;
     }
     .note-task {
-        .x-button {
-            outline: 2px solid var(--color);
-        }
+        display: flex;
+        width: calc(100% - var(--x-button-height));
+        padding: 0 0 0 52px!important;
         .x-field {
-            box-shadow: none!important;
-            background: none;
+            --x-field-background: none!important;
+            --x-field-background-hover: none!important;
             align-items:flex-start;
+            width: calc(100% - var(--x-button-height));
         }
     }
     .note-citata {
-        border-left: 2px solid var(--color);
-        margin: 8px 0 16px 19px;
-        padding-left: 6px;
+        width: calc(100% - var(--x-button-height));
+        border-left: 2px solid var(--x-field-icon);
+        margin: 8px 0 16px 24px!important;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
         .x-field {
-            box-shadow: none!important;
-            background: none;
+            --x-field-background: none!important;
+            --x-field-background-hover: none!important;
             font-family: 'Times New Roman', Times, serif!important;
         }
         .note-citata-text {
+            width: 100%;
             padding: 4px 8px!important;
             align-items:flex-start;
             font-style: italic;
         }
         .note-citata-author {
-            padding: 4px 8px!important;
+            width: 256px;
             font-style: italic;
-            text-align: right;
+        }
+    }
+    .note-many-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0 16px 0 52px;
+        .note-many-dots-dot {
+            width: $point;
+            height: $point;
+            border-radius: 100%;
+            background: var(--color);
+            opacity: 0.5;
+            margin: 0 $point;
+        }
+    }
+    .note-hr {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0 16px 0 52px;
+
+        div {
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--color);
         }
     }
 
@@ -109,18 +209,17 @@
 
         .note-item-name {
             line-height: 24px;
-            font-family: 'TT Commons';
             font-weight: 600;
             font-size: 24px;
             padding: 8px 8px 0px 8px;
             box-sizing: border-box;
+            word-break: break-all;
         }
 
         .note-item-descr {
             height: 28px;
             line-height: 20px;
             font-size: 20px;
-            font-family: 'TT Commons';
             padding: 0px 8px 8px 8px;
             box-sizing: border-box;
         }

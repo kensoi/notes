@@ -1,10 +1,12 @@
+@import "../../../../../scss/stylesheet.scss";
+
 .webx {
     .settings-text {
         padding: 0 8px;
     }
     &.screen-device-mobile {
-        .settings-text {
-            padding: 8px;
+        .settings-block {
+            padding: $point;
         }
     }
     &.screen-device-tablet {
@@ -34,14 +36,41 @@
         }
     }
 
-    
+    .settings-text {
+        padding: $point 0;
+        font-size: 20px;
+    }
+
     .settings-headline {
-        min-height: 40px;
-        line-height: 28px;
-        padding: 10px 0 8px 0;
-        font-family: 'TT Commons';
+        display: flex;
+        align-items: flex-end;
+        line-height: 32px;
+        color: var(--color);
+        padding: $point 0;
         font-weight: 600;
         font-size: 28px;
         box-sizing: border-box;
+        
+        margin-bottom: $point * 2;
+
+        .x-button {
+            margin-right: $point * 2;
+        }
+    }
+    .options-grid-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: $point * 2;
+
+        .options-grid-item {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            padding: $point 0;
+            
+            &:nth-child(2n) {
+                justify-content: right;
+            }
+        }
     }
 }

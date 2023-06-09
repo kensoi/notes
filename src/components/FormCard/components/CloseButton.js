@@ -6,7 +6,7 @@ export function CloseButton(props) {
     <div className="form-card-close-wrapper">
       <div className="form-card-close-button"
         onClick={() => {
-          props.toolkit.returnCardResponse(null);
+          props.toolkit.card.return(null);
         }}
       >
         <CloseIcon />

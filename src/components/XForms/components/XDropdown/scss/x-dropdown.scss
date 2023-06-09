@@ -44,9 +44,9 @@
 
             &.visible {
                 opacity: 1;
-                --dropdown-offset: 16px;
+                --dropdown-offset: 8px;
             }
-            &.invisible {
+            &:not(.visible) {
                 opacity: 0;
                 --dropdown-offset: 0;
             }

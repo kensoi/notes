@@ -2,7 +2,6 @@ import React from "react";
 
 /* WEB-X-UI components */
 
-import { XHorizontal } from "../../../XBlock";
 import { FormBlock } from "./components/FormBlock";
 import { MenuPage } from "./components/MenuPage";
 import "./scss/stylesheet.scss"
@@ -19,25 +18,12 @@ function Resolver (props) {
 }
 
 function DesktopTemplate (props) {
-    let desktopSX = [
-        {   
-            flex: "1 1 auto",
-            maxWidth: "256px"
-        },
-        {
-            flex: "1 1 auto",
-            maxWidth: "760px",
-        }
-    ]
-    return <XHorizontal 
-        className="index"
-        xstyle={{maxWidth: "1024px", margin: "auto"}}
-        sx={desktopSX}>
+    return <div className="index desktop">
       {MenuPage (props)}
       <FormBlock toolkit={props.toolkit}>
         {Resolver (props)}
       </FormBlock>
-    </XHorizontal>
+    </div>
 }
 
 function MobileTemplate (props) {
@@ -50,9 +36,11 @@ function MobileTemplate (props) {
     }
   }
   console.log(props.toolkit.settings.page)
-  return <FormBlock toolkit={props.toolkit}>
-    {resolve(props)}
-  </FormBlock>
+  return <div className="index">
+    <FormBlock toolkit={props.toolkit}>
+      {resolve(props)}
+    </FormBlock>
+  </div>
 }
 
 export default function Settings (props) {

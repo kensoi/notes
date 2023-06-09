@@ -23,7 +23,7 @@ function Settings(props) {
 }
 
 function Header(props) {
-  if (props.toolkit.enableHeader) {
+  if (props.toolkit.header.state) {
     return (
       <div className="header">
         <div className="header-content">

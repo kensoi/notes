@@ -3,20 +3,20 @@
 
 .webx {
     .x-field {
-        $note-block-shadow: $box-shadow, $box-border!important;
-        @include box-shadow($note-block-shadow);
-
-        font-family: 'TT Commons';
         font-size: 20px;
 
         background: var(--x-field-background);
         color: var(--x-field-text);
 
         box-sizing: border-box;
-        padding: calc((var(--x-button-height) - 9px) / 2) $point*2;
         border-radius: $point*2;
+        
+        --x-field-icon-height: var(--x-button-height);
+        --x-field-icon-width: var(--x-field-icon-height);
+        --x-field-clear-width: var(--x-field-icon-height);
 
         display: flex;
+        align-items:flex-start;
 
         transition: 0.05s;
         overflow: hidden;
@@ -35,47 +35,35 @@
             box-sizing: border-box;
         }
         .x-field-icon {
-            width: 25px;
-            height: 100%;
-            margin-right: $point;
-            .x-field-icon-wrap {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                min-height: 25px;
-            }
+            width: var(--x-field-icon-width);
+            height: var(--x-field-icon-height);
+            color: var(--x-field-icon);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         .x-field-clear {
-            width: 25px;
-            height: 100%;
-            margin-left: $point;
-            opacity: 0.5;
+            width: var(--x-field-icon-width);
+            height: var(--x-field-icon-height);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            .x-field-clear-wrap {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                min-height: 25px;
-            }
         }
         .x-field-value-wrap {
             padding-top: 2px;
             padding-left: 4px;
         }
         .x-field-input {
-            flex: 1 1 auto;
+            width: 100%;
             outline: none;
-            padding-top: 2px;
+            padding-top: 1px + $point * 1.5;
             overflow: hidden;
-            box-sizing: border-box;
-            &:first-child {
-                padding-left: 8px;
-            }
-            &:last-child {
-                padding-right: 8px;
-            }
+            padding-left: $point * 2;
+            padding-right: $point * 2;
             &[contenteditable=true]:empty:before{
                 content: attr(data-placeholder);
                 pointer-events: none;
@@ -84,6 +72,17 @@
                 text-transform: lowercase;
             }
         }
+        &.clearable {
+            .x-field-input {
+                max-width: calc(100% - var(--x-field-icon-width) - var(--x-field-clear-width) - $point * 4);
+            }
+        }
+        &:not(.clearable) {
+            .x-field-input {
+                max-width: calc(100% - var(--x-field-icon-width) - $point * 4);
+            }
+        }
+
         &.no-wrap .x-field-input {
             white-space: nowrap;
         }
@@ -91,6 +90,5 @@
     
     .x-block .x-field {
         border-radius: $point;
-        padding: calc((var(--x-button-height) - 25px) / 2) $point;
     }
 }

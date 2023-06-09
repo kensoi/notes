@@ -27,13 +27,13 @@ const layoutArray = [
 ]
 
 
-export function Layout (toolkit) {
+export function Layout ({toolkit}) {
   let element
 
   for (let index = 0; index < layoutArray.length; index++) {
     element = layoutArray[index]
 
-    if (element.name === toolkit.cardLayout) {
+    if (element.name === toolkit.card.layout) {
       break
     }
   }
@@ -52,7 +52,7 @@ export function getCardType (toolkit) {
   for (let index = 0; index < layoutArray.length; index++) {
     element = layoutArray[index]
 
-    if (element.name === toolkit.cardLayout) {
+    if (element.name === toolkit.card.layout) {
       break
     }
   }

@@ -5,7 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { XList, XVertical } from "../XBlock";
 
 function Footer(props) {
-  if (props.toolkit.enableFooter) {
+  if (props.toolkit.footer.state) {
     return (
       <div className="footer">
         <div className="footer-content">

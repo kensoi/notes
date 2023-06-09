@@ -11,12 +11,12 @@
 
     --x-button-background-hover: var(--emperor);
     --x-button-background: var(--tundora);
-    --x-button-icon: var(--white);
+    --x-button-icon: var(--jordie-blue);
     --x-button-text: var(--white);
 
     --x-field-background-hover: var(--emperor);
     --x-field-background: var(--tundora);
-    --x-field-icon: var(--white);
+    --x-field-icon: var(--jordie-blue);
     --x-field-text: var(--white);
 
     --x-field-selected: var(--emperor);

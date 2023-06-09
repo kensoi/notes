@@ -2,14 +2,11 @@ import React from "react";
 import {nanoid} from "nanoid";
 
 import "./css/stylesheet.css";
+import "./scss/notes.scss";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import AppContent from "./components/Content";
 import FormCard from "./components/FormCard";
 import OverflowBG from "./components/OverflowBG";
-
-import { XVertical } from "./components/XBlock";
 
 import {getScreenDeviceType} from "./shared/";
 
@@ -63,26 +60,64 @@ class App extends React.Component {
 
   createToolkit() {
     this.toolkit = {
-      cardMounted: this.state.cardMounted,
-      cardLayout: this.state.cardLayout,
-      cardResponse: this.state.cardResponse,
-      cardTopOffset: this.state.cardTopOffset,
-      cardLoaded: this.state.cardLoaded,
-      cardProps: this.state.cardProps,
+      card: {
+        mounted: this.state.cardMounted,
+        props: this.state.cardProps,
+        loaded: this.state.cardLoaded,
+        layout: this.state.cardLayout,
+        response: this.state.cardResponse,
+        topOffset: this.state.cardTopOffset,
+
+        show: (layout, props) => {
+          var offset = 100;
+          if (this.state.cardMounted) {
+            this.toolkit.card.return(null);
+            offset += 200;
+          }
+  
+          setTimeout(() => {
+            this.setState({
+              cardProps: props,
+              cardLayout: layout,
+              cardTopOffset: window.scrollY,
+              cardMounted: true,
+            });
+          }, offset);
+  
+          setTimeout(() => {
+            this.setState({
+              cardLoaded: true,
+            });
+          }, 100 + offset);
+        },
+
+        return: (response) => {
+          this.setState({
+            cardResponse: {
+              layout: this.state.cardLayout + "",
+              response: response,
+            },
+            cardLoaded: false,
+          });
+          localStorage.setItem(
+            "latestResponse",
+            JSON.stringify({
+              layout: this.state.cardLayout + "",
+              response: response,
+            })
+          );
+          window.scrollTo(window.scrollX, this.toolkit.card.topOffset + 0);
+          setTimeout(() => {
+            this.setState({
+              cardMounted: false,
+            });
+          }, 100);
+        },
+      },
       
       windowSize: {
         width: this.state.windowWidth,
         height: this.state.windowHeight
-      },
-
-      notifyBeforeRemoving: this.state.notifyBeforeRemoving,
-
-      setNotifyBeforeRemoving: (state) => {
-        localStorage.setItem("notifyBeforeRemoving", state)
-
-        this.setState({
-          notifyBeforeRemoving: state
-        })
       },
 
       settings: {
@@ -129,6 +164,17 @@ class App extends React.Component {
         list: this.state.notesList,
         target_index: this.state.target_note_index,
 
+        deleteAsk: {
+          state: this.state.notifyBeforeRemoving,
+          setState: (state) => {
+            localStorage.setItem("notifyBeforeRemoving", state)
+    
+            this.setState({
+              notifyBeforeRemoving: state
+            })
+          },
+        },
+
         items: {
           add: (type) => {
             const target_note = this.toolkit.notes.list[
@@ -163,6 +209,23 @@ class App extends React.Component {
                   done: false,  
                 }
                 break
+    
+              case 5:
+                item = {
+                  id: nanoid(),
+                  type: 5,
+                  text: "[Троеточие]",
+                }
+                break
+
+              case 6:
+                item = {
+                  id: nanoid(),
+                  type: 6,
+                  text: "[Полоса]",
+                }
+                break
+                
     
               default: // case 1: // title 
                 item = {
@@ -395,80 +458,40 @@ class App extends React.Component {
         }
       },
 
-      showCard: (layout, props) => {
-        var offset = 100;
-        if (this.state.cardMounted) {
-          this.toolkit.returnCardResponse(null);
-          offset += 200;
+      colorSchema: {
+        state: this.state.colorSchema,
+        set: (schema) => {
+          localStorage.setItem("colorSchema", schema);
+          this.setState({
+            colorSchema: schema,
+          });
         }
+      },
 
-        setTimeout(() => {
+      header: {
+        state: this.state.headerState,
+        setState: (state) => {
           this.setState({
-            cardProps: props,
-            cardLayout: layout,
-            cardTopOffset: window.scrollY,
-            cardMounted: true,
+            headerState: state,
           });
-        }, offset);
-
-        setTimeout(() => {
-          this.setState({
-            cardLoaded: true,
-          });
-        }, 100 + offset);
+          localStorage.setItem(
+            "headerState",
+            JSON.stringify(this.state.headerState)
+          );
+        },
       },
 
-      returnCardResponse: (response) => {
-        this.setState({
-          cardResponse: {
-            layout: this.state.cardLayout + "",
-            response: response,
-          },
-          cardLoaded: false,
-        });
-        localStorage.setItem(
-          "latestResponse",
-          JSON.stringify({
-            layout: this.state.cardLayout + "",
-            response: response,
-          })
-        );
-        window.scrollTo(window.scrollX, this.toolkit.cardTopOffset + 0);
-        setTimeout(() => {
-          this.setState({
-            cardMounted: false,
-          });
-        }, 100);
-      },
-
-      colorSchema: this.state.colorSchema,
-      setColorSchema: (schema) => {
-        localStorage.setItem("colorSchema", schema);
-        this.setState({
-          colorSchema: schema,
-        });
-      },
-
-      enableHeader: this.state.headerState,
-      setHeaderState: (state) => {
-        this.setState({
-          headerState: state,
-        });
-        localStorage.setItem(
-          "headerState",
-          JSON.stringify(this.state.headerState)
-        );
-      },
-
-      enableFooter: this.state.footerState,
-      setFooterState: (state) => {
-        this.setState({ footerState: state });
-        localStorage.setItem(
-          "footerState",
-          JSON.stringify(this.state.footerState)
-        );
-      },
-    };
+      footer: {
+        state: this.state.footerState,
+        setState: (state) => {
+          this.setState({ footerState: state });
+          localStorage.setItem(
+            "footerState",
+            JSON.stringify(this.state.footerState)
+          );
+        },
+      }
+    }
   }
 
   showHelloMessage = () => {
@@ -485,7 +508,7 @@ class App extends React.Component {
     this.createToolkit();
 
     this.layoutClassList = ["webx"]
-    this.layoutClassList.push("color-schema-" + this.toolkit.colorSchema)
+    this.layoutClassList.push("color-schema-" + this.toolkit.colorSchema.state)
     this.layoutClassList.push(getScreenDeviceType())
 
     document.body.className = this.layoutClassList.join(" ");
@@ -498,17 +521,11 @@ class App extends React.Component {
     // })
 
     this.showHelloMessage();
-    let globalXStyle = {padding: "8px", minHeight: "100vh", boxSizing: "border-box"}
-    let globalSX = [{}, {flex: "1 1 auto", height: "100%"}]
 
     try {
       return (
         <>
-          <XVertical xstyle={globalXStyle} sx={globalSX}>
-            <Header toolkit={this.toolkit} />
-            <AppContent toolkit={this.toolkit} />
-            <Footer toolkit={this.toolkit} />
-          </XVertical>
+          <AppContent toolkit={this.toolkit} />
           <OverflowBG toolkit={this.toolkit} />
           <FormCard toolkit={this.toolkit} />
         </>

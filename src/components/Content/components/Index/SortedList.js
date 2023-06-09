@@ -1,37 +1,16 @@
 import XBlock, { XHorizontal, XVertical } from "../../../XBlock";
-import { XField, XButton } from "../../../XForms";
+import { XButton } from "../../../XForms";
 
-import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/Add';
+import DynamicDiv from "../../../DynamicDiv"
+
 import CloseIcon from '@mui/icons-material/Close';
-
-function SearchBox (props) {
-    const searchSX = [
-        {
-            flex: "1 1 auto",
-        }
-    ]
-
-    return <XBlock className="search-box">
-        <XHorizontal sx={searchSX} disablePaddings={true}>
-            <XField
-                icon={<SearchIcon />}
-                field={props.toolkit.notes.search.query} cleanable={true}
-                setField={props.toolkit.notes.search.setQuery}
-            >
-                Заголовок
-            </XField>
-            <XButton accent="transparent"
-                icon={<AddIcon />}
-                hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-                onClick={props.toolkit.notes.create} />
-        </XHorizontal>
-    </XBlock>
-}
+import { SearchBox } from "./SearchBox";
 
 function EmptyListStatus () {
     return <div className="no-notes">
-        Заметок нет!
+        <p>
+            Заметок нет!
+        </p>
     </div>
 }
 
@@ -68,8 +47,8 @@ function Note (props) {
     }
 
     const confirmDeletion = () => {
-        if (props.toolkit.notifyBeforeRemoving) {
-            props.toolkit.showCard("confirm-deletion", {note_deletion_index: props.index}, "notify")
+        if (props.toolkit.notes.deleteAsk.state) {
+            props.toolkit.card.show("confirm-deletion", {note_deletion_index: props.index}, "notify")
         }
         else {
             remove()
@@ -87,9 +66,6 @@ function Note (props) {
                     {editDate.toLocaleDateString()} {editDate.getHours()}:{editDate.getMinutes()}
                 </div>
             </XVertical>
-            {/* <XButton accent="transparent"
-                icon={<VisibilityIcon />}
-                hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}/> */}
             <XButton accent="transparent"
                 icon={<CloseIcon />}
                 hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
@@ -111,13 +87,15 @@ function NoteList (props) {
         )
     }
     
-    return <XVertical>
-        {
-            response_list.map(
-                (note, index) => <Note key={note.id} toolkit={props.toolkit} note={note} index={index} />
-            )
-        }
-    </XVertical>
+    return <DynamicDiv>
+        <XVertical>
+            {
+                response_list.map(
+                    (note, index) => <Note key={note.id} toolkit={props.toolkit} note={note} index={index} />
+                )
+            }
+        </XVertical>    
+    </DynamicDiv>
 }
 
 function Resolver (props) {
@@ -129,8 +107,8 @@ function Resolver (props) {
 }
 
 export function SortedList(props) {
-    return <>
+    return <div className="sorted-list">
         <SearchBox toolkit={props.toolkit} />
         <Resolver toolkit={props.toolkit} />
-    </>
+    </div>
 }

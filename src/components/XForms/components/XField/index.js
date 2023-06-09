@@ -12,9 +12,7 @@ class XField extends React.Component {
   icon = () => {
     if (this.props.icon) {
       return <div className="x-field-icon">
-        <div className="x-field-icon-wrap">
-          {this.props.icon}
-        </div>
+        {this.props.icon}
       </div>
     }
   }
@@ -34,9 +32,7 @@ class XField extends React.Component {
           this.setState({
             valueCheckMark: ""
           })}}>
-        <div className="x-field-clear-wrap">
           <CloseIcon />
-        </div>
       </div>
     }
   }
@@ -128,6 +124,10 @@ class XField extends React.Component {
     }
     if (this.props.noWrap) {
       this.classList.push("no-wrap")
+    }
+    if (this.props.cleanable) {
+      this.classList.push("clearable")
+      
     }
     this.classList.push(this.props.className)
     return (

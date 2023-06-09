@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Headline } from "./Headline";
-import XBlock, { XHorizontal, XVertical, FormLabel } from "../../../../XBlock";
+import XBlock from "../../../../XBlock";
 import { XTumbler, XButton } from "../../../../XForms";
 import ColorSchemaChanger from "../../../../ColorSchemaChanger";
 import ClearIcon from '@mui/icons-material/Clear';
@@ -18,24 +18,28 @@ export function SettingsPage(props) {
     },
   ]
 
-  return <XBlock>
-    <XVertical className="settings-page settings-block" sx={[{},{},{}, {width: "100%"}]}>
+  return <XBlock className="settings-page settings-block">
       <Headline toolkit={props.toolkit}>
         Основные
       </Headline>
-      <XHorizontal xstyle={{justifyContent:"space-between"}}>
-        <FormLabel>Цветовая схема</FormLabel>
-        <ColorSchemaChanger align="right" toolkit={props.toolkit} />
-      </XHorizontal>
-      <XHorizontal xstyle={{justifyContent:"space-between"}}>
-        <FormLabel>Спрашивать при удалении</FormLabel>
-        <XTumbler
-          tumbleConfig={contexts}
-          context={props.toolkit.notifyBeforeRemoving}
-          setContext={props.toolkit.setNotifyBeforeRemoving}
-        />
-      </XHorizontal>
-      <XButton style={{width: "100%"}} icon={<ClearIcon/>} title="Стереть все заметки" onClick={() => props.toolkit.showCard("confirm-deletion-all")}/>
-    </XVertical>
-  </XBlock>;
+      <div className="options-grid-list">
+        <div className="options-grid-item">
+          Цветовая схема
+        </div>
+        <div className="options-grid-item">
+          <ColorSchemaChanger align="right" toolkit={props.toolkit} />
+        </div>
+        <div className="options-grid-item">
+          Спрашивать перед удалением заметки
+        </div>
+        <div className="options-grid-item">
+          <XTumbler
+            tumbleConfig={contexts}
+            context={props.toolkit.notes.deleteAsk.state}
+            setContext={props.toolkit.notes.deleteAsk.setState}
+          />
+        </div>
+      </div>
+      <XButton style={{width: "100%"}} icon={<ClearIcon/>} title="Стереть все заметки" onClick={() => props.toolkit.card.show("confirm-deletion-all")}/>
+  </XBlock>
 }

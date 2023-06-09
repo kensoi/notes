@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 class XButton extends React.Component {
   icon = () => {
     if (!this.hideEmptyPaddings || this.props.icon) {
-      return <div className="x-button-icon">
+      return <div className="x-button-element x-button-icon">
           {this.props.icon || " "}
         </div>
     }
@@ -15,7 +15,7 @@ class XButton extends React.Component {
     let title = this.props.title || this.props.children
     if (!this.hideEmptyPaddings || title) {
       return (
-        <div className="x-button-title">
+        <div className="x-button-element x-button-title">
           {title || " "}
         </div>
       )
@@ -23,7 +23,7 @@ class XButton extends React.Component {
   }
 
   dropdown = () => {
-    this.classList = ["x-button-dropdown-icon"];
+    this.classList = ["x-button-element x-button-dropdown-icon"];
 
     if (this.props.isDropdown) {
       this.classList.push("visible");

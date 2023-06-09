@@ -4,7 +4,6 @@
         width: fit-content;
         user-select: none;
         border-radius: 12px;
-        font-family: 'TT Commons';
         font-size: 20px;
         height: 40px;
         
@@ -22,13 +21,13 @@
             line-height: 38px;
             box-sizing: border-box;
             padding: 0 8px;
-            margin-right: 8px;
+            margin-right: 4px;
             min-width: 64px;
             text-align: center;
             
             font-weight: 500;
             transition: 0.1s;
-            border-radius: 8px;
+            border-radius: 4px;
             background-size: 100% 200%;
             background-position: 50% 75%;
             transform: translateY(2px);

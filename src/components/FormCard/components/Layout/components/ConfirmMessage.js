@@ -10,15 +10,15 @@ export default class ConfirmMessage extends React.Component {
         <XList sx={[{flex: "1 1 auto", width: "100%"}, {flex: "1 1 auto", width: "100%"}]}>
           <XButton onClick={
             () => {
-              this.props.toolkit.notes.remove(this.props.toolkit.cardProps.note_deletion_index)
-              this.props.toolkit.returnCardResponse(null)
+              this.props.toolkit.notes.remove(this.props.toolkit.card.props.note_deletion_index)
+              this.props.toolkit.card.return(null)
             }
           }>
             Да
           </XButton>
           <XButton onClick={
             () => {
-              this.props.toolkit.returnCardResponse(null)
+              this.props.toolkit.card.return(null)
             }
           }>
             Нет

@@ -1,38 +1,22 @@
-import { XHorizontal } from "../../../XBlock";
 import { SortedList } from "./SortedList";
 import { Resolver } from "./Resolver";
 import { FormBlock } from "./FormBlock";
 
 function DesktopTemplate (props) {
-    let desktopSX = [
-        {   
-            flex: "1 1 auto",
-            maxWidth: "376px"
-        },
-        {
-            flex: "1 1 auto",
-            maxWidth: "640px",
-        }
-    ]
-
-    return <XHorizontal className="index" sx={desktopSX}>
+    return <div className="index desktop">
         {SortedList(props)}
         <FormBlock toolkit={props.toolkit}>
             {Resolver(props)}
         </FormBlock>
-    </XHorizontal>
+    </div>
 }
 
 function MobileTemplate (props) {
     if (props.toolkit.notes.target_index === null) {
-        return <div className="index">
-            {SortedList (props)}
-        </div>
+        return SortedList (props)
     }
     else {
-        return <div className="index">
-            {Resolver (props)}
-        </div>
+        return Resolver (props)
     }
 }
 
@@ -42,8 +26,10 @@ export default function Index (props) {
     }
 
     else {
-        return <FormBlock toolkit={props.toolkit}>
-            {MobileTemplate (props)}
-        </FormBlock>
+        return <div className="index">
+            <FormBlock toolkit={props.toolkit}>
+                {MobileTemplate (props)}
+            </FormBlock>
+        </div>
     }
 }

@@ -7,8 +7,6 @@
             width: 100%;
             margin: 0!important;
         }
-    }
-    .x-dropdown {
         .x-button-title {
             text-align: left!important;
         }
@@ -16,27 +14,37 @@
     
     .x-button {
         display: inline-flex;
-        border-radius: calc(var(--border-radius) / 2);
+        border-radius: $point;
         user-select: none;
         cursor: pointer;
         height: var(--x-button-height);
-        padding: 0 $point;
+        padding: 0 $point*2;
         box-sizing: border-box;
         transition: 0.1s;
+
+        &.transparent {
+            --x-button-icon: var(--x-button-background-hover);
+            --x-button-text: var(--color);
+            &:hover {
+                background: var(--x-button-header-bg, var(--x-field-background));
+            }
+        }
+
         &.usual {
             background: var(--x-button-background);
             box-shadow: $box-shadow;
+            &:hover {
+                background: var(--x-button-background-hover);
+            }
         }
 
-        &:hover {
-            background: var(--x-button-background-hover);
-        }
+        
 
         .x-button-icon {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: calc(var(--x-button-height) - 2 * $point);
+            width: calc(var(--x-button-height) - $point * 4);
             height: var(--x-button-height);
             color: var(--x-button-icon);
         }
@@ -44,18 +52,26 @@
             text-align: center;
             flex: 1 1 auto;
             width: max-content;
-            padding-top: calc(var(--padding) / 2 + 2px);
-            padding-bottom: calc(var(--padding) / 2);
-            font-family: 'TT Commons';
-            font-size: $point * 2.5;
+            padding-top: $point * 2;
+            padding-bottom: $point * 2;
+            font-size: 20px;
             color: var(--x-button-text);
-            margin: 0 $point;
-
-            &:last-child {
-                margin-right: 0!important;
-            }
             &:first-child {
-                margin-left: 0!important;
+                padding-left: $point * 2;
+            }
+            &:last-child {
+                padding-right: $point * 2;
+            }
+        }
+
+        .x-button-element {
+            margin-left: $point;
+            margin-right: $point;
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
             }
         }
         

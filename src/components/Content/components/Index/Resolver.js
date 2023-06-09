@@ -3,7 +3,9 @@ import { Wrapper } from "./Editor";
 
 function SelectNote () {
     return <XBlock className="editor-state">
-        Чтобы начать, выберите заметку или создайте новую.
+        <p>
+            Чтобы начать,<br /><b>выберите</b> заметку<br />или <b>создайте</b> новую
+        </p>
     </XBlock>
 }
 

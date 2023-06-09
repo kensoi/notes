@@ -3,7 +3,6 @@
 @import "./color-schemas/dark.css";
 @import "./color-schemas/pink.css";
 @import "./root.css";
-
 :root {
     --athens-gray: #edeef0;
     --azalea: #fadddd;
@@ -26,15 +25,18 @@
     --san-marino2: #4285d6;
     --titan-white: #dee4ec;
     --tuna: #3a3a3F;
-    --tundora: #424242;
+    --tundora: #2e2e2e;
     --tutu: #ffecec;
     --white: #ffffff;
     --your-pink: #ffc7c7;
     --zircon: #f5f6f8;
 
-    --x-button-height: 40px;
+    --x-button-height: 36px;
     --border-radius: 16px;
     --padding: 16px;
+}
+#root {
+    min-height: 100%;
 }
 
 .div-centerize {
