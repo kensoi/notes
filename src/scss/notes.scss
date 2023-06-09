@@ -37,20 +37,30 @@
         }
     }
     .search-box {
-        margin-bottom: $point * 2;
-        --x-button-background: none;
-        --x-button-background-hover: none;
-        display: flex;
-
-        .x-field {
-            --x-field-background: none;
-            --x-field-background-hover: none;
-            box-shadow: none!important;
-            width: calc(100% - var(--x-button-height))!important;
+        position: sticky;
+        top: 8px;
+        z-index: 100;
+        border-radius: 8px;
+        background:  var(--background);
+        .x-block {
+            display: flex;
+            margin-bottom: $point * 2;
+            --x-button-background: none;
+            --x-button-background-hover: none;
+            .x-field {
+                --x-field-background: none;
+                --x-field-background-hover: none;
+                box-shadow: none!important;
+                width: calc(100% - var(--x-button-height))!important;
+            }
         }
+
     }
     .toolbar {
-        margin-bottom: $point * 2;
+        position: sticky;
+        top: 8px;
+        margin-bottom: 8px;
+        z-index: 100;
         --x-button-background-hover: var(--san-marino2)!important;
         --x-button-icon: var(--san-marino2)!important;
         .x-dropdown .x-dropdown-children{
@@ -81,14 +91,26 @@
     }
     .no-notes {
         color: var(--color);
-        height: 128px;
+        height: calc(100% - 44px * 2 - $point * 4);
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-bottom: $point * 2;
         p {
             font-size: 32px;
         }
         opacity: 0.5;
+    }
+    .note-list {
+        height: calc(100% - 44px * 2 - $point * 4);
+        margin-bottom: $point * 2;
+
+    }
+    .note-list-toolbar {
+        position: sticky;
+        bottom: 8px;
+        border-radius: 8px;
+        background:  var(--background);
     }
     .editor-x-block {
         padding-bottom: 36px!important;
