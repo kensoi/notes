@@ -6,5 +6,5 @@ export function NoItems() {
         <p>
             Чтобы начать,<br /><b>воспользуйтесь</b><br />панелью инструментов
         </p>
-    </XBlock>;
+    </XBlock>
 }

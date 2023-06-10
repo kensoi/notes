@@ -141,5 +141,5 @@ export function Item({toolkit, item, index}) {
     return <div className="note-item-block">
         <ItemInner toolkit={toolkit} item={item} index={index} />
         <RemoveButton toolkit={toolkit} index={index} />
-    </div>;
+    </div>
 }
