@@ -107,14 +107,16 @@
     }
     .note-list {
         height: calc(100% - 44px * 2 - $point * 4);
-        margin-bottom: $point * 2;
-
+        margin-bottom: 8px;
     }
     .note-list-toolbar {
+        display: flex;
+        justify-content: space-between;
         position: sticky;
         bottom: 8px;
-        border-radius: 8px;
-        background:  var(--background);
+        .x-dropdown {
+            width: fit-content;
+        }
     }
     .editor-x-block {
         padding-bottom: 36px!important;
@@ -132,12 +134,30 @@
     .note-block {
         transition: 0.05s;
     }
+    .screen-device-mobile {
+        .note-item-block {
+            padding: 8px 0;
+        }
+    }
     .note-item-block {
         display: flex;
         justify-content: space-between;
-        // --x-field-icon: var(--color);
+        background: var(--card-background);
+        border-radius: $point;
         --x-field-text: var(--color);
-        &:not(:hover){
+        &.editing {
+            align-items: center;
+            padding: 2px 0;
+            border: 1px solid var(--card-hover-background);
+            margin-bottom: 4px;
+            .dragging-buttons {
+                display: flex;
+                flex-direction: column;
+                --x-button-height: 28px!important;
+                width: 28px;
+            }
+        }
+        &:not(:hover):not(.editing){
             .x-field-icon {
                 opacity: 0!important;
             }
@@ -159,11 +179,16 @@
         --x-field-background-hover: none!important;
         width: calc(100% - var(--x-button-height));
         padding: 0 8px!important;
+        &.p-bold {
+            font-weight: 600;
+        }
+        &.p-italic {
+            font-style: italic;
+        }
     }
     .note-task {
         display: flex;
         width: calc(100% - var(--x-button-height));
-        padding: 0 0 0 52px!important;
         .x-field {
             --x-field-background: none!important;
             --x-field-background-hover: none!important;
@@ -174,8 +199,8 @@
     .note-citata {
         width: calc(100% - var(--x-button-height));
         border-left: 2px solid var(--x-field-icon);
-        margin: 8px 0 16px 24px!important;
-        padding-left: 10px;
+        margin: 8px 0 16px 8px!important;
+        padding-left: 8px;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
@@ -200,7 +225,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 0 16px 0 52px;
+        padding: 0 16px;
         .note-many-dots-dot {
             width: $point;
             height: $point;
@@ -215,7 +240,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 0 16px 0 52px;
+        padding: 0 16px;
 
         div {
             width: 100%;
@@ -224,7 +249,12 @@
             background: var(--color);
         }
     }
-
+    .note-item-wrapper {
+        margin-bottom: $point * 2;  
+    }
+    .removing-area {
+        margin-left: 44px;
+    }
     .note-item {
         user-select: none;
         cursor: pointer;

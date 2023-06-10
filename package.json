@@ -1,7 +1,7 @@
 {
   "name": "notes",
-  "version": "0.2.3",
-  "author": "Andrew Prokofieff <kensoi@gmail.com>",
+  "version": "0.3.0",
+  "author": "Andrew Prokofieff <kensoidev@gmail.com>",
   "homepage": "https://kensoi.github.io/notes",
   "private": true,
   "dependencies": {
@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "patch-package": "^6.5.1",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^11.0.5",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",

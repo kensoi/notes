@@ -40,6 +40,8 @@ export default class App extends React.Component {
       target_note_index: null,
       noteMounted: true,
       noteLoaded: true,
+      actualItemMode: 0,
+      sortMode: 0,
 
       notifyBeforeRemoving: JSON.parse(localStorage.getItem("notifyBeforeRemoving")) || false,
 
@@ -164,6 +166,13 @@ export default class App extends React.Component {
 
         list: this.state.notesList,
         target_index: this.state.target_note_index,
+        
+        sortMode: this.state.sortMode,
+        setSortMode: (state) => {
+          this.setState({
+            sortMode: state
+          })
+        },
 
         isTarget: () => {
           return this.state.target_note_index !== null
@@ -181,7 +190,16 @@ export default class App extends React.Component {
           }
 
           // здесь сортировки по note toolbar
-          // responseList = responseList.sort()
+          switch (this.toolkit.notes.sortMode) {
+            case 1:
+              responseList = responseList.sort((a, b) => (a.createData > b.createData) ? 1 : -1)
+            case 2:
+              responseList = responseList.sort((a, b) => ('' + a.items[0].text).localeCompare(b.items[0].text))
+
+            default:
+              // без сортировок, по дате последнего названия
+              break;
+          }
 
           return responseList
         },
@@ -214,7 +232,14 @@ export default class App extends React.Component {
         },
 
         items: {
-          add: (type) => {
+          actualItemMode: this.state.actualItemMode,
+          setActualItemMode: state => {
+            this.setState({
+              actualItemMode: state
+            })
+          },
+
+          add: (type, style=null) => {
             const target_note = this.toolkit.notes.list[
               this.toolkit.notes.target_index
             ]
@@ -227,6 +252,7 @@ export default class App extends React.Component {
                   id: nanoid(),
                   type: 2,
                   text: "",
+                  style: style
                 }
                 break
     
@@ -304,6 +330,40 @@ export default class App extends React.Component {
             newNote.items[item_index] = newItem
 
             this.toolkit.notes.update(this.toolkit.notes.target_index, newNote)
+          },
+
+          updateAll: (newList) => {
+            const target_note = this.toolkit.notes.list[
+              this.toolkit.notes.target_index
+            ]
+
+            var newNote = {...target_note}
+
+            newNote.items = newList
+
+            this.toolkit.notes.update(this.toolkit.notes.target_index, newNote)
+          },
+
+          moveUp: (item_index) => {
+            const targetNote = this.toolkit.notes.getTarget()
+            var items = Array.from(targetNote.items)
+            const firstItem = targetNote.items[item_index]
+            const secondItem = targetNote.items[item_index - 1]
+            items[item_index - 1] = {... firstItem}
+            items[item_index] = {... secondItem}
+
+            this.toolkit.notes.items.updateAll(items)
+          },
+
+          moveDown: (item_index) => {
+            const targetNote = this.toolkit.notes.getTarget()
+            var items = Array.from(targetNote.items)
+            const firstItem = targetNote.items[item_index]
+            const secondItem = targetNote.items[item_index + 1]
+            items[item_index + 1] = {... firstItem}
+            items[item_index] = {... secondItem}
+
+            this.toolkit.notes.items.updateAll(items)
           },
         },
         

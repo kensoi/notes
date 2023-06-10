@@ -1,7 +1,7 @@
 import XBlock, { XHorizontal, XVertical } from "../../../XBlock";
 import { XButton } from "../../../XForms";
 import CloseIcon from '@mui/icons-material/Close';
-import { useContext } from "react";
+import { useContext, useLayoutEffect } from "react";
 import { Toolkit } from "../../../../contexts";
 
 function Note({note, index}) {
@@ -34,8 +34,6 @@ function Note({note, index}) {
         toolkit.notes.select(index)
     }
 
-    
-
     const RemoveButton = () => {
         const remove = () => {
             toolkit.notes.remove(index)
@@ -62,8 +60,11 @@ function Note({note, index}) {
         </XHorizontal>
     </XBlock>
 }
+
 export function NoteList() {
     const toolkit = useContext(Toolkit)
+
+    useLayoutEffect(() => {}, [toolkit.notes.sortMode])
 
     return <div className="note-list">
         <XVertical>

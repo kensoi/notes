@@ -20,7 +20,6 @@
 
         transition: 0.05s;
         overflow: hidden;
-        cursor: text;
 
         &:hover {
             background: var(--x-field-background-hover);
@@ -57,6 +56,21 @@
             padding-top: 2px;
             padding-left: 4px;
         }
+        
+        &:not(.blocked) {
+            cursor: text;
+            .x-field-input {
+                &[contenteditable=true]:empty:before{
+                    pointer-events: none;
+                }
+            }
+        }
+        &.blocked {
+            cursor: grab;
+            .x-field-input {
+                opacity: 0.5;
+            }
+        }
         .x-field-input {
             width: 100%;
             outline: none;
@@ -66,7 +80,6 @@
             padding-right: $point * 2;
             &[contenteditable=true]:empty:before{
                 content: attr(data-placeholder);
-                pointer-events: none;
                 display: block; /* For Firefox */
                 opacity: 0.5;
                 text-transform: lowercase;

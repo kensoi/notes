@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { nanoid } from "nanoid";
 
 import { XButton, XCheckBox, XField } from "../../../../../XForms";
-
-import ShortTextIcon from '@mui/icons-material/ShortText';
-import NotesIcon from '@mui/icons-material/Notes';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Toolkit } from "../../../../../../contexts";
 
@@ -20,17 +20,28 @@ function NoteTitle({item, index}) {
     
         return <XField key={nanoid()}
             className="note-title"
-            icon={<ShortTextIcon />}
             field={item.text} setField={setText}>
             { title }
         </XField>
     }
-    
-    return <TextField title="как бы называлась ваша заметка сегодня?" />
+    if (toolkit.notes.items.actualItemMode === 0) {
+        return <TextField title="как бы называлась ваша заметка сегодня?" />
+    }
+    else {
+        return <div className="x-field note-title blocked">
+                <div className="x-field-input">
+                    {item.text}
+                </div>
+            </div>
+    }
 }
 
 function NoteParagraph({item, index}) {
     const toolkit = useContext(Toolkit)
+    const classList = ['note-paragraph']
+    if (item.style) {
+        classList.push(item.style)
+    }
 
     const TextField = ({ title }) => {
         const setText = (text) => {
@@ -40,14 +51,24 @@ function NoteParagraph({item, index}) {
         }
 
         return <XField key={nanoid()}
-            className="note-paragraph"
-            icon={<NotesIcon />}
+            className={classList.join(" ")}
             field={item.text} setField={setText}>
             { title }
         </XField>
     }
     
-    return <TextField title="просто начните писать" />
+    if (toolkit.notes.items.actualItemMode === 0) {
+        return <TextField title="просто начните писать" />
+    }
+    else {
+        classList.push("x-field")
+        classList.push("blocked")
+        return <div className={classList.join(" ")}>
+                <div className="x-field-input">
+                    {item.text}
+                </div>
+            </div>
+    }
 }
 
 function NoteTask({ item, index }) {
@@ -75,10 +96,23 @@ function NoteTask({ item, index }) {
         </XField>
     }
 
-    return <div className="note-task">
-        <CheckButton />
-        <TextField title="название задачи" />
-    </div>
+    if (toolkit.notes.items.actualItemMode === 0) {
+        return <div className="note-task">
+            <CheckButton />
+            <TextField title="название задачи" />
+        </div>
+    }
+    else {
+        return <div className="note-task">
+            <CheckButton />
+            <div className="x-field blocked">
+                <div className="x-field-input">
+                    {item.text}
+                </div>
+            </div>
+        </div>
+    }
+    
 }
 
 function NoteCitata({ item, index }) {
@@ -112,10 +146,32 @@ function NoteCitata({ item, index }) {
         </XField>
     }
 
-    return <div className="note-citata">
-        <TextField title="просто начните писать" />
-        <AuthorField name="Клавдий Харитонович" />
-    </div>
+    if (toolkit.notes.items.actualItemMode === 0) {
+        return <div className="note-citata">
+            <TextField title="просто начните писать" />
+            <AuthorField name="Клавдий Харитонович" />
+        </div>
+    }
+
+    else {
+        return <div className="note-task">
+            <div className="note-citata-text">
+                <div className="x-field blocked">
+                    <div className="x-field-input">
+                        {item.text}
+                    </div>
+                </div>
+            </div>
+            <div className="note-citata-author">
+                <div className="x-field blocked">
+                    <div className="x-field-input">
+                        {item.author}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    }
 }
 
 function NoteManyDots() {
@@ -135,18 +191,25 @@ function NoteHR() {
 export default function Item({ item, index }) {
     const toolkit = useContext(Toolkit)
 
-    const RemoveButton = ({ index }) => {
+    const RemoveButton = () => {
         const removeItem = () => {
             toolkit.notes.items.remove(index)
         }
 
         return <XButton accent="transparent"
-            icon={<ClearIcon />}
-            hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-            onClick={removeItem} />
+                icon={<ClearIcon />}
+                hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+                onClick={removeItem} />
     }
 
-    const ItemInner = ({ item, index }) => {
+    const MoveButton = () => {
+        return <XButton accent="transparent"
+                icon={<DragIndicatorIcon />}
+                hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+                />
+    }
+
+    const ItemInner = () => {
         switch (item.type) {
             case 2:
                 return <NoteParagraph item={item} index={index} />
@@ -168,8 +231,73 @@ export default function Item({ item, index }) {
         }
     }
 
-    return <div className="note-item-block">
-        <ItemInner item={item} index={index} />
-        <RemoveButton index={index} />
-    </div>
+    const MoveUp = () => {
+        const action = () => {
+            toolkit.notes.items.moveUp(index)
+        }
+
+        return <XButton accent="transparent"
+            onClick={action}
+            icon = {<ArrowDropUpIcon/>}
+            hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}/>
+    }
+
+    const MoveDown = () => {
+        const action = () => {
+            toolkit.notes.items.moveDown(index)
+        }
+
+        return <XButton accent="transparent"
+            onClick={action}
+            icon = {<ArrowDropDownIcon/>}
+            hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}/>
+    }
+
+    const DraggingButtons = () => {
+        switch (index) {
+            case 0:
+                return <div className="dragging-buttons">
+                    <MoveDown />
+                </div>
+            
+            case toolkit.notes.getTarget().items.length - 1:
+                return <div className="dragging-buttons">
+                    <MoveUp />
+                </div>
+
+            default:
+                return <div className="dragging-buttons">
+                    <MoveUp />
+                    <MoveDown />
+                </div>
+        }
+    }
+
+    switch (toolkit.notes.items.actualItemMode) {
+        case 1: // removing
+            return <div className="note-item-block editing">
+                <ItemInner />
+                <RemoveButton />
+            </div>
+
+        case 2: // moving
+            return <div className="note-item-block editing">
+                <DraggingButtons />
+                <ItemInner />
+            </div>
+
+        default:
+            if (toolkit.windowSize.width > 768) {
+                return <div className="note-item-block">
+                    <MoveButton />
+                    <ItemInner item={item} index={index} />
+                    <RemoveButton />
+                </div>
+            }
+
+            return <div className="note-item-block">
+                <ItemInner />
+                <RemoveButton />
+            </div>
+    }
 }

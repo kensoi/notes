@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import XBlock from "../../../XBlock";
-import { XButton } from "../../../XForms";
+import { XButton, XDropdown} from "../../../XForms";
 import { Toolkit } from "../../../../contexts";
 
 import { FormBlock } from "./FormBlock";
@@ -24,11 +24,81 @@ const SettingsButton = () => {
 }
 
 const NoteListToolbar = () => {
-    return <div className="note-list-toolbar">
-        <XBlock>
+    const Sorter = () => {
+        const toolkit = useContext(Toolkit)
+        const Menu = () => {
+            const SortByEdit = () => {
+                const action = () => {
+                    toolkit.notes.setSortMode(0)
+                }
+
+                return <XButton
+                    title="по дате редактирования"
+                    hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+                    onClick={action}
+                />
+            }
+            
+            const SortByCreate = () => {
+                const action = () => {
+                    toolkit.notes.setSortMode(1)
+                }
+
+                return <XButton
+                    title="по дате создания"
+                    hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+                    onClick={action}
+                />
+            }
+
+            const SortByName = () => {
+                const action = () => {
+                    toolkit.notes.setSortMode(2)
+                }
+                return <XButton
+                    title="по имени"
+                    hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+                    onClick={action}
+                />
+            }
+            
+            return <>
+                <SortByEdit />
+                <SortByCreate />
+                <SortByName />
+            </>
+        }
+        const ChildrenButton = () => {
+            var text
+
+            switch (toolkit.notes.sortMode) {
+                case 1:
+                    text = "по дате создания"
+                    break;
+                case 2:
+                    text = "по имени"
+                    break;
+                default:
+                    text = "по дате редактирования"
+                    break;
+            }
+
+            return <XButton title={text}
+            hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true} isDropdown={true}/>
+        }
+
+        return <XDropdown
+        dropdown={<Menu/>}
+        contentPosition={"top-left"}
+        listDirection="row">
+            <ChildrenButton />
+        </XDropdown>
+
+    }
+    return <XBlock className="note-list-toolbar">
+            <Sorter />
             <SettingsButton />
         </XBlock>
-    </div>
 }
 
 function SelectNote () {
