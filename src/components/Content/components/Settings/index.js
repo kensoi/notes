@@ -1,54 +1,68 @@
-import React from "react";
+import { useContext } from "react";
 
 /* WEB-X-UI components */
 
-import { FormBlock } from "./components/FormBlock";
-import { MenuPage } from "./components/MenuPage";
 import "./scss/stylesheet.scss"
-import { SettingsPage } from "./components/SettingsPage";
-import { AboutPage } from "./components/AboutPage";
 
-function Resolver (props) {
-  switch (props.toolkit.settings.page) {
+import { FormBlock } from "./components/FormBlock";
+import Menu from "./components/Menu";
+import Global from "./components/Global";
+import Author from "./components/Author";
+import About from "./components/About";
+
+import { Toolkit } from "../../../../contexts";
+
+function Page () {
+  const toolkit = useContext(Toolkit)
+
+  switch (toolkit.settings.page) {
     case 2:
-      return AboutPage (props)
+      return <About />
+
+    case 3:
+      return <Author />
+  
     default:
-      return SettingsPage (props)
+      return <Global />
   }
 }
 
-function DesktopTemplate (props) {
+function DesktopTemplate () {
     return <div className="index desktop">
-      {MenuPage (props)}
-      <FormBlock toolkit={props.toolkit}>
-        {Resolver (props)}
+      <Menu />
+      <FormBlock>
+        <Page />
       </FormBlock>
     </div>
 }
 
-function MobileTemplate (props) {
-  let resolve = (props) => {
-    switch (props.toolkit.settings.page) {
+function MobileTemplate () {
+  const toolkit = useContext(Toolkit)
+
+  const Content = () => {
+    switch (toolkit.settings.page) {
       case 0:
-        return MenuPage (props)
+        return <Menu />
+
       default:
-        return Resolver (props)
+        return <Page />
     }
   }
-  console.log(props.toolkit.settings.page)
+  
   return <div className="index">
-    <FormBlock toolkit={props.toolkit}>
-      {resolve(props)}
+    <FormBlock>
+      <Content />
     </FormBlock>
   </div>
 }
 
-export default function Settings (props) {
-    if (props.toolkit.windowSize.width >= 768) {
-        return DesktopTemplate (props)
-    }
+export default function Settings () {
+    const toolkit = useContext(Toolkit)
 
+    if (toolkit.windowSize.width >= 768) {
+        return <DesktopTemplate />
+    }
     else {
-        return MobileTemplate (props)
+        return <MobileTemplate />
     }
 }

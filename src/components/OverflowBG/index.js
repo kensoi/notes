@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Toolkit } from "../../contexts";
 import "./scss/overflow-bg.scss";
 
-export default class FormCard extends React.Component {
-  render = () => {
-    const ClassList = ["overflow-bg"];
-    ClassList.push(this.props.toolkit.card.loaded ? "visible" : "invisible");
+export default function FormCard () {
+  const toolkit = useContext(Toolkit);
 
-    if (this.props.toolkit.card.mounted) {
-      return (
-        <div
-          className={ClassList.join(" ")}
-          onClick={() => {
-            this.props.toolkit.card.return(null);
-          }}
-        ></div>
-      );
-    }
-  };
+  const ClassList = ["overflow-bg"];
+  ClassList.push(toolkit.card.loaded ? "visible" : "invisible");
+
+  if (toolkit.card.mounted) {
+    return (
+      <div
+        className={ClassList.join(" ")}
+        onClick={() => {
+          toolkit.card.return(null);
+        }}
+      ></div>
+    );
+  }
 }

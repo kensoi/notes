@@ -1,24 +1,25 @@
-import React from "react";
 import XBlock from "../../../../XBlock";
-import { Headline } from "./Headline";
+import Headline from "./Headline";
 
-export function AboutPage(props) {
+export default function Author () {
   return <XBlock className="settings-page settings-block">
-    <Headline toolkit={props.toolkit}>
-      О программе
-    </Headline>
+    <Headline title="Об авторе" />
     <div className="options-grid-list">
       <div className="options-grid-item">
-        <b>Название:</b>
+        <b>ВКонтакте:</b>
       </div>
       <div className="options-grid-item">
-        {process.env.REACT_APP_FULL_NAME}
+        <a href="https://vk.com/kensoi">
+          @kensoi  
+        </a>
       </div>
       <div className="options-grid-item">
-        <b>Версия:</b>
+        <b>Github:</b>
       </div>
       <div className="options-grid-item">
-        {process.env.REACT_APP_VERSION}
+        <a href="https://githob.com/kensoi">
+          @kensoi  
+        </a>
       </div>
     </div>
     <div className="settings-text">

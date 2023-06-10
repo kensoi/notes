@@ -29,6 +29,9 @@
         }
     }
     .settings-menu {
+        .x-block:not(:last-child) {
+            margin-bottom: 8px;
+        }
         .x-button-title {
             text-align: left;
             padding-left: 8px;

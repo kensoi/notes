@@ -33,13 +33,13 @@
                     justify-content: right;
                     top: 0;
                     bottom: 0;
-                    padding: $point * 4 $point * 3 0 $point * 3;
+                    padding: $point * 8 $point * 6 0 $point * 6;
                     .form-card-close-button {
                         cursor: pointer;
                         $note-block-shadow: $box-shadow, $box-border;
                         @include box-shadow($note-block-shadow);
-                        width: $point * 4;
-                        height: $point * 4;
+                        width: $point * 8;
+                        height: $point * 8;
                         border-radius: $point * 4;
                         background-color: rgb(49, 49, 49);
                         color: var(--card-background);
@@ -54,13 +54,13 @@
                 }
                 .form-card-layout {
                     @media screen and (max-width: 425px) {
-                        padding: 0 $point * 3 $point * 3;
+                        padding: 0 $point * 3 $point * 10;
                     }
                     @media screen and (min-width: 425px) and (max-width: 720px) {
-                        padding: 0 $point * 3 $point * 3;
+                        padding: 0 $point * 3 $point * 10;
                     }
                     @media screen and (min-width: 720px) {
-                        padding: 0 $point * 11 $point * 3;
+                        padding: 0 $point * 20 $point * 10;
                     }
                 }
             }

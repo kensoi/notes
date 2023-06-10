@@ -1,10 +1,12 @@
 import { nanoid } from "nanoid";
+import { useContext } from "react";
+
+import { Toolkit } from "../../../../contexts";
 
 import GreetingsMessage from "./components/GreetingsMessage";
 import NotFoundMessage from "./components/NotFoundMessage";
 import ConfirmMessage from "./components/ConfirmMessage";
 import ConfirmMessageAll from "./components/ConfirmMessageAll";
-
 
 const layoutArray = [
   {
@@ -27,35 +29,27 @@ const layoutArray = [
 ]
 
 
-export function Layout ({toolkit}) {
-  let element
+export function Layout () {
+  const toolkit = useContext(Toolkit)
 
   for (let index = 0; index < layoutArray.length; index++) {
-    element = layoutArray[index]
+    let element = layoutArray[index]
 
     if (element.name === toolkit.card.layout) {
-      break
+      return new element.layout()
     }
   }
-
-  if (element) {
-    return new element.layout({toolkit: toolkit})
-  }
   
-  return <NotFoundMessage toolkit={toolkit}/>
+  return <NotFoundMessage/>
 }
 
 
-export function getCardType (toolkit) {
-  let element
-
+export function getCardType (layout) {
   for (let index = 0; index < layoutArray.length; index++) {
-    element = layoutArray[index]
-
-    if (element.name === toolkit.card.layout) {
-      break
+    if (layoutArray[index].name === layout) {
+      return layoutArray[index].type || "article"
     }
   }
-  
-  return element.type || "article"
+
+  return "article"
 }

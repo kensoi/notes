@@ -1,4 +1,8 @@
-export function FormBlock({toolkit, children}) {
+import { useContext } from "react"
+import { Toolkit } from "../../../../contexts"
+
+export function FormBlock({children}) {
+  const toolkit = useContext(Toolkit)
   const ClassList = ["form-block"]
 
   if (toolkit.notes.loaded) {

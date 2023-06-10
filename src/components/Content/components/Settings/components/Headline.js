@@ -1,24 +1,31 @@
-import React from "react";
+import { useContext } from "react";
 import { XButton } from "../../../../XForms";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Toolkit } from "../../../../../contexts";
 
-function BackButtonMobile(props) {
-  return <XButton icon={<ArrowBackIcon/>} accent="transparent"
+function BackButtonMobile() {
+  const toolkit = useContext(Toolkit)
+
+  const returnToMenu = () => toolkit.settings.setPage(0)
+  return <XButton 
+    icon={<ArrowBackIcon/>} accent="transparent"
     hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-    onClick={() => { props.toolkit.settings.setPage(0); }} />;
+    onClick={returnToMenu} />
 }
 
-export function Headline(props) {
-  if (props.toolkit.windowSize.width >= 768) {
+export default function Headline({ title }) {
+  const toolkit = useContext(Toolkit)
+
+  if (toolkit.windowSize.width >= 768) {
     return <div className="settings-headline">
-      {props.children}
-    </div>;
+      { title }
+    </div>
   }
 
   else {
     return <div className="settings-headline">
-      <BackButtonMobile toolkit={props.toolkit} />
-      {props.children}
+      <BackButtonMobile />
+      { title }
     </div>
   }
 }

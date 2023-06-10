@@ -39,7 +39,7 @@
     .search-box {
         position: sticky;
         top: 8px;
-        z-index: 100;
+        z-index: 50;
         border-radius: 8px;
         background:  var(--background);
         .x-block {
@@ -56,13 +56,17 @@
         }
 
     }
-    .toolbar {
+    .editor-toolbar {
         position: sticky;
+        display: flex;
         top: 8px;
         margin-bottom: 8px;
         z-index: 100;
         --x-button-background-hover: var(--san-marino2)!important;
         --x-button-icon: var(--san-marino2)!important;
+        .x-dropdown {
+            width: fit-content;
+        }
         .x-dropdown .x-dropdown-children{
             --x-button-background-hover: var(--san-marino2)!important;
             --x-button-icon: var(--san-marino2)!important;

@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import { nanoid } from "nanoid";
 
 import { XButton, XCheckBox, XField } from "../../../../../XForms";
@@ -6,91 +6,119 @@ import { XButton, XCheckBox, XField } from "../../../../../XForms";
 import ShortTextIcon from '@mui/icons-material/ShortText';
 import NotesIcon from '@mui/icons-material/Notes';
 import ClearIcon from '@mui/icons-material/Clear';
+import { Toolkit } from "../../../../../../contexts";
 
-function NoteTitle({toolkit, item, index}) {
-    const setText = (text) => {
-        const newItem = { ...item };
-        newItem.text = text;
-        toolkit.notes.items.update(index, newItem)
-    }
+function NoteTitle({item, index}) {
+    const toolkit = useContext(Toolkit)
 
-    return <XField key={nanoid()}
-        className="note-title"
-        icon={<ShortTextIcon />}
-        field={item.text} setField={setText}>
-        заголовок
-    </XField>
-}
-
-function NoteParagraph({toolkit, item, index}) {
-    const setText = (text) => {
-        const newItem = { ...item };
-        newItem.text = text;
-        toolkit.notes.items.update(index, newItem)
-    }
-
-    return <XField key={nanoid()}
-        className="note-paragraph"
-        icon={<NotesIcon />}
-        field={item.text} setField={setText}>
-        просто начните писать
-    </XField>
-}
-
-function NoteTask({toolkit, item, index}) {
-    const setText = (text) => {
-        const newItem = { ...item };
-        newItem.text = text;
-        toolkit.notes.items.update(index, newItem)
-    }
-
-    const setStatus = () => {
-        const newItem = { ...item };
-        newItem.status = !item.status;
-        toolkit.notes.items.update(index, newItem)
+    const TextField = ({ title }) => {
+        const setText = (text) => {
+            const newItem = { ...item };
+            newItem.text = text;
+            toolkit.notes.items.update(index, newItem)
+        }
+    
+        return <XField key={nanoid()}
+            className="note-title"
+            icon={<ShortTextIcon />}
+            field={item.text} setField={setText}>
+            { title }
+        </XField>
     }
     
+    return <TextField title="как бы называлась ваша заметка сегодня?" />
+}
+
+function NoteParagraph({item, index}) {
+    const toolkit = useContext(Toolkit)
+
+    const TextField = ({ title }) => {
+        const setText = (text) => {
+            const newItem = { ...item };
+            newItem.text = text;
+            toolkit.notes.items.update(index, newItem)
+        }
+
+        return <XField key={nanoid()}
+            className="note-paragraph"
+            icon={<NotesIcon />}
+            field={item.text} setField={setText}>
+            { title }
+        </XField>
+    }
+    
+    return <TextField title="просто начните писать" />
+}
+
+function NoteTask({ item, index }) {
+    const toolkit = useContext(Toolkit)
+
     const CheckButton = () => {
+        const setStatus = () => {
+            const newItem = { ...item };
+            newItem.status = !item.status;
+            toolkit.notes.items.update(index, newItem)
+        }
+
         return <XCheckBox state={item.status} setState={setStatus} />
+    }
+
+    const TextField = ({ title }) => {
+        const setText = (text) => {
+            const newItem = { ...item };
+            newItem.text = text;
+            toolkit.notes.items.update(index, newItem)
+        }
+        return <XField key={nanoid()}
+            field={item.text} setField={setText}>
+            {title}
+        </XField>
     }
 
     return <div className="note-task">
         <CheckButton />
-        <XField key={nanoid()}
-            field={item.text} setField={setText}>
-            название задачи
-        </XField>
+        <TextField title="название задачи" />
     </div>
 }
 
-function NoteCitata({toolkit, item, index}) {
-    const setText = (text) => {
-        const newItem = { ...item };
-        newItem.text = text;
-        toolkit.notes.items.update(index, newItem)
+function NoteCitata({ item, index }) {
+    const toolkit = useContext(Toolkit)
+
+    const TextField = ({ title }) => {
+        const setText = (text) => {
+            const newItem = { ...item };
+            newItem.text = text;
+            toolkit.notes.items.update(index, newItem)
+        }
+
+        return <XField key={nanoid()}
+            className="note-citata-text"
+            field={item.text} setField={setText}>
+            { title }
+        </XField>
     }
 
-    const setAuthor = (text) => {
-        const newItem = { ...item };
-        newItem.author = text;
-        toolkit.notes.items.update(index, newItem)
+    const AuthorField = ({ name }) => {
+        const setAuthor = (text) => {
+            const newItem = { ...item };
+            newItem.author = text;
+            toolkit.notes.items.update(index, newItem)
+        }
+
+        return <XField key={nanoid()}
+            className="note-citata-author"
+            field={item.author} setField={setAuthor}>
+            { name }
+        </XField>
     }
 
     return <div className="note-citata">
-        <XField key={nanoid()}
-            className="note-citata-text"
-            field={item.text} setField={setText}>
-            просто начните писать
-        </XField>
-        <XField key={nanoid()}
-            className="note-citata-author"
-            field={item.author} setField={setAuthor}>
-            Клавдий Харитонович
-        </XField>
+        <TextField title="просто начните писать" />
+        <AuthorField name="Клавдий Харитонович" />
     </div>
 }
 
-function NoteManyDots({}) {
+function NoteManyDots() {
     return <div className="note-many-dots">
         <div className="note-many-dots-dot" />
         <div className="note-many-dots-dot" />
@@ -98,14 +126,16 @@ function NoteManyDots({}) {
     </div>
 }
 
-function NoteHR({}) {
+function NoteHR() {
     return <div className="note-hr">
         <div />
     </div>
 }
 
-export function Item({toolkit, item, index}) {
-    const RemoveButton = ({ toolkit, index }) => {
+export default function Item({ item, index }) {
+    const toolkit = useContext(Toolkit)
+
+    const RemoveButton = ({ index }) => {
         const removeItem = () => {
             toolkit.notes.items.remove(index)
         }
@@ -116,30 +146,30 @@ export function Item({toolkit, item, index}) {
             onClick={removeItem} />
     }
 
-    const ItemInner = ({toolkit, item, index}) => {
+    const ItemInner = ({ item, index }) => {
         switch (item.type) {
             case 2:
-                return <NoteParagraph toolkit={toolkit} item={item} index={index} />
+                return <NoteParagraph item={item} index={index} />
 
             case 3:
-                return <NoteCitata toolkit={toolkit} item={item} index={index} />
+                return <NoteCitata item={item} index={index} />
 
             case 4:
-                return <NoteTask toolkit={toolkit} item={item} index={index} />
+                return <NoteTask item={item} index={index} />
 
             case 5:
-                return <NoteManyDots toolkit={toolkit} item={item} index={index} />
+                return <NoteManyDots item={item} index={index} />
 
             case 6:
-                return <NoteHR toolkit={toolkit} item={item} index={index} />
+                return <NoteHR item={item} index={index} />
 
             default:
-                return <NoteTitle toolkit={toolkit} item={item} index={index} />
+                return <NoteTitle item={item} index={index} />
         }
     }
 
     return <div className="note-item-block">
-        <ItemInner toolkit={toolkit} item={item} index={index} />
-        <RemoveButton toolkit={toolkit} index={index} />
+        <ItemInner item={item} index={index} />
+        <RemoveButton index={index} />
     </div>
 }

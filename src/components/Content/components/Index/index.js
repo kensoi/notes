@@ -1,11 +1,16 @@
-import { FormBlock } from "./FormBlock";
-import XBlock from "../../../XBlock";
-import { Editor } from "./Editor";
-import { XButton } from "../../../XForms";
+import { useContext } from "react";
 
+import XBlock from "../../../XBlock";
+import { XButton } from "../../../XForms";
+import { Toolkit } from "../../../../contexts";
+
+import { FormBlock } from "./FormBlock";
+import { Editor } from "./Editor";
 import { SearchBox } from "./SearchBox";
 import { NoteList } from "./NoteList";
-import SettingsIcon from '@mui/icons-material/Settings';
+
+import SettingsIcon from '@mui/icons-material/Settings'
+
 
 const SettingsButton = () => {
     return <XButton
@@ -34,78 +39,80 @@ function SelectNote () {
     </XBlock>
 }
 
-function DesktopTemplate ({toolkit}) {
+function EmptyList () {
+    return <div className="no-notes">
+        <p>
+            Заметок нет!
+        </p>
+    </div>
+}
+
+function DesktopTemplate () {
+    const toolkit = useContext(Toolkit)
+    
     const NoteBlock = () => {
-        if (toolkit.notes.list.length === 0) {
-            return <div className="no-notes">
-                <p>
-                    Заметок нет!
-                </p>
-            </div>
-        }
-        
-        return <NoteList toolkit={toolkit} />
+        return toolkit.notes.isListEmpty() ? <EmptyList /> : <NoteList />
     }
 
     const Resolver = () => {
-        if (toolkit.notes.target_index === null) {
-            return <SelectNote />
-        }
-    
-        else {
-            return <Editor toolkit={toolkit}/>
-        }
+        return toolkit.notes.isTarget() ?  <Editor /> : <SelectNote />
     }
     
-    return <>
-        <div className="index desktop">
+    return <div className="index desktop">
             <div className="sorted-list">
-                <SearchBox toolkit={toolkit} />
+                <SearchBox />
                 <NoteBlock />
                 <NoteListToolbar />
             </div>
-            <FormBlock toolkit={toolkit}>
-                <Resolver toolkit={toolkit}/>
-            </FormBlock>
-        </div>
-    </>
-}
-
-function MobileTemplate ({toolkit}) {
-    const Resolver = () => {
-        if (toolkit.notes.list.length === 0) {
-            return <div className="sorted-list">
-                <SearchBox toolkit={toolkit} />
-                <SelectNote />
-                <NoteListToolbar />
-            </div>
-        }
-
-        else if (toolkit.notes.target_index === null) {
-            return <div className="sorted-list">
-                <SearchBox toolkit={toolkit} />
-                <NoteList toolkit={toolkit}/>
-                <NoteListToolbar />
-            </div>
-        }
-
-        return <>
-            <Editor toolkit={toolkit}/>
-        </>
-    }
-    
-    return <div className="index">
-            <FormBlock toolkit={toolkit}>
+            <FormBlock >
                 <Resolver />
             </FormBlock>
         </div>
 }
 
-export default function Index ({toolkit}) {
+function MobileTemplate () {
+    const toolkit = useContext(Toolkit)
+
+    const Page = () => {
+        if (toolkit.notes.isListEmpty()) {
+            // список записок пустой
+
+            return <div className="sorted-list">
+                <SearchBox />
+                <SelectNote />
+                <NoteListToolbar />
+            </div>
+        }
+
+        else if (toolkit.notes.isTarget()) {
+            // уже какая-то записка под редактированием
+
+            return <Editor />
+        }
+
+        // список не пустует, но пользователь ещё не выбрал что редачить.
+
+        return <div className="sorted-list">
+            <SearchBox />
+            <NoteList />
+            <NoteListToolbar />
+        </div>
+    }
+    
+    return <div className="index">
+            <FormBlock >
+                <Page />
+            </FormBlock>
+        </div>
+}
+
+export default function Index () {
+    const toolkit = useContext(Toolkit)
+
     if (toolkit.windowSize.width >= 768) {
-        return  <DesktopTemplate toolkit={toolkit}/>
+        return <DesktopTemplate />
     }
     else {
-        return <MobileTemplate toolkit={toolkit}/>
+        return <MobileTemplate />
     }
 }

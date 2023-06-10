@@ -1,9 +1,12 @@
 import XBlock, { XHorizontal, XVertical } from "../../../XBlock";
 import { XButton } from "../../../XForms";
 import CloseIcon from '@mui/icons-material/Close';
+import { useContext } from "react";
+import { Toolkit } from "../../../../contexts";
 
-function Note(props) {
-    const editDate = new Date(props.note.editData * 1000)
+function Note({note, index}) {
+    const toolkit = useContext(Toolkit)
+    const editDate = new Date(note.editData * 1000)
 
     const mobileSX = [
         {
@@ -12,15 +15,15 @@ function Note(props) {
     ]
 
     const NoteName = () => {
-        if (props.note.items.length === 0) {
+        if (note.items.length === 0) {
             return "[Пустая заметка]";
         }
 
-        if ('text' in props.note.items[0]) {
-            if (props.note.items[0].text === "") {
+        if ('text' in note.items[0]) {
+            if (note.items[0].text === "") {
                 return "[Пустой элемент]"
             }
-            return props.note.items[0].text
+            return note.items[0].text
         }
         else {
             return "{Неизвестный объект}"
@@ -28,20 +31,20 @@ function Note(props) {
     }
 
     const select = () => {
-        props.toolkit.notes.select(props.index)
+        toolkit.notes.select(index)
     }
 
-    const remove = () => {
-        props.toolkit.notes.remove(props.index)
-    }
+    
 
-    const confirmDeletion = () => {
-        if (props.toolkit.notes.deleteAsk.state) {
-            props.toolkit.card.show("confirm-deletion", { note_deletion_index: props.index }, "notify")
+    const RemoveButton = () => {
+        const remove = () => {
+            toolkit.notes.remove(index)
         }
-        else {
-            remove()
-        }
+
+        return <XButton accent="transparent"
+        icon={<CloseIcon />}
+        hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+        onClick={remove} />
     }
 
     return <XBlock>
@@ -55,29 +58,17 @@ function Note(props) {
                     {editDate.toLocaleDateString()} {editDate.getHours()}:{editDate.getMinutes()}
                 </div>
             </XVertical>
-            <XButton accent="transparent"
-                icon={<CloseIcon />}
-                hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-                onClick={confirmDeletion} />
+            <RemoveButton />
         </XHorizontal>
     </XBlock>
 }
-export function NoteList(props) {
-    var response_list
-
-    if (props.toolkit.notes.search.query === "") {
-        response_list = props.toolkit.notes.list
-    }
-    else {
-        response_list = props.toolkit.notes.list.filter(
-            note => note.items[0].text.includes(props.toolkit.searchQuery)
-        )
-    }
+export function NoteList() {
+    const toolkit = useContext(Toolkit)
 
     return <div className="note-list">
         <XVertical>
-            {response_list.map(
-                (note, index) => <Note key={note.id} toolkit={props.toolkit} note={note} index={index} />
+            {toolkit.notes.getList().map(
+                (note, index) => <Note key={note.id} note={note} index={index} />
             )}
         </XVertical>
     </div>

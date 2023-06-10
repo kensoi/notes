@@ -9,6 +9,7 @@ import FormCard from "./components/FormCard";
 import OverflowBG from "./components/OverflowBG";
 
 import {getScreenDeviceType} from "./shared/";
+import { Toolkit } from "./contexts";
 
 function getList () {
   try {
@@ -20,7 +21,7 @@ function getList () {
   }
 }
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -163,6 +164,43 @@ class App extends React.Component {
 
         list: this.state.notesList,
         target_index: this.state.target_note_index,
+
+        isTarget: () => {
+          return this.state.target_note_index !== null
+        },
+
+        getList: () => {
+          // фильтры тоже тут работают.
+          var responseList = this.state.notesList
+
+          // здесь типа фильтр по поиску
+          if (this.toolkit.notes.search.query !== "") {
+            responseList = responseList.filter(
+              note => note.items[0].text.includes(this.toolkit.searchQuery)
+            )
+          }
+
+          // здесь сортировки по note toolbar
+          // responseList = responseList.sort()
+
+          return responseList
+        },
+
+        isListEmpty: () => {
+          return this.state.notesList.length === 0
+        },
+
+        getTarget: () => {
+          if (this.toolkit.notes.isTarget()) {
+            return this.state.notesList[this.state.target_note_index]
+          }
+        },
+        
+        isNoteEmpty: () => {
+          const targetNote = this.toolkit.notes.getTarget()
+
+          return targetNote.items.lenght === 0
+        },
 
         deleteAsk: {
           state: this.state.notifyBeforeRemoving,
@@ -321,10 +359,16 @@ class App extends React.Component {
           const note = {
             createData: date,
             editData: date,
-            items: [{
-              type: 1, id: nanoid(), arrayid: 0,
-              text: "Новая заметка " + (this.state.notesList.length + 1)
-            }],
+            items: [
+              {
+                type: 1, id: nanoid(), arrayid: 0,
+                text: ""
+              },
+              {
+                type: 2, id: nanoid(), arrayid: 0,
+                text: ""
+              }
+            ],
             id: nanoid()
           }
   
@@ -405,9 +449,21 @@ class App extends React.Component {
           );
         },
 
-        remove: (note_index) => {
+        remove: (note_index, trusted=false) => {
           var offset = 0
           const note_list = [...this.state.notesList]
+
+          if (this.state.notifyBeforeRemoving) {
+            if (trusted) {
+              this.toolkit.card.return({
+                hideReason: "notes removed with enabled warnings"
+              })
+            }
+            else {
+              this.toolkit.card.show("confirm-deletion", { note_deletion_index: note_index }, "notify")
+              return
+            }
+          }
 
           if (note_index < note_list.length) {
             if (this.toolkit.notes.target_index === note_index) {
@@ -446,7 +502,16 @@ class App extends React.Component {
           }
         },
         
-        removeAll: () => {
+        removeAll: (trusted=false) => {
+          if (trusted) {
+            this.toolkit.card.return({
+              hideReason: "all notes removed via settings"
+            })
+          }
+          else {
+            this.toolkit.card.show("confirm-deletion-all")
+            return
+          }
           this.setState({
             target_note_index: null,
             notesList: []
@@ -513,22 +578,16 @@ class App extends React.Component {
 
     document.body.className = this.layoutClassList.join(" ");
 
-    // window.addEventListener('resize', () => {
-    //   this.setState({
-    //     windowWidth: document.body.clientWidth,
-    //     windowHeight: document.body.clientHeight
-    //   })
-    // })
 
     this.showHelloMessage();
 
     try {
       return (
-        <>
-          <AppContent toolkit={this.toolkit} />
-          <OverflowBG toolkit={this.toolkit} />
-          <FormCard toolkit={this.toolkit} />
-        </>
+        <Toolkit.Provider value={this.toolkit}>
+          <AppContent/>
+          <OverflowBG/>
+          <FormCard/>
+        </Toolkit.Provider>
       );
     } catch (error) {
       return (
@@ -540,5 +599,3 @@ class App extends React.Component {
     }
   }
 }
-
-export default App;

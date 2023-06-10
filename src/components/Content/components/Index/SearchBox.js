@@ -2,21 +2,33 @@ import XBlock from "../../../XBlock";
 import { XField, XButton } from "../../../XForms";
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
+import { useContext } from "react";
+import { Toolkit } from "../../../../contexts";
 
-export function SearchBox(props) {
+export function SearchBox() {
+    const toolkit = useContext(Toolkit)
+
+    const SearchField = ({title}) => {
+        return <XField
+            icon={<SearchIcon />}
+            field={toolkit.notes.search.query} cleanable={true}
+            setField={toolkit.notes.search.setQuery}
+        >
+            {title}
+        </XField>
+    }
+
+    const AddNote = () => {
+        return <XButton accent="transparent"
+            icon={<AddIcon />}
+            hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+            onClick={toolkit.notes.create} />
+    }
+    
     return <div className="search-box">
         <XBlock>
-            <XField
-                icon={<SearchIcon />}
-                field={props.toolkit.notes.search.query} cleanable={true}
-                setField={props.toolkit.notes.search.setQuery}
-            >
-                Заголовок
-            </XField>
-            <XButton accent="transparent"
-                icon={<AddIcon />}
-                hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-                onClick={props.toolkit.notes.create} />
+            <SearchField title="заголовок" />
+            <AddNote />
         </XBlock>
     </div>
 }

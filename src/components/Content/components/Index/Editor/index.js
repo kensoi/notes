@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import XBlock from "../../../../XBlock"
-import Toolbar from "../Toolbar";
+import Toolbar from "./components/Toolbar";
+import NoItems from "./components/NoItems";
+import Item from "./components/Item";
+import { Toolkit } from "../../../../../contexts";
 
-import { NoItems } from "./components/NoItems";
-import { Item } from "./components/Item";
+export function Editor() {
+    const toolkit = useContext(Toolkit);
 
-export function Editor({ toolkit }) {
     const targetNoteIndex = toolkit.notes.target_index
     const targetNote = toolkit.notes.list[targetNoteIndex]
 
@@ -16,13 +18,13 @@ export function Editor({ toolkit }) {
         }
         else {
             return targetNote.items.map(
-                (item, index) => <Item key={item.id} toolkit={toolkit} item={item} index={index} />
+                (item, index) => <Item key={item.id} item={item} index={index} />
             )
         }
     }
 
     return <>
-        <Toolbar toolkit={toolkit} />
+        <Toolbar />
         <XBlock className="editor-x-block">
             <NoteContent />
         </XBlock>
