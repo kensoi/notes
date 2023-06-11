@@ -14,7 +14,6 @@ import TextFormatIcon from '@mui/icons-material/TextFormat';
 import ShortTextIcon from '@mui/icons-material/ShortText';
 import NotesIcon from '@mui/icons-material/Notes';
 import DoneIcon from '@mui/icons-material/Done';
-import ClearIcon from '@mui/icons-material/Clear';
 import RttIcon from '@mui/icons-material/Rtt';
 import BrushIcon from '@mui/icons-material/Brush';
 
@@ -25,7 +24,7 @@ export default function Toolbar() {
         return <XButton accent="transparent"
             icon={<ArrowBackIcon />}
             hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-            onClick={toolkit.notes.deselect} />
+            onClick={toolkit.notes.deselect.bind(toolkit.notes)} />
     }
     
     const TextButton = () => {
@@ -63,8 +62,8 @@ export default function Toolbar() {
         }
 
         const ChildrenButton = () => <XButton accent="transparent"
-        icon={<TextFormatIcon />}
-        hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
+            icon={<TextFormatIcon />}
+            hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
         />
 
         return <XDropdown
@@ -126,8 +125,9 @@ export default function Toolbar() {
         const ActionMenu = () => {
             const ToggleNormalArea = () => {
                 const action = () => {
-                    toolkit.notes.items.setActualItemMode(0)
+                    toolkit.notes.itemMode = 0
                 }
+
                 return <XButton
                     icon={<ModeEditIcon />}
                     title="Обычный"
@@ -138,7 +138,7 @@ export default function Toolbar() {
             
             const ToggleDeletingArea = () => {
                 const action = () => {
-                    toolkit.notes.items.setActualItemMode(1)
+                    toolkit.notes.itemMode = 1
                 }
 
                 return <XButton
@@ -151,8 +151,9 @@ export default function Toolbar() {
 
             const ToggleMovingArea = () => {
                 const action = () => {
-                    toolkit.notes.items.setActualItemMode(2)
+                    toolkit.notes.itemMode = 2
                 }
+
                 return <XButton
                     icon={<ImportExportIcon />}
                     title="Перетаскивание"
@@ -168,8 +169,9 @@ export default function Toolbar() {
                 <ToggleMovingArea />
             </XVertical>
         }
+        
         const ActualIcon = () => {
-            switch (toolkit.notes.items.actualItemMode) {
+            switch (toolkit.notes.itemMode) {
                 case 1: 
                     return <DeleteSweepIcon />
 
@@ -195,7 +197,7 @@ export default function Toolbar() {
 
     }
     
-    if (toolkit.windowSize.width < 768) {
+    if (toolkit.settings.windowWidth < 768) {
         return <XBlock className="editor-toolbar">
             <BackToList />
             <TextButton />

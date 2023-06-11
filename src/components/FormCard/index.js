@@ -8,7 +8,7 @@ import { Toolkit } from "../../contexts";
 export default function FormCard () {
   const toolkit = useContext(Toolkit);
   const offsetStyle = {
-    top: toolkit.card.topOffset + "px",
+    top: toolkit.card.offset + "px",
     display: toolkit.card.mounted ? "block" : "none"
   }
 
@@ -27,7 +27,7 @@ export default function FormCard () {
       <div className={CardClassArray.join(" ")}>
         <CloseButton/>
         <div className="form-card-layout">
-          <Layout toolkit={toolkit} />
+          <Layout />
         </div>
       </div>
     </div>

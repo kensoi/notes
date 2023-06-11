@@ -11,8 +11,10 @@ export function SearchBox() {
     const SearchField = ({title}) => {
         return <XField
             icon={<SearchIcon />}
-            field={toolkit.notes.search.query} cleanable={true}
-            setField={toolkit.notes.search.setQuery}
+            field={toolkit.notes.query} cleanable={true}
+            setField={(query) => {
+                toolkit.notes.query = query
+            }}
         >
             {title}
         </XField>
@@ -22,7 +24,9 @@ export function SearchBox() {
         return <XButton accent="transparent"
             icon={<AddIcon />}
             hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-            onClick={toolkit.notes.create} />
+            onClick={()=>{
+                toolkit.notes.create.bind(toolkit.notes)()
+            }} />
     }
     
     return <div className="search-box">

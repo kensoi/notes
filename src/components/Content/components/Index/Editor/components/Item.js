@@ -24,13 +24,14 @@ function NoteTitle({item, index}) {
             { title }
         </XField>
     }
-    if (toolkit.notes.items.actualItemMode === 0) {
+
+    if (toolkit.notes. itemMode === 0) {
         return <TextField title="как бы называлась ваша заметка сегодня?" />
     }
     else {
         return <div className="x-field note-title blocked">
                 <div className="x-field-input">
-                    {item.text}
+                    {item.text || "как бы называлась ваша заметка сегодня?"}
                 </div>
             </div>
     }
@@ -38,7 +39,9 @@ function NoteTitle({item, index}) {
 
 function NoteParagraph({item, index}) {
     const toolkit = useContext(Toolkit)
+
     const classList = ['note-paragraph']
+
     if (item.style) {
         classList.push(item.style)
     }
@@ -57,7 +60,7 @@ function NoteParagraph({item, index}) {
         </XField>
     }
     
-    if (toolkit.notes.items.actualItemMode === 0) {
+    if (toolkit.notes. itemMode === 0) {
         return <TextField title="просто начните писать" />
     }
     else {
@@ -65,7 +68,7 @@ function NoteParagraph({item, index}) {
         classList.push("blocked")
         return <div className={classList.join(" ")}>
                 <div className="x-field-input">
-                    {item.text}
+                    {item.text || "просто начните писать"}
                 </div>
             </div>
     }
@@ -96,10 +99,10 @@ function NoteTask({ item, index }) {
         </XField>
     }
 
-    if (toolkit.notes.items.actualItemMode === 0) {
+    if (toolkit.notes.itemMode === 0) {
         return <div className="note-task">
             <CheckButton />
-            <TextField title="название задачи" />
+            <TextField title="что вам нужно выполнить?" />
         </div>
     }
     else {
@@ -107,7 +110,7 @@ function NoteTask({ item, index }) {
             <CheckButton />
             <div className="x-field blocked">
                 <div className="x-field-input">
-                    {item.text}
+                    {item.text || "что вам нужно выполнить?"}
                 </div>
             </div>
         </div>
@@ -146,7 +149,7 @@ function NoteCitata({ item, index }) {
         </XField>
     }
 
-    if (toolkit.notes.items.actualItemMode === 0) {
+    if (toolkit.notes.itemMode === 0) {
         return <div className="note-citata">
             <TextField title="просто начните писать" />
             <AuthorField name="Клавдий Харитонович" />
@@ -158,18 +161,17 @@ function NoteCitata({ item, index }) {
             <div className="note-citata-text">
                 <div className="x-field blocked">
                     <div className="x-field-input">
-                        {item.text}
+                        {item.text || "просто начните писать"}
                     </div>
                 </div>
             </div>
             <div className="note-citata-author">
                 <div className="x-field blocked">
                     <div className="x-field-input">
-                        {item.author}
+                        {item.author || "Клавдий Харитонович"}
                     </div>
                 </div>
             </div>
-            
         </div>
     }
 }
@@ -273,7 +275,7 @@ export default function Item({ item, index }) {
         }
     }
 
-    switch (toolkit.notes.items.actualItemMode) {
+    switch (toolkit.notes. itemMode) {
         case 1: // removing
             return <div className="note-item-block editing">
                 <ItemInner />
@@ -287,7 +289,7 @@ export default function Item({ item, index }) {
             </div>
 
         default:
-            if (toolkit.windowSize.width > 768) {
+            if (toolkit.settings.windowWidth > 768) {
                 return <div className="note-item-block">
                     <MoveButton />
                     <ItemInner item={item} index={index} />

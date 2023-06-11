@@ -34,21 +34,21 @@ export default function ColorSchemaChanger (props) {
       icon: icons["light"],
       title: "Светлая",
       action: () => {
-        toolkit.colorSchema.set("light")
+        toolkit.settings.colorSchema = "light"
       },
     },
     {
       icon: icons["dark"],
       title: "Тёмная",
       action: () => {
-        toolkit.colorSchema.set("dark")
+        toolkit.settings.colorSchema = "dark"
       },
     },
     {
       icon: icons["auto"],
       title: "Системная",
       action: () => {
-        toolkit.colorSchema.set("auto")
+        toolkit.settings.colorSchema = "auto"
       },
     }
   ]
@@ -79,7 +79,7 @@ export default function ColorSchemaChanger (props) {
     return <> {dropdown.map(getSchemaButton)} </>
   }
 
-  const actualSchema = toolkit.colorSchema.state;
+  const actualSchema = toolkit.settings.colorSchema;
   const actualSchemaIcon = icons[actualSchema];
   const actualSchemaTitle = titles[actualSchema];
 

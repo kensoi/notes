@@ -1,4 +1,8 @@
-import { useRef, useLayoutEffect } from "react";
+import { 
+  CardBehaviour, 
+  NotesBehaviour, 
+  SettingsBehaviour 
+} from "./tools";
 
 export function handleChange(setState) {
   return event => setState(event.target.value)
@@ -26,15 +30,19 @@ export function getSXbyArr(sx, i) {
   }
 }
 
-export function useFadeOut(ref, visible, height) {
-  const timerId = useRef();
+export const createToolkit = (
+    cardState, cardDispatch,
+    notesState, notesDispatch,
+    settingsState, settingsDispatch
+  ) => {
+  
+  const card = new CardBehaviour(cardState, cardDispatch)
+  const notes = new NotesBehaviour(notesState, notesDispatch, card)
+  const settings = new SettingsBehaviour(settingsState, settingsDispatch) 
 
-  useLayoutEffect(() => {
-    clearTimeout(timerId.current);
-
-    if (ref.current) {
-      ref.current.style.opacity = visible ? 1 : 0;
+  return {
+      card: card,
+      notes: notes,
+      settings: settings 
     }
-    ref.current.style.height = height
-  }, [ref, visible, height]);
 }

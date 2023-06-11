@@ -1,7 +1,7 @@
 import XBlock, { XHorizontal, XVertical } from "../../../XBlock";
 import { XButton } from "../../../XForms";
 import CloseIcon from '@mui/icons-material/Close';
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Toolkit } from "../../../../contexts";
 
 function Note({note, index}) {
@@ -53,7 +53,9 @@ function Note({note, index}) {
                     <NoteName />
                 </div>
                 <div className="note-item-descr">
-                    {editDate.toLocaleDateString()} {editDate.getHours()}:{editDate.getMinutes()}
+                    {/* {editDate.toLocaleDateString()} {editDate.getHours()}:{editDate.getMinutes()}
+                     */}
+                    {note.editData}
                 </div>
             </XVertical>
             <RemoveButton />
@@ -63,14 +65,15 @@ function Note({note, index}) {
 
 export function NoteList() {
     const toolkit = useContext(Toolkit)
-
-    useLayoutEffect(() => {}, [toolkit.notes.sortMode])
+    useEffect(() => {}, [toolkit.notes.list, toolkit.notes.sortMode])
 
     return <div className="note-list">
         <XVertical>
-            {toolkit.notes.getList().map(
-                (note, index) => <Note key={note.id} note={note} index={index} />
-            )}
+            {
+                toolkit.notes.getFilteredList().map(
+                    note => <Note key={note.id} note={note} index={note.arrayid} />
+                )
+            }
         </XVertical>
     </div>
 }

@@ -6,7 +6,10 @@ export default function FormCard () {
   const toolkit = useContext(Toolkit);
 
   const ClassList = ["overflow-bg"];
-  ClassList.push(toolkit.card.loaded ? "visible" : "invisible");
+  
+  if (toolkit.card.loaded) {
+    ClassList.push("visible");
+  }
 
   if (toolkit.card.mounted) {
     return (

@@ -27,11 +27,17 @@ export default function Menu() {
   return <div className="settings-menu">
     <Header />
     <XBlock>
-      <MenuButton icon={<ContrastIcon/>} title="Основные" onClick={() => {toolkit.settings.setPage(1)}} />
+      <MenuButton icon={<ContrastIcon/>} title="Основные" onClick={() => {
+        toolkit.settings.page = 1
+      }} />
     </XBlock>
     <XBlock>
-      <MenuButton icon={<InfoIcon/>} title="О программе" onClick={() => {toolkit.settings.setPage(2)}} />
-      <MenuButton icon={<PersonIcon/>} title="Об авторе" onClick={() => {toolkit.settings.setPage(3)}} />
+      <MenuButton icon={<InfoIcon/>} title="О программе" onClick={() => {
+        toolkit.settings.page = 2
+      }} />
+      <MenuButton icon={<PersonIcon/>} title="Об авторе" onClick={() => {
+        toolkit.settings.page = 3
+      }} />
     </XBlock>
   </div>;
 }

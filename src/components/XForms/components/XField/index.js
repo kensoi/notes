@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import "./scss/x-field.scss";
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -7,6 +7,7 @@ class XField extends React.Component {
     field: this.props.field,
     valueCheckMark: this.props.field,
     focus: false,
+    mouseOver: false
   };
 
   icon = () => {
@@ -28,7 +29,7 @@ class XField extends React.Component {
   clear = () => {
     if (this.props.cleanable && this.state.valueCheckMark !== "") {
       return <div className="x-field-clear" onClick={() => {
-          this.textField.innerHTML = ""
+          this.textField.current.innerHTML = ""
           this.setState({
             valueCheckMark: ""
           })}}>
@@ -45,14 +46,31 @@ class XField extends React.Component {
 
   field = () => {
     let text = this.props.fieldValue ? this.props.children + " (" + this.props.fieldValue + ")" : this.props.children
+    const classList = ["x-field-input"]
     return (
       <div
-        className="x-field-input"
-        ref={(input) => {
-          this.textField = input;
-        }}
+        className={classList.join(" ")}
+        ref={this.textField}
         onFocus={this.onFocusIn}
         onBlur={this.onFocusOut}
+        onMouseEnter={
+          () => {
+            this.setState(
+              {
+                mouseOver: true
+              }
+            )
+          }
+        }
+        onMouseLeave={
+          () => {
+            this.setState(
+              {
+                mouseOver: false
+              }
+            )
+          }
+        }
         contentEditable="true"
         suppressContentEditableWarning={true}
         onInput={this.input}
@@ -64,18 +82,35 @@ class XField extends React.Component {
   }
 
   focusField = () => {
-    this.textField.focus();
+    this.textField.current?.focus();
   };
 
 
   enterEvent = () => {
     let focusOut = () => {
-      this.textField.blur() 
+      this.textField.current?.blur()
+      if (this.props.onEnter) {
+        this.props.onEnter()
+      }
     }
 
     return function(event) {
       if (event.key === "Enter") {
-        event.preventDefault()
+        focusOut()
+      }
+
+    }
+  }
+
+  clickEvent = () => {
+    let focusOut = () => {
+      this.textField.current?.blur() 
+      if (this.props.onEnter) {
+        this.props.onEnter()
+      }
+    }
+    return (e) => {
+      if (e.button === 0 && this.state.mouseOver === false) {
         focusOut()
       }
     }
@@ -86,10 +121,16 @@ class XField extends React.Component {
       this.props.onBlur()
     }
     
-    this.props.setField(this.textField.innerHTML);
-    this.setState({focus: false})
+    if (this.props.field !== this.textField.current?.innerHTML) {
+      this.props.setField(this.textField.current?.innerHTML)
+    }
+    this.setState({
+      focus: false,
+      field: this.textField.current?.innerHTML
+    })
 
     window.removeEventListener("keypress", this.enterEvent())
+    window.removeEventListener("click", this.clickEvent())
   }
 
   onFocusIn = () => {
@@ -100,6 +141,7 @@ class XField extends React.Component {
     this.setState({focus: true})
 
     window.addEventListener("keypress", this.enterEvent())
+    window.addEventListener("click", this.clickEvent())
   }
 
   componentDidMount() {
@@ -115,6 +157,8 @@ class XField extends React.Component {
   }
 
   render() {
+    this.textField = createRef(null)
+
     this.classList = ["x-field"]
     if (this.state.focus) {
       this.classList.push("selected")

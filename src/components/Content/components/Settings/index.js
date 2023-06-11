@@ -59,7 +59,7 @@ function MobileTemplate () {
 export default function Settings () {
     const toolkit = useContext(Toolkit)
 
-    if (toolkit.windowSize.width >= 768) {
+    if (toolkit.settings.windowWidth >= 768) {
         return <DesktopTemplate />
     }
     else {

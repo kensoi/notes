@@ -12,6 +12,9 @@ document.body.appendChild(portal);
 
 export function Editor() {
     const toolkit = useContext(Toolkit);
+    if (!toolkit.notes.isTarget()) {
+        return <></>
+    }
     const targetNote = toolkit.notes.getTarget()
 
     function onDragEnd (result) {
@@ -26,7 +29,7 @@ export function Editor() {
         if (targetNote.items.length === 0) {
             return <NoItems />
         }
-        else if (toolkit.windowSize.width < 768) {
+        else if (toolkit.settings.windowWidth < 768) {
             return targetNote.items.map(
                 (item, index) => <Item key={item.id} item={item} index={index} />
             )

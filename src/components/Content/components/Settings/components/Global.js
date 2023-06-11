@@ -15,7 +15,7 @@ export default function Global () {
   const toolkit = useContext(Toolkit)
 
   const ClearAllButton = () => {
-    const clearAll = () => toolkit.notes.removeAll()
+    const clearAll = toolkit.notes.removeAll
     
     return <XButton 
       style={{width: "100%", marginBottom: "4px"}} 
@@ -49,8 +49,10 @@ export default function Global () {
 
     return <XTumbler
       tumbleConfig={contexts}
-      context={toolkit.notes.deleteAsk.state}
-      setContext={toolkit.notes.deleteAsk.setState}
+      context={toolkit.notes.askBeforeRemoving}
+      setContext={(state) => {
+        toolkit.notes.askBeforeRemoving = state
+      }}
     />
   }
 

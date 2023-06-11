@@ -29,7 +29,7 @@ const NoteListToolbar = () => {
         const Menu = () => {
             const SortByEdit = () => {
                 const action = () => {
-                    toolkit.notes.setSortMode(0)
+                    toolkit.notes.sortMode = 0 // по дате редактирования
                 }
 
                 return <XButton
@@ -41,7 +41,7 @@ const NoteListToolbar = () => {
             
             const SortByCreate = () => {
                 const action = () => {
-                    toolkit.notes.setSortMode(1)
+                    toolkit.notes.sortMode = 1 // по дате создания
                 }
 
                 return <XButton
@@ -53,10 +53,10 @@ const NoteListToolbar = () => {
 
             const SortByName = () => {
                 const action = () => {
-                    toolkit.notes.setSortMode(2)
+                    toolkit.notes.sortMode = 2 // по имени
                 }
                 return <XButton
-                    title="по имени"
+                    title="по первому элементу"
                     hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
                     onClick={action}
                 />
@@ -76,7 +76,7 @@ const NoteListToolbar = () => {
                     text = "по дате создания"
                     break;
                 case 2:
-                    text = "по имени"
+                    text = "по первому элементу"
                     break;
                 default:
                     text = "по дате редактирования"
@@ -134,7 +134,7 @@ function DesktopTemplate () {
                 <NoteBlock />
                 <NoteListToolbar />
             </div>
-            <FormBlock >
+            <FormBlock>
                 <Resolver />
             </FormBlock>
         </div>
@@ -179,7 +179,7 @@ function MobileTemplate () {
 export default function Index () {
     const toolkit = useContext(Toolkit)
 
-    if (toolkit.windowSize.width >= 768) {
+    if (toolkit.settings.windowWidth >= 768) {
         return <DesktopTemplate />
     }
     else {
