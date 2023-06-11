@@ -25,7 +25,7 @@ function NoteTitle({item, index}) {
         </XField>
     }
 
-    if (toolkit.notes. itemMode === 0) {
+    if (toolkit.notes.itemMode === 0) {
         return <TextField title="как бы называлась ваша заметка сегодня?" />
     }
     else {
@@ -60,7 +60,7 @@ function NoteParagraph({item, index}) {
         </XField>
     }
     
-    if (toolkit.notes. itemMode === 0) {
+    if (toolkit.notes.itemMode === 0) {
         return <TextField title="просто начните писать" />
     }
     else {
@@ -275,7 +275,7 @@ export default function Item({ item, index }) {
         }
     }
 
-    switch (toolkit.notes. itemMode) {
+    switch (toolkit.notes.itemMode) {
         case 1: // removing
             return <div className="note-item-block editing">
                 <ItemInner />

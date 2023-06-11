@@ -186,7 +186,7 @@ export class NotesBehaviour {
   }
 
   updateItems (newList) { // update items in target note
-    var newTargetNote = {... this.getTarget()}
+    var newTargetNote = {...this.getTarget()}
     newTargetNote.editData = Math.floor(Date.now() / 1000);
     newTargetNote.items = newList
 

@@ -33,10 +33,6 @@ export class SettingsBehaviour {
         get: () => this.#state.page,
         set: (value) => {
           if (typeof value == "number") {
-              if (value === this.state.settingsPage) {
-                return
-              }
-              
               var offset = 100;
 
               if (this.mounted) {

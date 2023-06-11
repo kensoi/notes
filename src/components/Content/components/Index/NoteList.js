@@ -53,9 +53,7 @@ function Note({note, index}) {
                     <NoteName />
                 </div>
                 <div className="note-item-descr">
-                    {/* {editDate.toLocaleDateString()} {editDate.getHours()}:{editDate.getMinutes()}
-                     */}
-                    {note.editData}
+                    {editDate.toLocaleDateString()} {editDate.getHours()}:{editDate.getMinutes()}
                 </div>
             </XVertical>
             <RemoveButton />

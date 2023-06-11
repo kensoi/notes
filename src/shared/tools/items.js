@@ -8,10 +8,10 @@ export class ItemBehaviour {
         Object.defineProperties(this, {
             targetNote: {
                 get: () => {
-                    return {... this.#notes.getTarget()}
+                    return {...this.#notes.getTarget()}
                 },
                 set: (value) => {
-                    var newTargetNote = {... value}
+                    var newTargetNote = {...value}
                     var newList = [...this.#notes.list]
                 
                     newTargetNote.editData = Math.floor(Date.now() / 1000);
@@ -108,7 +108,7 @@ export class ItemBehaviour {
     }
 
     update (item_index, newItem) {
-        const targetNoteList = [... this.targetNoteList]
+        const targetNoteList = [...this.targetNoteList]
         targetNoteList[item_index] = newItem
 
         this.targetNoteList = targetNoteList
@@ -124,8 +124,8 @@ export class ItemBehaviour {
         var items = this.targetNoteList
         const firstItem = targetNote.items[item_index]
         const secondItem = targetNote.items[item_index - 1]
-        items[item_index - 1] = {... firstItem}
-        items[item_index] = {... secondItem}
+        items[item_index - 1] = {...firstItem}
+        items[item_index] = {...secondItem}
 
         this.targetNoteList = items
     }
@@ -136,8 +136,8 @@ export class ItemBehaviour {
         var items = this.targetNoteList
         const firstItem = targetNote.items[item_index]
         const secondItem = targetNote.items[item_index + 1]
-        items[item_index + 1] = {... firstItem}
-        items[item_index] = {... secondItem}
+        items[item_index + 1] = {...firstItem}
+        items[item_index] = {...secondItem}
 
         this.targetNoteList = items
     }
