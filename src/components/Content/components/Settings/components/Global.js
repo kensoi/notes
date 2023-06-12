@@ -15,7 +15,7 @@ export default function Global () {
   const toolkit = useContext(Toolkit)
 
   const ClearAllButton = () => {
-    const clearAll = toolkit.notes.removeAll
+    const clearAll = toolkit.notes.removeAll.bind(toolkit.notes, false)
     
     return <XButton 
       style={{width: "100%", marginBottom: "4px"}} 

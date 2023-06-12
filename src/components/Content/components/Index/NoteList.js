@@ -35,9 +35,7 @@ function Note({note, index}) {
     }
 
     const RemoveButton = () => {
-        const remove = () => {
-            toolkit.notes.remove(index)
-        }
+        const remove = toolkit.notes.remove.bind(toolkit.notes, index)
 
         return <XButton accent="transparent"
         icon={<CloseIcon />}

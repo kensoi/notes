@@ -24,9 +24,7 @@ export function SearchBox() {
         return <XButton accent="transparent"
             icon={<AddIcon />}
             hideEmptyPaddings={true} hideEmptyPaddingsAtMobile={true}
-            onClick={()=>{
-                toolkit.notes.create.bind(toolkit.notes)()
-            }} />
+            onClick={toolkit.notes.create.bind(toolkit.notes)} />
     }
     
     return <div className="search-box">
