@@ -56,6 +56,7 @@ export default function Content () {
       <MountBlock
         mountState={MountBlockData.mount}
         visibilityState={MountBlockData.loaded}
+        className="index"
       >
         <BrowserRouter>
           <Routes>

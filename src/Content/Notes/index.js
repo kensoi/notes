@@ -1,5 +1,7 @@
 import { useContext } from "react";
 
+import "./scss/stylesheet.scss";
+
 import XBlock from "WebXUI/XBlock";
 import { XButton, XDropdown} from "WebXUI/XForms";
 import { MountBlock } from "WebXUI/MountBlock";
@@ -13,6 +15,20 @@ import { NoteList } from "./NoteList";
 
 import SettingsIcon from '@mui/icons-material/Settings'
 
+const Headline = () => {
+    const toolkit = useContext(ToolKitContext)
+
+    if (toolkit.settings.header) {
+        return <div className="notes-headline">
+            Заметки
+        </div>
+    }
+    else {
+        return <></>
+    }
+    
+}
+
 const SettingsButton = () => {
     const MainMountBlock = useContext(PageMountBlockContext)
     
@@ -20,7 +36,7 @@ const SettingsButton = () => {
         MainMountBlock.hide()
         setTimeout(() => {
             window.location.href=process.env.PUBLIC_URL + "/settings"
-        }, 200)
+        }, 190)
     }
 
     return <XButton
@@ -136,7 +152,9 @@ function DesktopTemplate () {
         return toolkit.notes.isTarget() ?  <Editor /> : <SelectNote />
     }
     
-    return <div className="index desktop">
+    return <>
+        <Headline />
+        <div className="desktop">
             <div className="sorted-list">
                 <SearchBox />
                 <NoteBlock />
@@ -149,6 +167,7 @@ function DesktopTemplate () {
                 <Resolver />
             </MountBlock>
         </div>
+    </>
 }
 
 function MobileTemplate () {
@@ -174,20 +193,22 @@ function MobileTemplate () {
         // список не пустует, но пользователь ещё не выбрал что редачить.
 
         return <div className="sorted-list">
+            <Headline />
             <SearchBox />
             <NoteList />
             <NoteListToolbar />
         </div>
     }
     
-    return <div className="index">
+    return <>
             <MountBlock 
                 mountState={toolkit.notes.mounted}
                 visibilityState={toolkit.notes.loaded}
+                className="ttt"
             >
                 <Page />
             </MountBlock>
-        </div>
+        </>
 }
 
 export default function Index () {

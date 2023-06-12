@@ -2,8 +2,9 @@ import XBlock from "WebXUI/XBlock";
 import Headline from "./Headline";
 
 export default function About () {
-  return <XBlock className="settings-page">
+  return  <div className="settings-wrapper">
     <Headline title="О программе" />
+    <XBlock className="settings-page">
     <div className="options-grid-list settings-block">
       <div className="options-grid-item">
         <b>Название:</b>
@@ -19,4 +20,5 @@ export default function About () {
       </div>
     </div>
   </XBlock>
+  </div>
 }

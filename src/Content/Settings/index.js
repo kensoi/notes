@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 
 /* WEB-X-UI components */
 
@@ -29,7 +29,7 @@ function Page () {
 
 function DesktopTemplate () {
   const toolkit = useContext(ToolKitContext);
-    return <div className="index desktop">
+    return <div className="desktop">
       <Menu />
       <MountBlock
         mountState={toolkit.settings.mounted}
@@ -53,14 +53,12 @@ function MobileTemplate () {
     }
   }
   
-  return <div className="index">
-    <MountBlock
+  return <MountBlock
       mountState={toolkit.settings.mounted}
       visibilityState={toolkit.settings.loaded}
     >
       <Content />
     </MountBlock>
-  </div>
 }
 
 export default function Settings () {

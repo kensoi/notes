@@ -1,4 +1,4 @@
-@import "scss/web-x.scss";
+@import "WebXUI/scss/optional.scss";
 
 .webx {
     .settings-text {
@@ -8,12 +8,14 @@
     }
 
     &.screen-device-mobile {
+        .settings-wrapper {
+            margin: $point*1 0;
+            .settings-headline {
+                margin-bottom: $point * 3;
+            }
+        }
         .settings-page {
             padding: $point*3 $point*4;
-        }
-
-        .settings-menu {
-            padding: $point*3 $point*0;
         }
 
         .options-grid-list {
@@ -22,12 +24,15 @@
     }
 
     &.screen-device-tablet {
-        .settings-page {
-            padding: $point*6 $point*8;
+        .settings-wrapper {
+            margin: $point*1 0;
+            .settings-headline {
+                margin-bottom: $point * 2;
+            }
         }
 
-        .settings-menu {
-            padding: $point*6 $point*0;
+        .settings-page {
+            padding: $point*6 $point*8;
         }
 
         .options-grid-list {
@@ -36,12 +41,14 @@
     }
 
     &.screen-device-desktop {
+        .settings-wrapper {
+            margin: $point*1 0;
+            .settings-headline {
+                margin-bottom: $point * 2;
+            }
+        }
         .settings-page {
             padding: $point*8 $point*16;
-        }
-
-        .settings-menu {
-            padding: $point*8 $point*0;
         }
 
         .options-grid-list {
@@ -78,7 +85,7 @@
 
     .options-grid-list {
         display: grid;
-        margin-bottom: $point * 2;
+        margin-bottom: $point;
 
         .options-grid-item {
             display: flex;
@@ -118,7 +125,7 @@
     .settings-page {
         .settings-block {
             &:not(:last-child) {
-                margin-bottom: $point*2;
+                margin-bottom: $point;
             }
             &.x-button {
                 width: 100%;

@@ -1,7 +1,5 @@
 import { useContext } from "react";
 
-import "./scss/card.scss";
-
 import { Layout, getCardType } from "./Layout";
 import { CloseButton } from "./CloseButton";
 import { ToolKitContext } from "shared/tools"
@@ -33,7 +31,6 @@ function Card () {
       </div>
     </div>
   }
-
   else {
     return <div style={offsetStyle}></div>
   }

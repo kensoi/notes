@@ -1,0 +1,14 @@
+@import "../../../WebXUI/scss/optional.scss";
+
+.notes-headline {
+    display: flex;
+    align-items: flex-end;
+    padding: $point $point*3;
+    line-height: 32px;
+    color: var(--color);
+    font-weight: 600;
+    font-size: 28px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: $point*1 auto $point*2 auto;
+}

@@ -1,9 +1,5 @@
-import { useContext } from "react"
-
-import { ToolKitContext } from "shared/tools"
-
-export function MountBlock({mountState, visibilityState, children}) {
-  const classList = ["mount-block"]
+export function MountBlock({mountState, visibilityState, children, className}) {
+  const classList = ["mount-block", className]
 
   if (visibilityState) {
     classList.push("visible")

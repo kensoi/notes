@@ -26,7 +26,7 @@ export default function Menu() {
       MainMountBlock.hide()
       setTimeout(() => {
         window.location.href=process.env.PUBLIC_URL
-      }, 200)
+      }, 190)
     }
 
     return <div className="settings-headline settings-block">
@@ -50,7 +50,7 @@ export default function Menu() {
       <MenuButton icon={<InfoIcon/>} title="О программе" onClick={() => {
         toolkit.settings.page = 2
       }} />
-      <MenuButton icon={<PersonIcon/>} title="Об авторе" onClick={() => {
+      <MenuButton icon={<PersonIcon/>} title="О разработчике" onClick={() => {
         toolkit.settings.page = 3
       }} />
     </XBlock>

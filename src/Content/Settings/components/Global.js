@@ -94,9 +94,32 @@ export default function Global () {
       setContext={setState}
     />
   }
+  const HeaderState = () => {
+    const contexts = [
+      {
+        name: "ВЫКЛ.",
+        context: false,
+      },
+      {
+        name: "ВКЛ.",
+        context: true,
+      },
+    ]
 
-  return <XBlock className="settings-page">
+    const setState = (state) => {
+      toolkit.settings.header = state
+    }
+
+    return <XTumbler
+      tumbleConfig={contexts}
+      context={toolkit.settings.header}
+      setContext={setState}
+    />
+  }
+
+  return <div className="settings-wrapper">
       <Headline title="Основные" />
+      <XBlock className="settings-page">
       <div className="options-grid-list settings-block">
         <div className="options-grid-item">
           Цветовая схема
@@ -116,8 +139,15 @@ export default function Global () {
         <div className="options-grid-item">
           <CacheApp />
         </div>
+        <div className="options-grid-item">
+          Заголовок "Заметки"
+        </div>
+        <div className="options-grid-item">
+          <HeaderState />
+        </div>
       </div>
       <ClearAllButton />
       <CheckForUpdatesButton />
-  </XBlock>
+    </XBlock>
+  </div>
 }

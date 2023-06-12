@@ -21,7 +21,7 @@ function BackButtonMobile() {
 export default function Headline({ title }) {
   const toolkit = useContext(ToolKitContext)
   
-  return <div className="settings-headline settings-block">
+  return <div className="settings-headline">
     {
       toolkit.settings.windowWidth < 768 ? <BackButtonMobile /> : <></>
     }

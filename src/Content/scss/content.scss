@@ -1,15 +1,21 @@
-@import "scss/stylesheet.scss";
+@import "WEBXUI/scss/stylesheet.scss";
 
 .webx {
     .index {
+        display: flex;
+        flex-direction: column;
         max-width: 1024px;
         width: 100%;
         min-height: 100vh;
         padding: $point * 2;
         box-sizing: border-box;
         margin: 0 auto;
-        &.desktop {
+        .sorted-list {
+            flex: 1 1 auto;
+        }
+        .desktop {
             display: flex;
+            flex: 1 1 auto;
             .settings-menu {
                 width: 320px;
                 margin-right: $point * 2;
@@ -94,8 +100,12 @@
         }
         opacity: 0.5;
     }
+    .ttt {
+        display: flex;
+    }
     .note-list {
         height: calc(100% - 44px * 2 - $point * 4);
+        flex: 1 1 auto;
         margin-bottom: 8px;
     }
     .note-list-toolbar {
