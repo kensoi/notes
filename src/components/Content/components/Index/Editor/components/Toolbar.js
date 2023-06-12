@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import XBlock, { XVertical } from "../../../../../XBlock";
+import XBlock from "../../../../../XBlock";
 import { XButton, XDropdown} from "../../../../../XForms";
 import { Toolkit } from "../../../../../../contexts";
 
@@ -29,7 +29,7 @@ export default function Toolbar() {
     
     const TextButton = () => {
         const TextMenu = () => {
-            return <XVertical disablePaddings={true}>
+            return <>
                 <XButton
                     icon={<ShortTextIcon />}
                     title="Заголовок"
@@ -58,7 +58,7 @@ export default function Toolbar() {
                     onClick={() => {
                         toolkit.notes.items.add(2, "p-italic")
                     }} />
-            </XVertical>
+            </>
         }
 
         const ChildrenButton = () => <XButton accent="transparent"
@@ -76,7 +76,7 @@ export default function Toolbar() {
     
     const DecorativeButton = () => {
         const DecorativeMenu = () => {
-            return <XVertical disablePaddings={true}>
+            return <>
                 <XButton
                     icon={<RttIcon />}
                     title="Цитата"
@@ -105,7 +105,7 @@ export default function Toolbar() {
                     onClick={() => {
                         toolkit.notes.items.add(6)
                     }} />
-            </XVertical>
+            </>
         }
 
         const ChildrenButton = () => <XButton accent="transparent"
@@ -163,11 +163,11 @@ export default function Toolbar() {
             }
             
             
-            return <XVertical disablePaddings={true}>
+            return <>
                 <ToggleNormalArea />
                 <ToggleDeletingArea />
                 <ToggleMovingArea />
-            </XVertical>
+            </>
         }
         
         const ActualIcon = () => {

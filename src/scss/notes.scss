@@ -122,6 +122,13 @@
         padding-bottom: 36px!important;
         overflow: hidden;
     }
+    .note-list-block {
+        display: flex;
+
+        &:not(:last-child) {
+            margin-bottom: $point*2;
+        }
+    }
 
     .dynamic-div {
         -webkit-transition: max-height 0.1s; 
@@ -139,6 +146,9 @@
         .note-item-block {
             padding: 8px 0;
         }
+    }
+    .note-item {
+        flex: 1 1 auto;
     }
     .note-item-block {
         display: flex;
