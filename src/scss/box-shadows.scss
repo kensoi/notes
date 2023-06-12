@@ -1,6 +1,6 @@
-@import "./stylesheet.scss";
+@import "./web-x.scss";
 
-$border-thin: 1px;
+$border-thin: $point / 4;
 $separator-common: var(--x-field-background);
 $box-shadow: 0px 4px 8px rgba(12, 21, 49, 0.08);
 

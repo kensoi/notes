@@ -58,6 +58,30 @@ export class SettingsBehaviour {
           }
         }
       },
+      
+      cacheApp: {
+        get: () => this.#state.serviceWorker,
+        set: (value) => {
+          if (typeof value == "boolean") {
+              this.#dispatch({
+                type: "set-cache",
+                state: value
+              })
+            
+          }
+        }
+      },
+      askBeforeRemoving: {
+        get: () => this.#state.askBeforeRemoving,
+        set: (value) => {
+          if (typeof value == "boolean") {
+            this.#dispatch({
+              type: "set-ask-before-remove",
+              state: value
+            })
+          }
+        }
+      },
 
       header: {
         get: () => this.#state.header,

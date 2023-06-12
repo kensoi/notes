@@ -5,11 +5,13 @@ export class NotesBehaviour {
   #state
   #dispatch
   #card
+  #settings
   
-  constructor(state, dispatch, card) {
+  constructor(state, dispatch, card, settings) {
     this.#state = state;
     this.#dispatch = dispatch
     this.#card = card
+    this.#settings = settings
     this.items = new ItemBehaviour(this)
 
     Object.defineProperties(this, {
@@ -77,18 +79,6 @@ export class NotesBehaviour {
           if (typeof value == "string") {
             this.#dispatch({
               type: "set-query",
-              state: value
-            })
-          }
-        }
-      },
-
-      askBeforeRemoving: {
-        get: () => this.#state.askBeforeRemoving,
-        set: (value) => {
-          if (typeof value == "boolean") {
-            this.#dispatch({
-              type: "set-ask-before-remove",
               state: value
             })
           }
@@ -200,7 +190,7 @@ export class NotesBehaviour {
     var offset = 0
     var newList = [...this.list]
 
-    if (this.askBeforeRemoving) {
+    if (this.#settings.askBeforeRemoving) {
       if (trusted) {
         this.#card.return({
           hideReason: "notes removed with enabled warnings"

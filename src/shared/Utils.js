@@ -1,8 +1,4 @@
-import { 
-  CardBehaviour, 
-  NotesBehaviour, 
-  SettingsBehaviour 
-} from "./tools";
+import { createContext } from "react";
 
 export function handleChange(setState) {
   return event => setState(event.target.value)
@@ -30,19 +26,4 @@ export function getSXbyArr(sx, i) {
   }
 }
 
-export const createToolkit = (
-    cardState, cardDispatch,
-    notesState, notesDispatch,
-    settingsState, settingsDispatch
-  ) => {
-  
-  const card = new CardBehaviour(cardState, cardDispatch)
-  const notes = new NotesBehaviour(notesState, notesDispatch, card)
-  const settings = new SettingsBehaviour(settingsState, settingsDispatch) 
-
-  return {
-      card: card,
-      notes: notes,
-      settings: settings 
-    }
-}
+export const PageMountBlockContext = createContext({});

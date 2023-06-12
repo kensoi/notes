@@ -1,0 +1,134 @@
+@import "../../../scss/stylesheet.scss";
+@import "../../../scss/box-shadows.scss";
+
+.webx {
+    .card-wrapper {
+        position: absolute;
+        left: 50%;
+        z-index: 100;
+        transform: translate(-50%, 0);
+        max-width: 640px;
+        width: 100%;
+        --bottom-offset: 0;
+        --bottom-offset-invis: calc(var(var(--bottom-offset)) + 20vh);
+        .card {
+            width: 100%;
+            color: var(--color);
+            box-sizing: border-box;
+            margin-top: 10vh;
+            margin-bottom: 10vh;
+            transition: 0.1s ease-in-out;
+            &.article {
+                background-color: var(--card-background);
+                $box-shadow: $box-border, $box-shadow;
+                border-radius: $point * 2;
+                padding: 0 $point $point * 3;
+                min-height: 60vh;
+                @include box-shadow($box-shadow);
+                margin-top: 20vh;
+                margin-bottom: 20vh;
+                .card-close-wrapper {
+                    position: sticky;
+                    display: flex;
+                    justify-content: right;
+                    top: 0;
+                    bottom: 0;
+                    padding: $point * 8 $point * 6 0 $point * 6;
+                    .card-close-button {
+                        cursor: pointer;
+                        $note-block-shadow: $box-shadow, $box-border;
+                        @include box-shadow($note-block-shadow);
+                        width: $point * 8;
+                        height: $point * 8;
+                        border-radius: $point * 4;
+                        background-color: rgb(49, 49, 49);
+                        color: var(--card-background);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        user-select: none;
+                        svg {
+                            fill: white;
+                        }
+                    }
+                }
+                .card-layout {
+                    @media screen and (max-width: 425px) {
+                        padding: 0 $point * 3 $point * 10;
+                    }
+                    @media screen and (min-width: 425px) and (max-width: 720px) {
+                        padding: 0 $point * 3 $point * 10;
+                    }
+                    @media screen and (min-width: 720px) {
+                        padding: 0 $point * 20 $point * 10;
+                    }
+                }
+            }
+            &.notify {
+                margin-top: 30vh;
+                min-height: 40vh;
+                margin-bottom: 20vh;
+                border-radius: $point * 2;
+                padding: $point;
+                background-color: var(--card-background);
+                $box-shadow: $box-border, $box-shadow;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                .card-close-wrapper {
+                    display: none;
+                }
+
+                .card-layout {
+                    @media screen and (max-width: 425px) {
+                        padding: 0 $point * 3 $point * 3;
+                    }
+                    @media screen and (min-width: 425px) and (max-width: 720px) {
+                        padding: 0 $point * 3 $point * 3;
+                    }
+                    @media screen and (min-width: 720px) {
+                        padding: 0 $point * 11 $point * 3;
+                    }
+                }
+            }
+        }
+
+        transition: 0.1s ease-in-out;
+        &:not(.visible) {
+            opacity: 0;
+            .card {
+                transform: translate(0, 5vh);
+            }
+        }
+        &.visible {
+            opacity: 1;
+            .card {
+                transform: translate(0, var(--bottom-offset));
+            }
+        }
+    }
+    .card-wrapper-bg {
+        /* Тёмный фон позади карточки, чтобы ограничить действия пользователя во время работы с формой */
+        position: fixed;
+        top: 0;
+        left: 0;
+        
+        transition: 0.1s;
+        width: 100%;
+        height: 100vh;
+        transition: 0.1s ease-in-out;
+        z-index: 99;
+
+        &:not(.visible) {
+            /* Карточка с формой смонтирована на макет, но ещё не показана */
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        &.visible {
+            /* Карточка на экране */
+            background-color: rgba(0, 0, 0, 0.582);
+            backdrop-filter: blur(12px);
+        }
+    }
+}
