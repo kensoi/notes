@@ -1,0 +1,78 @@
+@mixin x-slider {
+    .x-slider {
+        display: flex;
+        height: $point*9;
+        $thumb-size: $point*7;
+        
+        --x-block-border: 0 0 0 1px #296fc518;
+        --x-block-shadow: 0px 4px 8px rgba(12, 21, 49, 0.027);
+        box-shadow: var(--x-block-shadow), var(--x-block-border);
+
+        background: #dee4ec;
+        border-radius: $point;
+        user-select: none;
+        cursor: pointer;
+
+        .x-slider-input {
+            flex: 1 1 auto;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 0 $point;
+
+            input {
+                box-sizing: border-box;
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                height: $point * 0.8;
+                border-radius: $point;
+                background: #296fc5;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                &::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: $point * 2;
+                    height: $point * 2;
+                    border-radius: $point * 3;
+                    background: #296fc5;
+                    cursor: pointer;
+                }
+
+                &::-moz-range-thumb {
+                    width: $point * 3;
+                    height: $point * 3;
+                    border-radius: $point * 3;
+                    background: #296fc5;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .x-slider-output {
+            padding: $point;
+            width: $point*9;
+            height: $thumb-size;
+            font-weight: 500;
+            font-size: $point * 3;
+            padding-left: 0;
+            padding-top: $point*1.5;
+            padding-bottom: $point*0.5;
+        }
+
+        .x-slider-currency {
+            width: $point*9;
+            height: $thumb-size;
+            font-weight: 500;
+            font-size: 18px;
+            padding: $point*2 $point*2 $point*2 0;
+        }
+    }
+}

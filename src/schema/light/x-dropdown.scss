@@ -1,0 +1,91 @@
+@mixin x-dropdown {
+    .x-dropdown {
+        position: relative;
+        width: 100%;
+
+        .x-dropdown-wrapper {
+            position: absolute;
+            z-index: 95;
+            width: fit-content;
+            max-width: 256px;
+
+            -webkit-transition: 0.1s ease-in;
+            -moz-transition: 0.1s ease-in;
+            -o-transition: 0.1s ease-in;
+            transition: 0.1s ease-in;
+
+            opacity: 0;
+            --dropdown-offset: 16px;
+            pointer-events: none;
+
+            &.visible {
+                opacity: 1!important;
+                --dropdown-offset: 8px!important;
+                pointer-events: inherit!important;
+            }
+            
+            .x-dropdown-content {
+                width: fit-content;
+                .tumbler-hint {
+                    width: 256px;
+                }
+            }
+
+            &.x-dropdown-pose-at-left-top {
+                padding: 0 var(--dropdown-offset);
+                padding-bottom: var(--dropdown-offset);
+                right: 100%;
+                top: 0;
+            }
+
+            &.x-dropdown-pose-at-left-bottom {
+                padding: 0 var(--dropdown-offset);
+                padding-bottom: var(--dropdown-offset);
+                right: 100%;
+                bottom: 0;
+
+            }
+
+            &.x-dropdown-pose-at-right-top {
+                padding: 0 var(--dropdown-offset);
+                padding-bottom: var(--dropdown-offset);
+                left: 100%;
+                top: 0;
+            }
+
+            &.x-dropdown-pose-at-right-bottom {
+                padding: 0 var(--dropdown-offset);
+                padding-bottom: var(--dropdown-offset);
+                left: 100%;
+                bottom: 0;
+
+            }
+
+            &.x-dropdown-pose-at-top-left {
+                padding: var(--dropdown-offset) 0;
+                bottom: 100%;
+                left: 0;
+
+            }
+
+            &.x-dropdown-pose-at-top-right {
+                padding: var(--dropdown-offset) 0;
+                bottom: 100%;
+                right: 0;
+
+            }
+
+            &.x-dropdown-pose-at-bottom-left {
+                padding: var(--dropdown-offset) 0;
+                top: 100%;
+                left: 0;
+            }
+
+            &.x-dropdown-pose-at-bottom-right {
+                padding: var(--dropdown-offset) 0;
+                top: 100%;
+                right: 0;
+            }
+        }
+    }
+}

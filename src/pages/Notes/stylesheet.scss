@@ -1,0 +1,18 @@
+@import "@web-cross-ui/utils/optional.scss";
+
+.webx {
+    &.screen-device-mobile {
+    }
+
+    &.screen-device-tablet {
+        .desktop.notes {
+            grid-template-columns: 240px 1fr;
+        }
+    }
+
+    &.screen-device-desktop {
+        .desktop.notes {
+            grid-template-columns: 320px 640px;
+        }
+    }
+}

@@ -1,0 +1,85 @@
+@mixin x-check-box {
+    .x-check-box {
+        display: flex;
+        align-items: center;
+
+        height: $point*9;
+
+        border-radius: $point;
+        padding: $point;
+        box-sizing: border-box;
+
+        user-select: none;
+        cursor: pointer;
+
+        transition: 0.1s;
+
+        .x-check-box-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            width: $point*3;
+            height: $point*3;
+
+            border: 2px solid #296fc5;
+            padding: $point;
+            border-radius: $point;
+
+            cursor: pointer;
+            
+            svg {
+                color: #ffffff;
+                opacity: 0;
+            }
+            &:hover {
+                border-color: #2177e0;
+            }
+        }
+
+        &.marked {
+            .x-check-box-icon {
+                background-color: #296fc5;
+
+                svg {
+                    opacity: 1;
+                }
+                
+                &:hover {
+                    background-color: #2177e0;
+                }
+            }
+        }
+        
+        .x-check-box-title {
+            flex: 1 1 auto;
+            width: max-content;
+
+            padding-top: $point * 2;
+            padding-bottom: $point * 2;
+
+            font-size: 20px;
+
+            &:first-child {
+                padding-left: $point * 2;
+            }
+
+            &:last-child {
+                padding-right: $point * 2;
+            }
+        }
+
+        .x-check-box-element {
+            margin-left: $point;
+            margin-right: $point;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

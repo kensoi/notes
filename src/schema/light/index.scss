@@ -1,0 +1,28 @@
+@import "@web-cross-ui/utils/optional.scss";
+
+@import "./x-block.scss";
+@import "./x-button.scss";
+@import "./x-check-box.scss";
+@import "./x-dropdown.scss";
+@import "./x-text-field.scss";
+@import "./x-menu.scss";
+@import "./x-slider.scss";
+@import "./x-tumbler.scss";
+@import "./html.scss";
+
+
+@mixin theme-light {
+    background: #edeef0;
+    color: #000000;
+    font-family: 'TT Commons';
+    
+    @include html;
+    @include x-block;
+    @include x-button;
+    @include x-check-box;
+    @include x-dropdown;
+    @include x-text-field;
+    @include x-menu;
+    @include x-slider;
+    @include x-tumbler;
+}

@@ -1,0 +1,37 @@
+@mixin x-tumbler {
+    .x-tumbler {
+        position: relative;
+
+        --x-block-shadow: 0px 4px 8px rgba(12, 21, 49, 0.075);
+        box-shadow: var(--x-block-shadow);
+        background-color: #474f58;
+        cursor: pointer;
+        user-select: none;
+    
+        padding: $point;
+        width: $point*12;
+        height: $point*6;
+        border-radius: $point*4;
+        margin: $point * 1;
+        box-sizing: border-box;
+        overflow: hidden;
+    
+        div {
+            background: #ffffff;
+    
+            transition: 0.1s;
+            display: block;
+            width: $point*4;
+            height: $point*4;
+            border-radius: $point*2;
+            margin-left: 0px;
+        }
+    
+        &.triggered {
+            background: #296fc5;
+            div {
+                margin-left: $point * 6;
+            }
+        }
+    }
+}

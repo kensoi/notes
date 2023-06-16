@@ -1,0 +1,29 @@
+@mixin x-block {
+    .x-block {        
+        background: #ffffff;
+        // --x-block-background-hover: var(--zircon);
+        --x-block-border: 0 0 0 1px #DCE1E6;
+        --x-block-shadow: 0px 4px 8px rgba(12, 21, 49, 0.027);
+        box-shadow: var(--x-block-shadow), var(--x-block-border);
+
+        border-radius: $point * 2;
+        padding: $point;
+        box-sizing: border-box;
+
+        &.button-block {
+            box-sizing: border-box;
+            padding: $point*2 0;
+            
+            .x-button {
+                border-radius: 0;
+                width: 100%;
+                padding: 0 $point*4;
+                gap: $point * 4!important;
+
+                .x-button-title {
+                    text-align: left!important;
+                }
+            }
+        }
+    }
+}

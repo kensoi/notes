@@ -1,0 +1,58 @@
+@import "@web-cross-ui/utils/optional.scss";
+@import "../schema/index.scss";
+
+.webx {
+    &.screen-device-mobile {
+        .dragging-button { 
+            padding-right: 20px;
+        }
+        .add-product-form { 
+            grid-template-columns: 1fr $point*6 1fr $point*8;
+           
+            .x-text-field {
+                &:first-child {
+                    grid-column: 1 / span 4;
+                }
+            }
+
+            .add-product-separator {
+                grid-column: 2 / span 1;
+            }
+        }
+    }
+
+    .index {
+        display: flex;
+
+        flex-direction: column;
+
+        max-width: 1024px;
+        width: 100%;
+        min-height: 100vh;
+
+        padding: $point * 2;
+        box-sizing: border-box;
+        margin: 0 auto;
+
+        .desktop {
+            display: grid!important;
+            gap: $point*2;
+        }
+        
+        .product-info-wrapper {
+            margin-bottom: $point*2;
+        }
+
+    }
+
+    .cart-calc-message {
+        min-height: 50vh;
+        box-sizing: border-box;
+        padding: $point*2 $point*10!important;
+
+        .x-button {
+            width: 60%;
+            margin: auto;
+        }
+    }
+}

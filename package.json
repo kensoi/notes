@@ -1,24 +1,23 @@
 {
   "name": "notes",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "author": "Andrew Prokofieff <kensoidev@gmail.com>",
   "homepage": "https://kensoi.github.io/notes",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.13.4",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "node-sass": "^7.0.3",
     "patch-package": "^6.5.1",
     "react": "^18.2.0",
-    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
-    "sass": "^1.57.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -27,8 +26,11 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "node ./utils/NotFoundPatch.js",
-    "test": "react-scripts test",
+    "postbuild": "node ./utils/postbuild.js",
+    "not-found-patch": "node ./utils/NotFoundPatch.js",
+    "prerender": "react-spa-prerender",
+    "pretest": "npm run build",
+    "test": "node ./utils/server.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "react-spa-prerender": "^1.0.14"
   }
 }

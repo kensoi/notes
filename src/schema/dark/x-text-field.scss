@@ -1,0 +1,95 @@
+@mixin x-text-field {
+    .x-text-field {
+        display: grid;
+        gap: $point*2;
+        min-height: $point*8;
+        padding: 0 $point*2;
+        box-sizing: border-box;
+        --x-block-shadow: 0px 4px 8px rgba(12, 21, 49, 0.027);
+        --x-block-border: 0 0 0 1px #626262;
+        box-shadow: var(--x-block-border);
+        border-radius: $point;
+        width: 100%;
+        cursor: text;
+        background: #424242;
+        font-size: 20px;
+
+        &:hover {
+            background: #4a4a4a;
+        }
+        .x-text-field-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #296fc5;
+            
+            &.x-text-field-clear-button {
+                color: #888888;
+                cursor: pointer;
+            }
+        }
+        .x-text-field-input {
+            padding-top: $point*1.2;
+            padding-bottom: $point*0.8;
+            width: 100%;
+            outline: none;
+            overflow: hidden;
+
+            &[contenteditable=true]:empty:before{
+                content: attr(data-placeholder);
+                pointer-events: none;
+                display: block; /* For Firefox */
+                color: #B2B2B2;
+                text-transform: lowercase;
+            }
+        }
+        .x-text-field-currency {
+            padding-top: $point*1.2;
+            padding-bottom: $point*0.8;
+        }
+
+        &:not(.with-icon) {
+            &:not(.with-currency) {
+                &:not(.with-clear-button){
+                    grid-template-columns: 1fr;
+                }
+                
+                &.with-clear-button{
+                    grid-template-columns: 1fr 24px;
+                }
+            }
+
+            &.with-currency {
+                &:not(.with-clear-button){
+                    grid-template-columns: 1fr 24px;
+                }
+
+                &.with-clear-button{
+                    grid-template-columns: 1fr 24px 24px;
+                }
+            }
+        }
+        
+        &.with-icon{
+            &:not(.with-currency) {
+                &:not(.with-clear-button){
+                    grid-template-columns: 24px 1fr;
+                }
+                
+                &.with-clear-button{
+                    grid-template-columns: 24px 1fr 24px;
+                }
+            }
+
+            &.with-currency {
+                &:not(.with-clear-button){
+                    grid-template-columns: 24px 1fr 24px;
+                }
+
+                &.with-clear-button{
+                    grid-template-columns: 24px 1fr 24px 24px
+                }
+            }
+        }
+    }
+}

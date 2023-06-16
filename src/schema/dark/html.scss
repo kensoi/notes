@@ -1,0 +1,41 @@
+@mixin html {
+    a {
+        color: var(--x-button-icon);
+        transition: 0.1s;
+        text-decoration: none;
+        
+        &:link {
+            opacity: 0.5;
+        }
+    
+        &:visited {
+            opacity: 0.25;
+        }
+    
+        &:hover {
+            opacity: 0.75;
+    
+        }
+    
+        &:active {
+            opacity: 1
+        }
+    }
+    
+    h1, h2, h3, h4, h5, h6, p {
+        padding: 0 $point * 2;
+        box-sizing: border-box;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 600;
+    }
+    
+    h1 {
+        font-size: $point * 12;
+    }
+    
+    p {
+        font-size: 20px;
+    }
+}

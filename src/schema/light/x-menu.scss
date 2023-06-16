@@ -1,0 +1,56 @@
+@mixin x-menu {
+    .x-menu {
+        height: $point* 9;
+        
+        font-size: 20px;
+        font-weight: 500;
+        user-select: none;
+
+        padding-bottom: $point * 0.5;
+        
+        .x-menu-wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .x-menu-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #dee4ec;
+
+            flex: 1 1 auto;
+            border-radius: 4px;
+            padding: 0 $point*3;
+            box-sizing: border-box;
+
+            min-height: 32px;
+            min-width: 64px;
+            
+            box-shadow: 0px 4px 8px rgba(12, 21, 49, 0.027);
+
+            transition: 0.1s;
+
+            &:not(:last-child) {
+                margin-right: 4px;
+            }
+
+            &:not(.x-menu-selected) {
+                cursor: pointer;
+                background: none;
+                
+            }
+
+            &.svg {
+                color: var(--x-field-icon);
+
+                svg {
+                    display: inline;
+                    transform: translateY(-1px);
+                }
+            }
+        }
+    }
+}
