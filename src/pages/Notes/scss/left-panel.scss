@@ -1,0 +1,103 @@
+@mixin left-panel {
+    .sorted-list {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .search-box {
+        .x-block {
+            display: grid;
+            grid-template-columns: 1fr $point*10;
+            height: 40px;
+            padding: 0!important;
+            overflow: hidden;
+            .x-text-field {
+                background: none;
+                box-shadow: none;
+                padding: $point $point*2 $point $point*3;
+            }
+            .x-button {
+                grid-template-columns: 32px!important;
+                border-radius: 0;
+            }
+        }
+        margin-bottom: $point*2;
+    }
+
+    .note-list {
+        flex: 1 1 auto;
+        margin-bottom: $point*2;
+        .note-list-block {
+            display: grid;
+            grid-template-columns: 1fr $point*8;
+
+            &:not(:last-child) {
+                margin-bottom: $point*2;
+            }
+            .note-item-wrapper {
+                margin-bottom: $point * 2;  
+            }
+            .removing-area {
+                margin-left: 44px;
+            }
+
+            .note-item {
+                user-select: none;
+                cursor: pointer;
+                border-radius: 8px;
+                &:hover {
+                    background: var(--card-hover-background);
+                }
+        
+                .note-item-name {
+                    line-height: 24px;
+                    font-weight: 600;
+                    font-size: 24px;
+                    padding: 8px 8px 0px 8px;
+                    box-sizing: border-box;
+                    word-break: break-all;
+                }
+        
+                .note-item-descr {
+                    height: 28px;
+                    line-height: 20px;
+                    font-size: 20px;
+                    padding: 0px 8px 8px 8px;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+
+    .note-list-toolbar {
+        display: grid;
+        grid-template-columns: 1fr $point*10;
+        padding: 0!important;
+        height: 40px;
+        box-shadow: none;
+
+        .x-button.sorter-button  {
+            border-radius: 0;
+            height: 40px;
+            
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: $point*2;
+            border-bottom-left-radius: $point*2;
+
+            .x-button-title {
+                padding-top: $point * 2.5;
+            }
+        }
+
+        .x-button.settings-button {
+            grid-template-columns: 32px!important;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: $point*2;
+            border-bottom-right-radius: $point*2;
+            height: 40px;
+        }
+    }
+}

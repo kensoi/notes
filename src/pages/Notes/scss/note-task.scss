@@ -1,0 +1,7 @@
+@mixin note-task{
+    .note-task {
+        display: grid;
+        grid-template-columns: $point*9 1fr;
+        padding-left: $point*4;
+    }
+}

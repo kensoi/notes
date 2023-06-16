@@ -6,11 +6,11 @@ import {
     MountTransition
 } from "@web-cross-ui/transitions/"
 
-import {
-    Editor
-} from "../editor"
-
-import BottomBar from "../BottomBar"
+import Editor from "../components/editor"
+import BottomBar from "../components/BottomBar"
+import SearchBox from "../components/SearchBox"
+import SelectNote from "../components/SelectNote"
+import NoteList from "../components/NoteList"
 
 function Page() {
     const toolkit = useToolKit()

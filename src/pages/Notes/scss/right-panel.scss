@@ -1,0 +1,56 @@
+@import "./note-title.scss";
+@import "./note-paragraph.scss";
+@import "./note-task.scss";
+
+@mixin right-panel {
+    .editor-state {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        height: 100%;
+
+        p {
+            font-size: 32px!important;
+        }
+    }
+
+    .editor-toolbar {
+        display: grid;
+        grid-template-columns: repeat(4, $point*8) 1fr;
+        margin-bottom: $point*2;
+    }
+
+    .note-item-block {
+        max-width: 720px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr $point*8;
+        &.editing {
+            grid-template-columns: $point*8 1fr $point*8;
+            .dragging-buttons {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                &:not(.latest) .x-button {
+                    &:first-child {
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
+                    &:last-child {
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
+                    }
+                }
+            }
+        }
+        .x-text-field {
+            background: none;
+            box-shadow: none;
+        }
+
+        @include note-title;
+        @include note-paragraph;
+        @include note-task;
+    }
+}

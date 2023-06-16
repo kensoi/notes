@@ -15,8 +15,9 @@ export function AddNote() {
         toolkit.notes.create()
     }
 
-    return <Button accent="transparent"
-        icon={<AddIcon />}
-        onClick={createNote}
+    return <Button 
+            theme="white"
+            icon={<AddIcon />}
+            onClick={createNote}
     />
 }

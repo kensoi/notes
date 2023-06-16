@@ -3,7 +3,7 @@ export {
 } from "./partitions/"
 
 export {
-    cartCalc, CartCalcReducer,
+    notes, NotesReducer,
     pages, PagesReducer
 } from "./reducers/"
 

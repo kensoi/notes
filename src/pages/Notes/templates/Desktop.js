@@ -4,21 +4,35 @@ import {
 
 import {
     MountTransition
-} from "@web-cross-ui/transitions/"
+} from "@web-cross-ui/transitions"
 
-import {
-    Menu,
-    Resolver
-} from "../pages"
+import EmptyList from "../components/EmptyList"
+import NoteList from "../components/NoteList"
+import BottomBar from "../components/BottomBar"
+import SearchBox from "../components/SearchBox"
+import Editor from "../components/editor"
+import SelectNote from "../components/SelectNote"
 
 export function Template() {
     const toolkit = useToolKit()
 
-    return <div className="desktop settings">
-        <Menu />
+    const NoteBlock = () => {
+        return toolkit.notes.isListEmpty() ? <EmptyList /> : <NoteList />
+    }
+
+    const Resolver = () => {
+        return toolkit.notes.isTarget() ?  <Editor /> : <SelectNote />
+    }
+
+    return <div className="desktop notes">
+        <div className="sorted-list">
+            <SearchBox />
+            <NoteBlock />
+            <BottomBar />
+        </div>
         <MountTransition
-            mountState={toolkit.pages.settings.mounted}
-            visibilityState={toolkit.pages.settings.loaded}
+            mountState={toolkit.notes.mounted}
+            visibilityState={toolkit.notes.loaded}
         >
             <Resolver />
         </MountTransition>

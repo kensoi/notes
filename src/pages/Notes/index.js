@@ -2,7 +2,7 @@ import {
     useToolKit
 } from "@web-cross-ui/toolkit"
 
-import "./stylesheet.scss"
+import "./scss/index.scss"
 
 import { 
     DesktopTemplate, 

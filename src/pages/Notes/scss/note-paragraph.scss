@@ -1,0 +1,6 @@
+@mixin note-paragraph{
+    .note-paragraph {
+        padding-left: $point*4;
+        font-size: 20px;
+    }
+}

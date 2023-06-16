@@ -1,0 +1,31 @@
+@import "@web-cross-ui/utils/optional.scss";
+@import "./left-panel.scss";
+@import "./right-panel.scss";
+
+.webx {
+    &.screen-device-mobile {
+    }
+
+    &.screen-device-tablet {
+        .desktop.notes {
+            grid-template-columns: 240px 1fr;
+        }
+    }
+
+    &.screen-device-desktop {
+        .desktop.notes {
+            grid-template-columns: 320px 1fr;
+        }
+    }
+
+    .index {
+        height: 100vh;
+    }
+
+    .desktop.notes {
+        min-height: 100%;
+    }
+
+    @include left-panel;
+    @include right-panel;
+}

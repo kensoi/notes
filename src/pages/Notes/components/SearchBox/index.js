@@ -10,7 +10,7 @@ import {
     AddNote
 } from "./AddNote"
 
-export function SearchBox() {
+export default function SearchBox() {
     return <div className="search-box">
         <CardBlock>
             <SearchField />

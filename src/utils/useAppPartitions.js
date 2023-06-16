@@ -17,20 +17,6 @@ import {
 
 } from "./toolkit"
 
-function useCalculatorAPI () {
-    const [
-        state, dispatch
-    ] = useReducer(CartCalcReducer, cartCalc)
-
-    usePartition(
-        "cartCalc", 
-        new CartCalcPartition(
-            state, dispatch, 
-            useToolKit()
-        )
-    )
-}
-
 function useNotesAPI () {
     const [
         state, dispatch
@@ -38,7 +24,7 @@ function useNotesAPI () {
 
     usePartition(
         "notes", 
-        new CartCalcPartition(
+        new NotesPartition(
             state, dispatch, 
             useToolKit()
         )

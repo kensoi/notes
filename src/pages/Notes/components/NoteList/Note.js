@@ -53,6 +53,8 @@ export function Note({ note, index }) {
                 {editDate.toLocaleDateString()} {editDate.getHours()}:{editDate.getMinutes()}
             </div>
         </div>
-        <RemoveButton />
+        <div>
+            <RemoveButton />
+        </div>
     </CardBlock>
 }

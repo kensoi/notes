@@ -1,7 +1,6 @@
-@use "sass:math";
 @import "@web-cross-ui/utils/optional.scss";
 
-$border-thin: math.div($point, 4);
+$border-thin: $point * 0.25;
 $separator-common: var(--x-block-border);
 $box-shadow: 0px 4px 8px rgba(12, 21, 49, 0.027);
 
