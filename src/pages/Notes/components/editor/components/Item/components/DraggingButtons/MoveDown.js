@@ -6,7 +6,9 @@ import {
     Button
 } from "@web-cross-ui/forms"
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import {
+    ArrowDropDownIcon
+} from "icons/notes/editor/document"
 
 export default function MoveDown({ index }) {
     const toolkit = useToolKit()

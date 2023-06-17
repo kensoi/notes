@@ -2,12 +2,17 @@ import {
     useToolKit
 } from '@web-cross-ui/toolkit'
 
+import {
+    ButtonBlock
+} from '@web-cross-ui/forms'
+
 import ChildrenButton from './ChildrenButton'
 
-import ModeEditIcon from '@mui/icons-material/ModeEdit'
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
-import ImportExportIcon from '@mui/icons-material/ImportExport'
-import { ButtonBlock } from '@web-cross-ui/forms'
+import {
+    ModeEditIcon,
+    DeleteSweepIcon,
+    ImportExportIcon
+} from "icons/notes/editor/toolbar"
 
 function ToggleNormalArea() {
     const toolkit = useToolKit()

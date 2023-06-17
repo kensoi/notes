@@ -7,7 +7,9 @@ import {
     ButtonBlock
 } from "@web-cross-ui/forms"
 
-import ImportExportIcon from '@mui/icons-material/ImportExport'
+import {
+    ImportExportIcon
+} from 'icons/notes/bottom-menu'
 
 function SortByEdit() {
     const toolkit = useToolKit()

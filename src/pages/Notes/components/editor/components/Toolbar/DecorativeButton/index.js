@@ -5,7 +5,9 @@ import {
 import ChildrenButton from './ChildrenButton'
 import DropdownContent from './DropdownContent'
 
-import BrushIcon from '@mui/icons-material/Brush'
+import {
+    BrushIcon
+} from "icons/notes/editor/toolbar"
 
 export default function DecorativeButton() {
     return <Dropdown

@@ -8,10 +8,12 @@ import {
 
 import ChildrenButton from './ChildrenButton'
 
-import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
-import DoneIcon from '@mui/icons-material/Done'
-import RttIcon from '@mui/icons-material/Rtt'
+import {
+    HorizontalRuleIcon,
+    MoreHorizIcon,
+    DoneIcon,
+    RttIcon
+} from "icons/notes/editor/toolbar"
 
 function Quote () {
     const toolkit = useToolKit()

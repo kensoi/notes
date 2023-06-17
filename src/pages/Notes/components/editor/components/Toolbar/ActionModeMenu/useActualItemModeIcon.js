@@ -2,9 +2,11 @@ import {
     useToolKit
 } from '@web-cross-ui/toolkit'
 
-import ModeEditIcon from '@mui/icons-material/ModeEdit'
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
-import ImportExportIcon from '@mui/icons-material/ImportExport'
+import {
+    ImportExportIcon,
+    ModeEditIcon,
+    DeleteSweepIcon
+} from "icons/notes/editor/toolbar"
 
 export default function useActualItemModeIcon() {
     const toolkit = useToolKit()

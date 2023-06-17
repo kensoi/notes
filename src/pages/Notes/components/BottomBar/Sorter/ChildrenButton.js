@@ -6,7 +6,9 @@ import {
     Button
 } from "@web-cross-ui/forms"
 
-import ImportExportIcon from '@mui/icons-material/ImportExport'
+import {
+    ImportExportIcon
+} from 'icons/notes/bottom-menu'
 
 export default function ChildrenButton() {
     const toolkit = useToolKit()

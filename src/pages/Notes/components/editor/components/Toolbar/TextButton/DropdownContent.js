@@ -8,8 +8,10 @@ import {
 
 import ChildrenButton from './ChildrenButton'
 
-import ShortTextIcon from '@mui/icons-material/ShortText'
-import NotesIcon from '@mui/icons-material/Notes'
+import {
+    ShortTextIcon,
+    NotesIcon
+} from "icons/notes/editor/toolbar"
 
 function Title() {
     const toolkit = useToolKit()

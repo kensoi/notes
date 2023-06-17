@@ -6,7 +6,9 @@ import {
     Button
 } from '@web-cross-ui/forms'
 
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import {
+    ArrowBackIcon
+} from "icons/notes/editor/toolbar"
 
 export default function BackToList() {
     const toolkit = useToolKit()

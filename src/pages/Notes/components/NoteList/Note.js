@@ -7,7 +7,9 @@ import {
     Button
 } from "@web-cross-ui/forms"
 
-import CloseIcon from '@mui/icons-material/Close'
+import {
+    CloseIcon
+} from "icons/notes/notes-list"
 
 export function Note({ note, index }) {
     const toolkit = useToolKit()

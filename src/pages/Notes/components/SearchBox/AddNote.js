@@ -6,7 +6,9 @@ import {
     Button
 } from '@web-cross-ui/forms'
 
-import AddIcon from '@mui/icons-material/Add'
+import {
+    AddIcon
+} from "icons/notes/search-box"
 
 export function AddNote() {
     const toolkit = useToolKit()

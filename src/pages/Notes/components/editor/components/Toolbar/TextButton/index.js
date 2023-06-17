@@ -5,7 +5,9 @@ import {
 import ChildrenButton from './ChildrenButton'
 import DropdownContent from './DropdownContent'
 
-import TextFormatIcon from '@mui/icons-material/TextFormat'
+import {
+    TextFormatIcon
+} from "icons/notes/editor/toolbar"
 
 export default function TextButton() {
     return <Dropdown

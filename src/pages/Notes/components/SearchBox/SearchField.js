@@ -6,7 +6,9 @@ import {
     TextField
 } from '@web-cross-ui/forms'
 
-import SearchIcon from '@mui/icons-material/Search'
+import {
+    SearchIcon
+} from "icons/notes/search-box"
 
 export function SearchField() {
     const toolkit = useToolKit()

@@ -6,7 +6,9 @@ import {
     Button
 } from "@web-cross-ui/forms"
 
-import SettingsIcon from "@mui/icons-material/Settings"
+import {
+    SettingsIcon
+} from "icons/settings/menu"
 
 export default function SettingsButton() {
     const toolkit = useToolKit()

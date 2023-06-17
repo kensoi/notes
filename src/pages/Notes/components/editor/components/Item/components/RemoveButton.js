@@ -6,7 +6,9 @@ import {
     Button
 } from "@web-cross-ui/forms"
 
-import ClearIcon from '@mui/icons-material/Clear'
+import {
+    ClearIcon
+} from "icons/notes/editor/document"
 
 export default function RemoveButton({ index }) {
     const toolkit = useToolKit()
