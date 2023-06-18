@@ -27,8 +27,8 @@ export function Template() {
     const toolkit = useToolKit()
 
     return <MountTransition
-        mountState={toolkit.cartCalc.pages.settings.mounted}
-        visibilityState={toolkit.cartCalc.pages.settings.loaded}
+        mountState={toolkit.pages.settings.mounted}
+        visibilityState={toolkit.pages.settings.loaded}
     >
         <Content />
     </MountTransition>

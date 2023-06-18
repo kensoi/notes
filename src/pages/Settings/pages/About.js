@@ -21,6 +21,12 @@ export default function About () {
                 <div className="options-grid-item">
                     {process.env.REACT_APP_VERSION}
                 </div>
+                <div className="options-grid-item">
+                    <b>Версия:</b>
+                </div>
+                <div className="options-grid-item">
+                    {process.env.homepage}
+                </div>
             </div>
         </CardBlock>
     </div>

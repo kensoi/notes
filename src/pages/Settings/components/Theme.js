@@ -23,7 +23,7 @@ const themes = [
     {
         name: "auto",
         icon: <AutoAwesomeIcon />,
-        title: "Системная",
+        title: "Авто",
     },
     {
         name: "light",

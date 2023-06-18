@@ -14,7 +14,7 @@ function BackButtonMobile() {
     const toolkit = useToolKit()
 
     const returnToMenu = () => {
-        toolkit.app.page = 0
+        toolkit.pages.settings.number = 0
     }
 
     return <Button 
