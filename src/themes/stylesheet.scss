@@ -1,8 +1,4 @@
 .webx {
-    #root {
-        min-height: 100%;
-    }
-
     &.theme-light {
         @import "./light/index.scss";
         @include theme-light;
