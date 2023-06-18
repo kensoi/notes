@@ -1,10 +1,10 @@
 import {
     useToolKit
-} from '@web-cross-ui/toolkit'
+} from '@webx-ui/toolkit'
 
 import {
     CardBlock
-} from '@web-cross-ui/forms'
+} from '@webx-ui/forms'
 
 import ActionModeMenu from './ActionModeMenu'
 import DecorativeButton from './DecorativeButton'
@@ -14,7 +14,7 @@ import BackToList from './BackToList'
 export default function Toolbar() {
     const toolkit = useToolKit()
     
-    if (toolkit.settings.windowWidth < 768) {
+    if (toolkit.app.windowWidth < 768) {
         return < CardBlock className="editor-toolbar">
             <BackToList />
             <TextButton />

@@ -1,6 +1,6 @@
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import "./stylesheet.scss"
 
@@ -12,7 +12,7 @@ import {
 export default function Settings () {
     const toolkit = useToolKit()
 
-    if (toolkit.settings.windowWidth >= 768) {
+    if (toolkit.app.windowWidth >= 768) {
         return <DesktopTemplate />
     }
 

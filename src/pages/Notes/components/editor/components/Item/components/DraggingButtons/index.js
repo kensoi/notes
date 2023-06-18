@@ -1,6 +1,6 @@
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import MoveUp from "./MoveUp"
 import MoveDown from "./MoveDown"

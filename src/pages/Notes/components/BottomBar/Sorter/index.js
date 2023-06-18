@@ -1,6 +1,6 @@
 import {
     Dropdown
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 import ChildrenButton from "./ChildrenButton"
 import Menu from "./Menu"

@@ -1,0 +1,27 @@
+.webx {
+    #root {
+        min-height: 100%;
+    }
+
+    &.theme-light {
+        @import "./light/index.scss";
+        @include theme-light;
+    }
+
+    &.theme-dark {
+        @import "./dark/index.scss";
+        @include theme-dark;
+    }
+    
+    &.theme-auto {
+        @media screen and (prefers-color-scheme: dark) {
+            @import "./dark/index.scss";
+            @include theme-dark;
+        }
+    
+        @media screen and (prefers-color-scheme: light) {
+            @import "./light/index.scss";
+            @include theme-light;
+        }
+    }
+}

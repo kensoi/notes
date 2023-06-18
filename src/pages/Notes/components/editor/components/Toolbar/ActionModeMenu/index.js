@@ -1,6 +1,6 @@
 import {
     Dropdown
-} from '@web-cross-ui/forms'
+} from '@webx-ui/forms'
 
 import useActualItemModeIcon from './useActualItemModeIcon'
 import DropdownContent from './DropdownContent'

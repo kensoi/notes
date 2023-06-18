@@ -1,10 +1,10 @@
 import { 
     useToolKit
-} from '@web-cross-ui/toolkit'
+} from '@webx-ui/toolkit'
 
 import {
     ButtonBlock
-} from '@web-cross-ui/forms'
+} from '@webx-ui/forms'
 
 import ChildrenButton from './ChildrenButton'
 

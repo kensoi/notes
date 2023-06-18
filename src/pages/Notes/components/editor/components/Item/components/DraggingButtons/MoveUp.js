@@ -1,10 +1,10 @@
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import {
     Button
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 import {
     ArrowDropUpIcon
@@ -14,7 +14,7 @@ export default function MoveUp({ index }) {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.moveUp(index)
+        toolkit.editor.moveUp(index)
     };
 
     return <Button

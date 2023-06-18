@@ -1,10 +1,10 @@
 import {
     useToolKit
-} from '@web-cross-ui/toolkit'
+} from '@webx-ui/toolkit'
 
 import {
     ButtonBlock
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 import ChildrenButton from './ChildrenButton'
 
@@ -17,7 +17,7 @@ function Title() {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.add(1)
+        toolkit.editor.add(1)
     }
 
     return <ChildrenButton 
@@ -31,7 +31,7 @@ function Paragraph() {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.add(2)
+        toolkit.editor.add(2)
     }
 
     return <ChildrenButton 
@@ -45,7 +45,7 @@ function Bold() {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.add(2, "p-bold")
+        toolkit.editor.add(2, "p-bold")
     }
 
     return <ChildrenButton 
@@ -59,7 +59,7 @@ function Italic() {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.add(2, "p-italic")
+        toolkit.editor.add(2, "p-italic")
     }
 
     return <ChildrenButton 

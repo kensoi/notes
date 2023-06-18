@@ -4,11 +4,11 @@ import {
 
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import {
     TextField
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 export default function Quote({ item, index }) {
     const toolkit = useToolKit()
@@ -17,7 +17,7 @@ export default function Quote({ item, index }) {
         function setText(text) {
             const newItem = { ...item }
             newItem.text = text
-            toolkit.notes.items.update(index, newItem)
+            toolkit.editor.update(index, newItem)
         }
         
         if (toolkit.notes.itemMode === 0) {
@@ -42,7 +42,7 @@ export default function Quote({ item, index }) {
         const setField = (text) => {
             const newItem = { ...item }
             newItem.author = text
-            toolkit.notes.items.update(index, newItem)
+            toolkit.editor.update(index, newItem)
         }
 
         if (toolkit.notes.itemMode === 0) {

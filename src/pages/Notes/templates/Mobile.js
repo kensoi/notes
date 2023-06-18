@@ -1,10 +1,10 @@
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import { 
     MountTransition
-} from "@web-cross-ui/transitions/"
+} from "@webx-ui/transitions/"
 
 import Editor from "../components/editor"
 import BottomBar from "../components/BottomBar"

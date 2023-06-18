@@ -1,4 +1,4 @@
-@import "@web-cross-ui/utils/optional.scss";
+@import "@webx-ui/utils/optional.scss";
 
 .webx {
     .settings-text {
@@ -45,7 +45,8 @@
 
     &.screen-device-desktop {
         .desktop.settings {
-            grid-template-columns: 320px 640px;
+            grid-template-columns: 320px minmax(696px, 1fr);
+            margin: 0 auto;
         }
 
         .settings-wrapper {

@@ -4,12 +4,12 @@ import {
 
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import {
     CheckBox, 
     TextField
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 export default function Task({ item, index }) {
     const toolkit = useToolKit()
@@ -18,7 +18,7 @@ export default function Task({ item, index }) {
         const setStatus = () => {
             const newItem = { ...item }
             newItem.status = !item.status
-            toolkit.notes.items.update(index, newItem)
+            toolkit.editor.update(index, newItem)
         }
 
         return <CheckBox state={item.status} setState={setStatus} />
@@ -28,7 +28,7 @@ export default function Task({ item, index }) {
         const setText = (text) => {
             const newItem = { ...item }
             newItem.text = text
-            toolkit.notes.items.update(index, newItem)
+            toolkit.editor.update(index, newItem)
         }
         return <TextField key={nanoid()}
             field={item.text} setField={setText}>

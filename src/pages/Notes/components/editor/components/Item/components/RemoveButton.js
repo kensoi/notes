@@ -1,10 +1,10 @@
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import {
     Button
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 import {
     ClearIcon
@@ -14,7 +14,7 @@ export default function RemoveButton({ index }) {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.remove(index)
+        toolkit.editor.remove(index)
     }
 
     return <div>

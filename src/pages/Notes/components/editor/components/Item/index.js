@@ -4,7 +4,7 @@
 
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import Inner from "./Inner"
 import RemoveButton from "./components/RemoveButton"
@@ -27,7 +27,7 @@ export default function Item({ item, index }) {
             </div>
 
         default:
-            if (toolkit.settings.windowWidth > 768) {
+            if (toolkit.app.windowWidth > 768) {
                 return <div className="note-item-block">
                     {/* <MoveButton /> */}
                     <Inner item={item} index={index} />

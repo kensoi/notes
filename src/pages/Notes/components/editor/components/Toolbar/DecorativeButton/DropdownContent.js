@@ -1,10 +1,10 @@
 import {
     useToolKit
-} from '@web-cross-ui/toolkit'
+} from '@webx-ui/toolkit'
 
 import {
     ButtonBlock
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 import ChildrenButton from './ChildrenButton'
 
@@ -19,7 +19,7 @@ function Quote () {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.add(3)
+        toolkit.editor.add(3)
     }
 
     return <ChildrenButton 
@@ -33,7 +33,7 @@ function Task () {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.add(4)
+        toolkit.editor.add(4)
     }
 
     return <ChildrenButton 
@@ -47,7 +47,7 @@ function Ellipsis () {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.add(5)
+        toolkit.editor.add(5)
     }
 
     return <ChildrenButton 
@@ -61,7 +61,7 @@ function HorizontalLine () {
     const toolkit = useToolKit()
 
     const onClick = () => {
-        toolkit.notes.items.add(6)
+        toolkit.editor.add(6)
     }
 
     return <ChildrenButton 

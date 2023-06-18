@@ -1,6 +1,6 @@
 import {
     CardBlock
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 export default function NoItems() {
     return <CardBlock className="empty-note">

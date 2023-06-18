@@ -1,6 +1,6 @@
 {
   "name": "notes",
-  "version": "0.3.9",
+  "version": "0.4.0",
   "author": "Andrew Prokofieff <kensoidev@gmail.com>",
   "homepage": "https://kensoi.github.io/notes",
   "private": true,
@@ -22,15 +22,14 @@
   },
   "scripts": {
     "postinstall": "patch-package",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "node ./utils/postbuild.js",
+    "deploy": "node ./utils/deploy.js",
+
     "not-found-patch": "node ./utils/NotFoundPatch.js",
-    "prerender": "react-spa-prerender",
-    "pretest": "npm run build",
-    "test": "node ./utils/server.js",
+    "github-pages": "gh-pages -d build",
+    "spa-prerender": "react-spa-prerender",
+
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

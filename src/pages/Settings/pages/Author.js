@@ -1,8 +1,8 @@
 import {
     CardBlock, 
     Button
-} from "@web-cross-ui/forms"
-import { useToolKit } from "@web-cross-ui/toolkit"
+} from "@webx-ui/forms"
+import { useToolKit } from "@webx-ui/toolkit"
 
 import Headline from "pages/Settings/components/Headline"
 

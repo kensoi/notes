@@ -1,10 +1,10 @@
 import { 
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import {
     CardBlock
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 import Toolbar from "./components/Toolbar"
 import NoItems from "./components/NoItems"

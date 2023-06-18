@@ -4,17 +4,17 @@ import {
 
 import {
     Button
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 function BackButtonMobile() {
     const toolkit = useToolKit()
 
     const returnToMenu = () => {
-        toolkit.settings.page = 0
+        toolkit.app.page = 0
     }
 
     return <Button 
@@ -31,7 +31,7 @@ export default function Headline({
     
     return <div className="settings-headline">
         {
-            toolkit.settings.windowWidth < 768 ? <BackButtonMobile /> : <></>
+            toolkit.app.windowWidth < 768 ? <BackButtonMobile /> : <></>
         }
         { title }
     </div>

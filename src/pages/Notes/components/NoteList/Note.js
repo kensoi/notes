@@ -1,11 +1,11 @@
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import {
     CardBlock,
     Button
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 import {
     CloseIcon

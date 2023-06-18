@@ -4,11 +4,11 @@ import {
 
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import {
     TextField
-} from "@web-cross-ui/forms"
+} from "@webx-ui/forms"
 
 export default function Title({ item, index }) {
     const toolkit = useToolKit()
@@ -16,7 +16,7 @@ export default function Title({ item, index }) {
     function setField(text) {
         const newItem = { ...item }
         newItem.text = text
-        toolkit.notes.items.update(index, newItem)
+        toolkit.editor.update(index, newItem)
     }
 
     const classList = []

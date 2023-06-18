@@ -1,6 +1,6 @@
 import {
     useToolKit
-} from "@web-cross-ui/toolkit"
+} from "@webx-ui/toolkit"
 
 import About from "./About"
 import Author from "./Author"
