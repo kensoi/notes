@@ -1,25 +1,11 @@
-import {
-    CardBlock, 
-    Button
-} from "@webx-ui/forms"
-import { useToolKit } from "@webx-ui/toolkit"
 
-import Headline from "pages/Settings/components/Headline"
+import {
+    CardBlock} from "@webx-ui/forms"
+
+import Headline from "../components/Headline"
+import LinkButton from "../components/LinkButton"
 
 export default function Author () {
-    const LinkButton = ({title, children, link}) => {
-        const toolkit = useToolKit()
-
-        const action = () => {
-            toolkit.app.goTo(link)
-        }
-
-        return <Button
-            theme="white"
-            title={title || children}
-            onClick={action}
-        />
-    }
     return <div className="settings-wrapper">
         <Headline title="О разработчике" />
         <CardBlock className="settings-page">

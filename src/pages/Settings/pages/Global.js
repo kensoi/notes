@@ -7,7 +7,7 @@ import {
     Tumbler,
 } from "@webx-ui/forms"
 
-import Headline from "pages/Settings/components/Headline"
+import Headline from "../components/Headline"
 
 export default function Global () {
     const toolkit = useToolKit()
