@@ -18,8 +18,7 @@
                 padding: $point $point*2 $point $point*3;
             }
             .x-button {
-                grid-template-columns: 32px!important;
-                border-radius: 0;
+                margin: $point;
             }
         }
         margin-bottom: $point*2;
@@ -70,34 +69,20 @@
         }
     }
 
+    .no-notes {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.5;
+        user-select: none;
+    }
+
     .note-list-toolbar {
         display: grid;
-        grid-template-columns: 1fr $point*10;
-        padding: 0!important;
+        grid-template-columns: 1fr $point*8;
+        gap: $point;
         height: 40px;
         box-shadow: none;
-
-        .x-button.sorter-button  {
-            border-radius: 0;
-            height: 40px;
-            
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-top-left-radius: $point*2;
-            border-bottom-left-radius: $point*2;
-
-            .x-button-title {
-                padding-top: $point * 2.5;
-            }
-        }
-
-        .x-button.settings-button {
-            grid-template-columns: 32px!important;
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            border-top-right-radius: $point*2;
-            border-bottom-right-radius: $point*2;
-            height: 40px;
-        }
     }
 }

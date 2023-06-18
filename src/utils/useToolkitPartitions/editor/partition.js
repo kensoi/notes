@@ -35,7 +35,7 @@ export class Partition {
         })
     }
 
-    setToolkit(toolkit) {
+    setToolKit(toolkit) {
         this.#toolkit = toolkit
     }
 

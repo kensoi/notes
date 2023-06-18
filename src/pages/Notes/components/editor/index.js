@@ -10,28 +10,24 @@ import Toolbar from "./components/Toolbar"
 import NoItems from "./components/NoItems"
 import Item from "./components/Item"
 
-export default function Editor() {
+function NoteContent() {
     const toolkit = useToolKit()
-    
-    if (!toolkit.notes.isTarget()) {
-        return <></>
-    }
     const targetNote = toolkit.notes.getTarget()
-    
-    const NoteContent = () => {
-        if (targetNote.items.length === 0) {
-            return <NoItems />
-        }
 
-        return targetNote.items.map(
+    if (targetNote.items.length === 0) {
+        return <NoItems />
+    }
+
+    return <CardBlock className="editor-x-block">
+        {targetNote.items.map(
             (item, index) => <Item key={item.id} item={item} index={index} />
-        )
-    }   
+        )}
+    </CardBlock>
+}   
 
+export default function Editor() {
     return <>
         <Toolbar />
-        <CardBlock className="editor-x-block">
-            <NoteContent />
-        </CardBlock>
+        <NoteContent />
     </>
 }

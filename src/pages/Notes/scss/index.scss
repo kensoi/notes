@@ -3,9 +3,6 @@
 @import "./right-panel.scss";
 
 .webx {
-    &.screen-device-mobile {
-    }
-
     &.screen-device-tablet {
         .desktop.notes {
             grid-template-columns: 240px 1fr;
@@ -20,6 +17,26 @@
 
     .index {
         height: 100vh;
+        
+        .mount-transition {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .editor-x-block {
+            flex: 1 1 auto;
+        }
+
+        .empty-note {
+            flex: 1 1 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p {
+                font-size: 32px!important;
+            }
+        }
+
     }
 
     .desktop.notes {

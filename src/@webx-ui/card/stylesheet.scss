@@ -15,21 +15,17 @@
         pointer-events: none;
         transform: translate(-50%, 5vh);
 
-        -webkit-transition: 0.3s;
-        -moz-transition: 0.3s;
-        -o-transition: 0.3s;
-        transition: 0.3s;
+        -webkit-transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s!important;
+        -moz-transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s!important;
+        -o-transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s!important;
+        transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s!important;
+        
         margin-top: 40vh;
 
         &.visible {
             opacity: 1!important;
             pointer-events: inherit!important;
             transform: translate(-50%, 0)!important;
-            
-            -webkit-transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s!important;
-            -moz-transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s!important;
-            -o-transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s!important;
-            transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s!important;
         }
 
         .card-layout {

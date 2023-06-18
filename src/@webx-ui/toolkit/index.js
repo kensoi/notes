@@ -49,6 +49,8 @@ function ToolKitContext ({ children }) {
 function usePartition (name, partition) {
     const toolkit = useToolKit()
 
+    partition.setToolKit(toolkit)
+
     toolkit.setPartition(name, partition)
 }
 

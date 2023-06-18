@@ -3,13 +3,10 @@ import {
 } from "@webx-ui/toolkit"
 
 import {
-    CardBlock,
-    Button
+    CardBlock
 } from "@webx-ui/forms"
 
-import {
-    CloseIcon
-} from "icons/notes/notes-list"
+import RemoveButton from "./RemoveButton"
 
 export function Note({ note, index }) {
     const toolkit = useToolKit()
@@ -31,23 +28,13 @@ export function Note({ note, index }) {
         }
     }
 
-    const select = () => {
+    function onClick() {
         toolkit.notes.select(index)
-    }
-
-    const RemoveButton = () => {
-        const remove = toolkit.notes.remove.bind(toolkit.notes, index)
-
-        return <Button
-            theme="transparent"
-            icon={<CloseIcon />}
-            onClick={remove}
-        />
     }
 
     return <CardBlock className="note-list-block">
         <div className="note-item"
-            onClick={select}>
+            onClick={onClick}>
             <div className="note-item-name">
                 <NoteName />
             </div>
@@ -56,7 +43,7 @@ export function Note({ note, index }) {
             </div>
         </div>
         <div>
-            <RemoveButton />
+            <RemoveButton index={index} />
         </div>
     </CardBlock>
 }

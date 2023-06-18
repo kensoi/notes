@@ -25,6 +25,12 @@
             max-width: 480px;
             margin: auto;
             padding: 4px 5% 32px 5%!important;
+
+            .card-button-list {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: $point*2;
+            }
             
             .x-button {
                 display: flex;

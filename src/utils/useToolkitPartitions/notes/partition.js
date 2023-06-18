@@ -120,7 +120,7 @@ export class Partition {
     })
   }
 
-  setToolkit(toolkit) {
+  setToolKit(toolkit) {
     this.#toolkit = toolkit
   }
 
@@ -199,19 +199,9 @@ export class Partition {
     this.list = newNoteList
   }
 
-  remove (note_index, trusted=false) {
+  remove (note_index) {
     var offset = 0
     var newList = [...this.list]
-
-    if (this.#toolkit.settings.askBeforeRemoving) {
-      if (trusted) {
-        this.#toolkit.app.card.hide()
-      }
-      else {
-        this.#toolkit.app.card.show("confirm-deletion")
-        return
-      }
-    }
 
     if (this.isTarget(note_index)) {
       this.deselect()
