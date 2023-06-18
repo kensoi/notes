@@ -2,7 +2,7 @@ import {
     CardBlock
 } from "@webx-ui/forms"
 
-import Headline from "pages/Settings/components/Headline"
+import Headline from "../components/Headline"
 
 export default function About () {
     return <div className="settings-wrapper">
@@ -20,12 +20,6 @@ export default function About () {
                 </div>
                 <div className="options-grid-item">
                     {process.env.REACT_APP_VERSION}
-                </div>
-                <div className="options-grid-item">
-                    <b>Версия:</b>
-                </div>
-                <div className="options-grid-item">
-                    {process.env.homepage}
                 </div>
             </div>
         </CardBlock>
